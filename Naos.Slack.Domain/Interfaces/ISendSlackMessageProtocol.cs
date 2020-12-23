@@ -1,15 +1,17 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Class1.cs" company="Naos Project">
+// <copyright file="ISendSlackMessageProtocol.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace Naos.Slack.Domain
 {
+    using Naos.Protocol.Domain;
+
     /// <summary>
-    /// TODO: Starting point for new project.
+    /// Executes a <see cref="SendSlackMessageOp"/>.
     /// </summary>
-    public partial class Class1
+    public interface ISendSlackMessageProtocol : ISyncAndAsyncReturningProtocol<SendSlackMessageOp, SlackMessageResponse>
     {
     }
 }

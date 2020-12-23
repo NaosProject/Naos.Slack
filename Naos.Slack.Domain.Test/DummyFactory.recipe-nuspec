@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Naos.Slack.Domain.Recipes.DummyFactory</id>
+    <description>A Dummy Factory for types in Naos.Slack.Domain</description>
+    <tags>dummyfactory dummy factory fakeiteasy autofixture snippet codeinclude utility shared recipe Slack</tags>
+    <dependencies>
+      <dependency id="Naos.Slack.Domain" version="$version$" />
+      <dependency id="OBeautifulCode.AutoFakeItEasy" version="1.0.129" />
+      <dependency id="Naos.CodeAnalysis.Recipes.SuppressBecause" version="1.0.126" />
+      <dependency id="Naos.Protocol.Recipes.DummyFactory" version="1.0.68" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="SlackDummyFactory.cs" target="content\net462\.recipes\Naos.Slack\SlackDummyFactory.cs" />
+    <file src="SlackDummyFactory.designer.cs" target="content\net462\.recipes\Naos.Slack\SlackDummyFactory.designer.cs" />
+  </files>
+</package>

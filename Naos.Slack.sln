@@ -1,0 +1,63 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Slack.Domain", "Naos.Slack.Domain\Naos.Slack.Domain.csproj", "{493C2E3C-9A04-4272-AC11-839F7C4A259C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Slack.Domain.Test", "Naos.Slack.Domain.Test\Naos.Slack.Domain.Test.csproj", "{64807F10-8EBC-4B16-9588-65DFF71E19C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Slack.Serialization.Bson", "Naos.Slack.Serialization.Bson\Naos.Slack.Serialization.Bson.csproj", "{B08EBF57-AF17-495F-AD7F-08BDEB5A1673}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Slack.Serialization.Json", "Naos.Slack.Serialization.Json\Naos.Slack.Serialization.Json.csproj", "{579EFA2A-FE4D-4755-BE6D-FBA77DAE33D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Slack.Protocol.Client", "Naos.Slack.Protocol.Client\Naos.Slack.Protocol.Client.csproj", "{C8C09002-4ED9-4DF3-8D29-FEC801656E75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Naos.Slack.Protocol.Client.Test", "Naos.Slack.Protocol.Client.Test\Naos.Slack.Protocol.Client.Test.csproj", "{6F0872B1-0BEE-41BE-8406-0000C872BEC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{768E7EF8-CA4C-4C21-8923-80700EABD6BB}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+		RepoConfig.state = RepoConfig.state
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{493C2E3C-9A04-4272-AC11-839F7C4A259C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{493C2E3C-9A04-4272-AC11-839F7C4A259C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{493C2E3C-9A04-4272-AC11-839F7C4A259C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{493C2E3C-9A04-4272-AC11-839F7C4A259C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64807F10-8EBC-4B16-9588-65DFF71E19C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64807F10-8EBC-4B16-9588-65DFF71E19C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64807F10-8EBC-4B16-9588-65DFF71E19C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64807F10-8EBC-4B16-9588-65DFF71E19C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B08EBF57-AF17-495F-AD7F-08BDEB5A1673}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B08EBF57-AF17-495F-AD7F-08BDEB5A1673}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B08EBF57-AF17-495F-AD7F-08BDEB5A1673}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B08EBF57-AF17-495F-AD7F-08BDEB5A1673}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579EFA2A-FE4D-4755-BE6D-FBA77DAE33D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579EFA2A-FE4D-4755-BE6D-FBA77DAE33D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579EFA2A-FE4D-4755-BE6D-FBA77DAE33D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579EFA2A-FE4D-4755-BE6D-FBA77DAE33D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8C09002-4ED9-4DF3-8D29-FEC801656E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8C09002-4ED9-4DF3-8D29-FEC801656E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8C09002-4ED9-4DF3-8D29-FEC801656E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8C09002-4ED9-4DF3-8D29-FEC801656E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F0872B1-0BEE-41BE-8406-0000C872BEC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F0872B1-0BEE-41BE-8406-0000C872BEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F0872B1-0BEE-41BE-8406-0000C872BEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F0872B1-0BEE-41BE-8406-0000C872BEC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2401151-B808-4D39-8C9A-33FD82D98D87}
+	EndGlobalSection
+EndGlobal

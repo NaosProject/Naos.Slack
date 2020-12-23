@@ -4,12 +4,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using OBeautifulCode.Assertion.Recipes;
-using System;
-using Xunit;
-
 namespace Naos.Slack.Domain.Test
 {
+    using System;
+
+    using OBeautifulCode.Assertion.Recipes;
+
+    using Xunit;
+
     /// <summary>
     /// TODO: Starting point for new project.
     /// </summary>

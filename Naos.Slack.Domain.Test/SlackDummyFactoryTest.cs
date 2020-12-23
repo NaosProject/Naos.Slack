@@ -4,13 +4,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using FakeItEasy;
-using OBeautifulCode.AutoFakeItEasy;
-using System;
-using Xunit;
-
 namespace Naos.Slack.Domain.Test
 {
+    using System;
+
+    using FakeItEasy;
+
+    using OBeautifulCode.AutoFakeItEasy;
+
+    using Xunit;
+
     public static partial class SlackDummyFactoryTest
     {
         /* Add your Dummy Factory tests, if any, here. */

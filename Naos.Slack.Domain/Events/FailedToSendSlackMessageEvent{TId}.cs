@@ -32,7 +32,7 @@ namespace Naos.Slack.Domain
             SlackMessageResponse slackMessageResponse)
             : base(id, timestampUtc, slackMessageResponse)
         {
-            new { slackMessageResponse.Result }.AsArg(Invariant($"{nameof(slackMessageResponse)}.{nameof(this.SlackMessageResponse.Result)}")).Must().NotBeEqualTo(SendSlackMessageResult.Succeeded);
+            new { slackMessageResponse.SendSlackMessageResult }.AsArg(Invariant($"{nameof(slackMessageResponse)}.{nameof(this.SlackMessageResponse.SendSlackMessageResult)}")).Must().NotBeEqualTo(SendSlackMessageResult.Succeeded);
         }
     }
 }

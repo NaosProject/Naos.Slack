@@ -38,14 +38,14 @@
     <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Naos.Protocol.Domain, Version=1.0.68.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Naos.Protocol.Domain.1.0.68\lib\net462\Naos.Protocol.Domain.dll</HintPath>
+    <Reference Include="Naos.Protocol.Domain, Version=1.0.91.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Naos.Protocol.Domain.1.0.91\lib\net462\Naos.Protocol.Domain.dll</HintPath>
     </Reference>
     <Reference Include="OBeautifulCode.Representation.System, Version=1.0.55.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\OBeautifulCode.Representation.System.1.0.55\lib\net462\OBeautifulCode.Representation.System.dll</HintPath>
     </Reference>
-    <Reference Include="OBeautifulCode.Type, Version=1.0.71.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OBeautifulCode.Type.1.0.71\lib\net462\OBeautifulCode.Type.dll</HintPath>
+    <Reference Include="OBeautifulCode.Type, Version=1.0.76.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\OBeautifulCode.Type.1.0.76\lib\net462\OBeautifulCode.Type.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,28 +86,59 @@
     <Compile Include=".recipes\OBeautifulCode.Equality\ReadOnlyDictionaryEqualityComparer.cs" />
     <Compile Include=".recipes\OBeautifulCode.String\StringExtensions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\ArrayKind.cs" />
+    <Compile Include=".recipes\OBeautifulCode.Type\DeepCloneExtensions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\ToStringReadableOptions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\ToStringXmlDocOptions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
+    <Compile Include="Events\FailedToSendSlackMessageEvent{TId}.designer.cs">
+      <DependentUpon>FailedToSendSlackMessageEvent{TId}.cs</DependentUpon>
+    </Compile>
     <Compile Include="Events\SendSlackMessageRequestedEvent{TId}.cs" />
+    <Compile Include="Events\SendSlackMessageRequestedEvent{TId}.designer.cs">
+      <DependentUpon>SendSlackMessageRequestedEvent{TId}.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\SlackEventBase{TId}.designer.cs">
+      <DependentUpon>SlackEventBase{TId}.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\SlackMessageResponseEventBase{TId}.designer.cs">
+      <DependentUpon>SlackMessageResponseEventBase{TId}.cs</DependentUpon>
+    </Compile>
     <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}.cs" />
     <Compile Include="Events\FailedToSendSlackMessageEvent{TId}.cs" />
     <Compile Include="Events\SlackMessageResponseEventBase{TId}.cs" />
     <Compile Include="Events\SlackEventBase{TId}.cs" />
+    <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}.designer.cs">
+      <DependentUpon>SucceededInSendingSlackMessageEvent{TId}.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\ISendSlackMessageProtocol.cs" />
     <Compile Include="Models\Classes\MessageAuthorIcon.cs" />
+    <Compile Include="Models\Classes\MessageAuthorIcon.designer.cs">
+      <DependentUpon>MessageAuthorIcon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\SlackMessageRequestBase.designer.cs">
+      <DependentUpon>SlackMessageRequestBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\SlackMessageResponse.cs" />
     <Compile Include="Models\Classes\SlackMessageRequestBase.cs" />
+    <Compile Include="Models\Classes\SlackMessageResponse.designer.cs">
+      <DependentUpon>SlackMessageResponse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\SlackTextMessageRequest.cs" />
+    <Compile Include="Models\Classes\SlackTextMessageRequest.designer.cs">
+      <DependentUpon>SlackTextMessageRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enum\IconResourceIdentifierKind.cs" />
     <Compile Include="Models\Enum\SendSlackMessageResult.cs" />
     <Compile Include="Models\Enum\SlackTextMessageOptions.cs" />
     <Compile Include="Models\Enum\SlackTextFormat.cs" />
     <Compile Include="Operations\SendSlackMessageOp.cs" />
+    <Compile Include="Operations\SendSlackMessageOp.designer.cs">
+      <DependentUpon>SendSlackMessageOp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Properties\ProjectInfo.cs" />
     <AdditionalFiles Include=".analyzers\stylecop.json" />
+    <Compile Include="Properties\ProjectInfo.cs" />
     <None Include=".analyzers\release.ruleset" />
     <None Include="Naos.Slack.Domain.override-nuspec" />
     <None Include="packages.config" />

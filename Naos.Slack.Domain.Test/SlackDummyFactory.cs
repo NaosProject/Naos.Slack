@@ -7,12 +7,14 @@
 // </auto-generated>
 // --------------------------------------------------------------------------------------------------------------------
 
-using FakeItEasy;
-using OBeautifulCode.AutoFakeItEasy;
-using System;
-
 namespace Naos.Slack.Domain.Test
 {
+    using System;
+
+    using FakeItEasy;
+
+    using OBeautifulCode.AutoFakeItEasy;
+
     /// <summary>
     /// A Dummy Factory for types in <see cref="Naos.Slack.Domain"/>.
     /// </summary>
@@ -28,6 +30,56 @@ namespace Naos.Slack.Domain.Test
         public SlackDummyFactory()
         {
             /* Add any overriding or custom registrations here. */
+            AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(IconResourceIdentifierKind.Unknown);
+            AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(SendSlackMessageResult.Unknown);
+            AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(SlackTextFormat.Unknown);
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var sendSlackMessageResult = A.Dummy<SendSlackMessageResult>();
+
+                SlackMessageResponse result;
+
+                if (sendSlackMessageResult == SendSlackMessageResult.Succeeded)
+                {
+                    result = new SlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), A.Dummy<string>(), null, null);
+                }
+                else if (sendSlackMessageResult == SendSlackMessageResult.FailedWithExceptionWhenSending)
+                {
+                    result = new SlackMessageResponse(sendSlackMessageResult, null, null, A.Dummy<string>(), null);
+                }
+                else
+                {
+                    result = new SlackMessageResponse(sendSlackMessageResult, null, null, null, A.Dummy<string>());
+                }
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var slackMessageResponse = A.Dummy<SlackMessageResponse>().Whose(_=> _.SendSlackMessageResult != SendSlackMessageResult.Succeeded);
+
+                var result = new FailedToSendSlackMessageEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), slackMessageResponse);
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var slackMessageResponse = A.Dummy<SlackMessageResponse>().Whose(_ => _.SendSlackMessageResult == SendSlackMessageResult.Succeeded);
+
+                var result = new SucceededInSendingSlackMessageEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), slackMessageResponse);
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var result = new SendSlackMessageRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<SlackMessageRequestBase>());
+
+                return result;
+            });
         }
     }
 }

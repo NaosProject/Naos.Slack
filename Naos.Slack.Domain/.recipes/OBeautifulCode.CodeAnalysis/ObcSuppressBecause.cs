@@ -35,6 +35,11 @@ namespace OBeautifulCode.CodeAnalysis.Recipes
         public const string CA_ALL_NatureOfTypeNecessitatesIgnoringAllWarnings = "The nature of this type necessitates that we ignore all warnings.";
 
         /// <summary>
+        /// This warning detects a situation that is not applicable to this code.
+        /// </summary>
+        public const string CA_ALL_NotApplicable = "This warning detects a situation that is not applicable to this code.";
+
+        /// <summary>
         /// A static property returns an instance of the generic class that contains the property.  The property exists for convenience in creating and configuring the instance.  It is most discoverable where it is, in-context of the class being instantiated.
         /// </summary>
         public const string CA1000_DoNotDeclareStaticMembersOnGenericTypes_StaticPropertyReturnsInstanceOfContainingGenericClassAndIsConvenientAndMostDiscoverableWhereDeclared = "A static property returns an instance of the generic class that contains the property.  The property exists for convenience in creating and configuring the instance.  It is most discoverable where it is, in-context of the class being instantiated.";
@@ -115,6 +120,11 @@ namespace OBeautifulCode.CodeAnalysis.Recipes
         public const string CA1502_AvoidExcessiveComplexity_DisagreeWithAssessment = "We disagree with the assessment that this method as excessively complex.";
 
         /// <summary>
+        /// We disagree with the assessment that this code is unmaintainable.
+        /// </summary>
+        public const string CA1505_AvoidUnmaintainableCode_DisagreeWithAssessment = "We disagree with the assessment that this code is unmaintainable.";
+
+        /// <summary>
         /// We disagree with the assessment this type or method is excessively coupled.
         /// </summary>
         public const string CA1506_AvoidExcessiveClassCoupling_DisagreeWithAssessment = "We disagree with the assessment this type or method is excessively coupled.";
@@ -128,6 +138,11 @@ namespace OBeautifulCode.CodeAnalysis.Recipes
         /// The spelling of the identifier is correct in-context of the domain.
         /// </summary>
         public const string CA1704_IdentifiersShouldBeSpelledCorrectly_SpellingIsCorrectInContextOfTheDomain = "The spelling of the identifier is correct in-context of the domain.";
+
+        /// <summary>
+        /// The casing is as preferred.
+        /// </summary>
+        public const string CA1709_IdentifiersShouldBeCasedCorrectly_CasingIsAsPreferred = "The casing is as preferred.";
 
         /// <summary>
         /// The identifier is suffixed with the name of the Type that it directly extends or implements to improves readability and comprehension of unit tests whre the Type is a primary concern of those tests.
@@ -203,6 +218,11 @@ namespace OBeautifulCode.CodeAnalysis.Recipes
         /// The type is being used in testing and we explicitly do not want the type to be equatable because it has bearing on the tests.
         /// </summary>
         public const string CA1815_OverrideEqualsAndOperatorEqualsOnValueTypes_TypeUsedForTestsThatRequireTypeToNotBeEquatable = "The type is being used in testing and we explicitly do not want the type to be equatable because it has bearing on the tests.";
+
+        /// <summary>
+        /// Data payloads are commonly represented as a byte arrays.
+        /// </summary>
+        public const string CA1819_PropertiesShouldNotReturnArrays_DataPayloadsAreCommonlyRepresentedAsByteArrays = "Data payloads are commonly represented as a byte arrays.";
 
         /// <summary>
         /// An array property is required for unit tests.

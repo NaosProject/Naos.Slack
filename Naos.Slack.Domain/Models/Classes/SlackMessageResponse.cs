@@ -19,21 +19,21 @@ namespace Naos.Slack.Domain
         /// <summary>
         /// Initializes a new instance of the <see cref="SlackMessageResponse"/> class.
         /// </summary>
-        /// <param name="result">The result of sending the message.</param>
-        /// <param name="timestampId">The timestamp identifier of the message.  Required when <paramref name="result"/> is <see cref="SendSlackMessageResult.Succeeded"/>, otherwise should be null.</param>
-        /// <param name="channelId">The identifier of the channel that the message was sent to.  Required when <paramref name="result"/> is <see cref="SendSlackMessageResult.Succeeded"/>, otherwise should be null.</param>
-        /// <param name="exceptionToString">The <see cref="object.ToString()"/> of the <see cref="Exception"/> that was thrown when sending the message.  Required when <paramref name="result"/> is <see cref="SendSlackMessageResult.FailedWithExceptionWhenSending"/>, otherwise should be null.</param>
-        /// <param name="slackErrorCode">The error code returned by Slack.  Required when <paramref name="result"/> is <see cref="SendSlackMessageResult.FailedWithSlackReturningError"/>, otherwise should be null.</param>
+        /// <param name="sendSlackMessageResult">The result of sending the message.</param>
+        /// <param name="timestampId">The timestamp identifier of the message.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.Succeeded"/>, otherwise should be null.</param>
+        /// <param name="channelId">The identifier of the channel that the message was sent to.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.Succeeded"/>, otherwise should be null.</param>
+        /// <param name="exceptionToString">The <see cref="object.ToString()"/> of the <see cref="Exception"/> that was thrown when sending the message.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.FailedWithExceptionWhenSending"/>, otherwise should be null.</param>
+        /// <param name="slackErrorCode">The error code returned by Slack.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.FailedWithSlackReturningError"/>, otherwise should be null.</param>
         public SlackMessageResponse(
-            SendSlackMessageResult result,
+            SendSlackMessageResult sendSlackMessageResult,
             string timestampId,
             string channelId,
             string exceptionToString,
             string slackErrorCode)
         {
-            new { result }.AsArg().Must().NotBeEqualTo(SendSlackMessageResult.Unknown);
+            new { sendSlackMessageResult }.AsArg().Must().NotBeEqualTo(SendSlackMessageResult.Unknown);
 
-            if (result == SendSlackMessageResult.Succeeded)
+            if (sendSlackMessageResult == SendSlackMessageResult.Succeeded)
             {
                 new { timestampId }.AsArg().Must().NotBeNullNorWhiteSpace();
                 new { channelId }.AsArg().Must().NotBeNullNorWhiteSpace();
@@ -44,7 +44,7 @@ namespace Naos.Slack.Domain
                 new { channelId }.AsArg().Must().BeNull();
             }
 
-            if (result == SendSlackMessageResult.FailedWithExceptionWhenSending)
+            if (sendSlackMessageResult == SendSlackMessageResult.FailedWithExceptionWhenSending)
             {
                 new { exceptionToString }.AsArg().Must().NotBeNullNorWhiteSpace();
             }
@@ -53,7 +53,7 @@ namespace Naos.Slack.Domain
                 new { exceptionToString }.AsArg().Must().BeNull();
             }
 
-            if (result == SendSlackMessageResult.FailedWithSlackReturningError)
+            if (sendSlackMessageResult == SendSlackMessageResult.FailedWithSlackReturningError)
             {
                 new { slackErrorCode }.AsArg().Must().NotBeNullNorWhiteSpace();
             }
@@ -62,7 +62,7 @@ namespace Naos.Slack.Domain
                 new { slackErrorCode }.AsArg().Must().BeNull();
             }
 
-            this.Result = result;
+            this.SendSlackMessageResult = sendSlackMessageResult;
             this.TimestampId = timestampId;
             this.ChannelId = channelId;
             this.ExceptionToString = exceptionToString;
@@ -72,7 +72,7 @@ namespace Naos.Slack.Domain
         /// <summary>
         /// Gets the result of sending the message.
         /// </summary>
-        public SendSlackMessageResult Result { get; private set; }
+        public SendSlackMessageResult SendSlackMessageResult { get; private set; }
 
         /// <summary>
         /// Gets the timestamp identifier of the message.

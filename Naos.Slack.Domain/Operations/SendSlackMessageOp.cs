@@ -13,23 +13,23 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Sends a Slack message.
     /// </summary>
-    public partial class SendSlackMessageOp : ReturningOperationBase<SlackMessageResponse>
+    public partial class SendSlackMessageOp : ReturningOperationBase<SendSlackMessageResponse>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SendSlackMessageOp"/> class.
         /// </summary>
-        /// <param name="slackMessageRequest">The request to send a Slack message.</param>
+        /// <param name="sendSlackMessageRequest">The request to send a Slack message.</param>
         public SendSlackMessageOp(
-            SlackMessageRequestBase slackMessageRequest)
+            SendSlackMessageRequestBase sendSlackMessageRequest)
         {
-            new { slackMessageRequest }.AsArg().Must().NotBeNull();
+            new { sendSlackMessageRequest }.AsArg().Must().NotBeNull();
 
-            this.SlackMessageRequest = slackMessageRequest;
+            this.SendSlackMessageRequest = sendSlackMessageRequest;
         }
 
         /// <summary>
         /// Gets the request to send a Slack message.
         /// </summary>
-        public SlackMessageRequestBase SlackMessageRequest { get; private set; }
+        public SendSlackMessageRequestBase SendSlackMessageRequest { get; private set; }
     }
 }

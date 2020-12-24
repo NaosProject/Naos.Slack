@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SlackMessageResponseEventBase{TId}.cs" company="Naos Project">
+// <copyright file="SendSlackMessageResponseEventBase{TId}.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -12,32 +12,32 @@ namespace Naos.Slack.Domain
     using OBeautifulCode.Type;
 
     /// <summary>
-    /// Base class that tracks a <see cref="SlackMessageResponse"/>.
+    /// Base class that tracks a <see cref="SendSlackMessageResponse"/>.
     /// </summary>
     /// <typeparam name="TId">The type of the identifier.</typeparam>
     // ReSharper disable once RedundantExtendsListEntry
-    public abstract partial class SlackMessageResponseEventBase<TId> : SlackEventBase<TId>, IModelViaCodeGen
+    public abstract partial class SendSlackMessageResponseEventBase<TId> : SlackEventBase<TId>, IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlackMessageResponseEventBase{TId}"/> class.
+        /// Initializes a new instance of the <see cref="SendSlackMessageResponseEventBase{TId}"/> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="timestampUtc">The timestamp in UTC.</param>
-        /// <param name="slackMessageResponse">The response to a request to send a Slack message.</param>
-        protected SlackMessageResponseEventBase(
+        /// <param name="sendSlackMessageResponse">The response to a request to send a Slack message.</param>
+        protected SendSlackMessageResponseEventBase(
             TId id,
             DateTime timestampUtc,
-            SlackMessageResponse slackMessageResponse)
+            SendSlackMessageResponse sendSlackMessageResponse)
             : base(id, timestampUtc)
         {
-            new { slackMessageResponse }.AsArg().Must().NotBeNull();
+            new { sendSlackMessageResponse }.AsArg().Must().NotBeNull();
 
-            this.SlackMessageResponse = slackMessageResponse;
+            this.SendSlackMessageResponse = sendSlackMessageResponse;
         }
 
         /// <summary>
         /// Gets the response to a request to send a Slack message.
         /// </summary>
-        public SlackMessageResponse SlackMessageResponse { get; private set; }
+        public SendSlackMessageResponse SendSlackMessageResponse { get; private set; }
     }
 }

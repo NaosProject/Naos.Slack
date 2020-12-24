@@ -22,15 +22,15 @@ namespace Naos.Slack.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class SlackMessageRequestBase : IModel<SlackMessageRequestBase>
+    public partial class SendSlackMessageRequestBase : IModel<SendSlackMessageRequestBase>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="SlackMessageRequestBase"/> are equal.
+        /// Determines whether two objects of type <see cref="SendSlackMessageRequestBase"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(SlackMessageRequestBase left, SlackMessageRequestBase right)
+        public static bool operator ==(SendSlackMessageRequestBase left, SendSlackMessageRequestBase right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -48,15 +48,15 @@ namespace Naos.Slack.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="SlackMessageRequestBase"/> are not equal.
+        /// Determines whether two objects of type <see cref="SendSlackMessageRequestBase"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(SlackMessageRequestBase left, SlackMessageRequestBase right) => !(left == right);
+        public static bool operator !=(SendSlackMessageRequestBase left, SendSlackMessageRequestBase right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(SlackMessageRequestBase other) => this == other;
+        public bool Equals(SendSlackMessageRequestBase other) => this == other;
 
         /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations")]
@@ -76,13 +76,13 @@ namespace Naos.Slack.Domain
         public object Clone() => this.DeepClone();
 
         /// <inheritdoc />
-        public SlackMessageRequestBase DeepClone() => this.DeepCloneInternal();
+        public SendSlackMessageRequestBase DeepClone() => this.DeepCloneInternal();
 
         /// <summary>
         /// Deep clones this object with a new <see cref="Channel" />.
         /// </summary>
         /// <param name="channel">The new <see cref="Channel" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageRequestBase" /> using the specified <paramref name="channel" /> for <see cref="Channel" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendSlackMessageRequestBase" /> using the specified <paramref name="channel" /> for <see cref="Channel" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -98,7 +98,7 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public virtual SlackMessageRequestBase DeepCloneWithChannel(string channel)
+        public virtual SendSlackMessageRequestBase DeepCloneWithChannel(string channel)
         {
             throw new NotImplementedException("This method should be abstract.  It was generated as virtual so that you aren't forced to override it when you create a new model that derives from this model.  It will be overridden in the generated designer file.");
         }
@@ -107,7 +107,7 @@ namespace Naos.Slack.Domain
         /// Deep clones this object with a new <see cref="MessageAuthorIconOverride" />.
         /// </summary>
         /// <param name="messageAuthorIconOverride">The new <see cref="MessageAuthorIconOverride" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageRequestBase" /> using the specified <paramref name="messageAuthorIconOverride" /> for <see cref="MessageAuthorIconOverride" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendSlackMessageRequestBase" /> using the specified <paramref name="messageAuthorIconOverride" /> for <see cref="MessageAuthorIconOverride" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -123,7 +123,7 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public virtual SlackMessageRequestBase DeepCloneWithMessageAuthorIconOverride(MessageAuthorIcon messageAuthorIconOverride)
+        public virtual SendSlackMessageRequestBase DeepCloneWithMessageAuthorIconOverride(MessageAuthorIcon messageAuthorIconOverride)
         {
             throw new NotImplementedException("This method should be abstract.  It was generated as virtual so that you aren't forced to override it when you create a new model that derives from this model.  It will be overridden in the generated designer file.");
         }
@@ -132,7 +132,7 @@ namespace Naos.Slack.Domain
         /// Deep clones this object with a new <see cref="MessageAuthorUsernameOverride" />.
         /// </summary>
         /// <param name="messageAuthorUsernameOverride">The new <see cref="MessageAuthorUsernameOverride" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageRequestBase" /> using the specified <paramref name="messageAuthorUsernameOverride" /> for <see cref="MessageAuthorUsernameOverride" /> and a deep clone of every other property.</returns>
+        /// <returns>New <see cref="SendSlackMessageRequestBase" /> using the specified <paramref name="messageAuthorUsernameOverride" /> for <see cref="MessageAuthorUsernameOverride" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -148,7 +148,7 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public virtual SlackMessageRequestBase DeepCloneWithMessageAuthorUsernameOverride(string messageAuthorUsernameOverride)
+        public virtual SendSlackMessageRequestBase DeepCloneWithMessageAuthorUsernameOverride(string messageAuthorUsernameOverride)
         {
             throw new NotImplementedException("This method should be abstract.  It was generated as virtual so that you aren't forced to override it when you create a new model that derives from this model.  It will be overridden in the generated designer file.");
         }
@@ -159,7 +159,7 @@ namespace Naos.Slack.Domain
         /// <returns>
         /// A new object that is a deep clone of this instance.
         /// </returns>
-        protected virtual SlackMessageRequestBase DeepCloneInternal()
+        protected virtual SendSlackMessageRequestBase DeepCloneInternal()
         {
             throw new NotImplementedException("This method should be abstract.  It was generated as virtual so that you aren't forced to override it when you create a new model that derives from this model.  It will be overridden in the generated designer file.");
         }

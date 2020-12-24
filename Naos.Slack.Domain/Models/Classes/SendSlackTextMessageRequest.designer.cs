@@ -22,15 +22,15 @@ namespace Naos.Slack.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class SlackMessageResponse : IModel<SlackMessageResponse>
+    public partial class SendSlackTextMessageRequest : IModel<SendSlackTextMessageRequest>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="SlackMessageResponse"/> are equal.
+        /// Determines whether two objects of type <see cref="SendSlackTextMessageRequest"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(SlackMessageResponse left, SlackMessageResponse right)
+        public static bool operator ==(SendSlackTextMessageRequest left, SendSlackTextMessageRequest right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -48,15 +48,15 @@ namespace Naos.Slack.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="SlackMessageResponse"/> are not equal.
+        /// Determines whether two objects of type <see cref="SendSlackTextMessageRequest"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(SlackMessageResponse left, SlackMessageResponse right) => !(left == right);
+        public static bool operator !=(SendSlackTextMessageRequest left, SendSlackTextMessageRequest right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(SlackMessageResponse other)
+        public bool Equals(SendSlackTextMessageRequest other)
         {
             if (ReferenceEquals(this, other))
             {
@@ -68,48 +68,33 @@ namespace Naos.Slack.Domain
                 return false;
             }
 
-            var result = this.SendSlackMessageResult.IsEqualTo(other.SendSlackMessageResult)
-                      && this.TimestampId.IsEqualTo(other.TimestampId, StringComparer.Ordinal)
-                      && this.ChannelId.IsEqualTo(other.ChannelId, StringComparer.Ordinal)
-                      && this.ExceptionToString.IsEqualTo(other.ExceptionToString, StringComparer.Ordinal)
-                      && this.SlackErrorCode.IsEqualTo(other.SlackErrorCode, StringComparer.Ordinal);
+            var result = this.Channel.IsEqualTo(other.Channel, StringComparer.Ordinal)
+                      && this.MessageAuthorIconOverride.IsEqualTo(other.MessageAuthorIconOverride)
+                      && this.MessageAuthorUsernameOverride.IsEqualTo(other.MessageAuthorUsernameOverride, StringComparer.Ordinal)
+                      && this.Text.IsEqualTo(other.Text, StringComparer.Ordinal)
+                      && this.TextFormat.IsEqualTo(other.TextFormat)
+                      && this.Options.IsEqualTo(other.Options);
 
             return result;
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj) => this == (obj as SlackMessageResponse);
+        public override bool Equals(object obj) => this == (obj as SendSlackTextMessageRequest);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCodeHelper.Initialize()
-            .Hash(this.SendSlackMessageResult)
-            .Hash(this.TimestampId)
-            .Hash(this.ChannelId)
-            .Hash(this.ExceptionToString)
-            .Hash(this.SlackErrorCode)
+            .Hash(this.Channel)
+            .Hash(this.MessageAuthorIconOverride)
+            .Hash(this.MessageAuthorUsernameOverride)
+            .Hash(this.Text)
+            .Hash(this.TextFormat)
+            .Hash(this.Options)
             .Value;
 
         /// <inheritdoc />
-        public object Clone() => this.DeepClone();
+        public new SendSlackTextMessageRequest DeepClone() => (SendSlackTextMessageRequest)this.DeepCloneInternal();
 
         /// <inheritdoc />
-        public SlackMessageResponse DeepClone()
-        {
-            var result = new SlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 this.TimestampId?.DeepClone(),
-                                 this.ChannelId?.DeepClone(),
-                                 this.ExceptionToString?.DeepClone(),
-                                 this.SlackErrorCode?.DeepClone());
-
-            return result;
-        }
-
-        /// <summary>
-        /// Deep clones this object with a new <see cref="SendSlackMessageResult" />.
-        /// </summary>
-        /// <param name="sendSlackMessageResult">The new <see cref="SendSlackMessageResult" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageResponse" /> using the specified <paramref name="sendSlackMessageResult" /> for <see cref="SendSlackMessageResult" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -125,23 +110,20 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SlackMessageResponse DeepCloneWithSendSlackMessageResult(SendSlackMessageResult sendSlackMessageResult)
+        public override SendSlackMessageRequestBase DeepCloneWithChannel(string channel)
         {
-            var result = new SlackMessageResponse(
-                                 sendSlackMessageResult,
-                                 this.TimestampId?.DeepClone(),
-                                 this.ChannelId?.DeepClone(),
-                                 this.ExceptionToString?.DeepClone(),
-                                 this.SlackErrorCode?.DeepClone());
+            var result = new SendSlackTextMessageRequest(
+                                 channel,
+                                 this.Text?.DeepClone(),
+                                 this.TextFormat,
+                                 this.Options,
+                                 this.MessageAuthorIconOverride?.DeepClone(),
+                                 this.MessageAuthorUsernameOverride?.DeepClone());
 
             return result;
         }
 
-        /// <summary>
-        /// Deep clones this object with a new <see cref="TimestampId" />.
-        /// </summary>
-        /// <param name="timestampId">The new <see cref="TimestampId" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageResponse" /> using the specified <paramref name="timestampId" /> for <see cref="TimestampId" /> and a deep clone of every other property.</returns>
+        /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -157,23 +139,20 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SlackMessageResponse DeepCloneWithTimestampId(string timestampId)
+        public override SendSlackMessageRequestBase DeepCloneWithMessageAuthorIconOverride(MessageAuthorIcon messageAuthorIconOverride)
         {
-            var result = new SlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 timestampId,
-                                 this.ChannelId?.DeepClone(),
-                                 this.ExceptionToString?.DeepClone(),
-                                 this.SlackErrorCode?.DeepClone());
+            var result = new SendSlackTextMessageRequest(
+                                 this.Channel?.DeepClone(),
+                                 this.Text?.DeepClone(),
+                                 this.TextFormat,
+                                 this.Options,
+                                 messageAuthorIconOverride,
+                                 this.MessageAuthorUsernameOverride?.DeepClone());
 
             return result;
         }
 
-        /// <summary>
-        /// Deep clones this object with a new <see cref="ChannelId" />.
-        /// </summary>
-        /// <param name="channelId">The new <see cref="ChannelId" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageResponse" /> using the specified <paramref name="channelId" /> for <see cref="ChannelId" /> and a deep clone of every other property.</returns>
+        /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -189,23 +168,24 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SlackMessageResponse DeepCloneWithChannelId(string channelId)
+        public override SendSlackMessageRequestBase DeepCloneWithMessageAuthorUsernameOverride(string messageAuthorUsernameOverride)
         {
-            var result = new SlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 this.TimestampId?.DeepClone(),
-                                 channelId,
-                                 this.ExceptionToString?.DeepClone(),
-                                 this.SlackErrorCode?.DeepClone());
+            var result = new SendSlackTextMessageRequest(
+                                 this.Channel?.DeepClone(),
+                                 this.Text?.DeepClone(),
+                                 this.TextFormat,
+                                 this.Options,
+                                 this.MessageAuthorIconOverride?.DeepClone(),
+                                 messageAuthorUsernameOverride);
 
             return result;
         }
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="ExceptionToString" />.
+        /// Deep clones this object with a new <see cref="Text" />.
         /// </summary>
-        /// <param name="exceptionToString">The new <see cref="ExceptionToString" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageResponse" /> using the specified <paramref name="exceptionToString" /> for <see cref="ExceptionToString" /> and a deep clone of every other property.</returns>
+        /// <param name="text">The new <see cref="Text" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="SendSlackTextMessageRequest" /> using the specified <paramref name="text" /> for <see cref="Text" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -221,23 +201,24 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SlackMessageResponse DeepCloneWithExceptionToString(string exceptionToString)
+        public SendSlackTextMessageRequest DeepCloneWithText(string text)
         {
-            var result = new SlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 this.TimestampId?.DeepClone(),
-                                 this.ChannelId?.DeepClone(),
-                                 exceptionToString,
-                                 this.SlackErrorCode?.DeepClone());
+            var result = new SendSlackTextMessageRequest(
+                                 this.Channel?.DeepClone(),
+                                 text,
+                                 this.TextFormat,
+                                 this.Options,
+                                 this.MessageAuthorIconOverride?.DeepClone(),
+                                 this.MessageAuthorUsernameOverride?.DeepClone());
 
             return result;
         }
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="SlackErrorCode" />.
+        /// Deep clones this object with a new <see cref="TextFormat" />.
         /// </summary>
-        /// <param name="slackErrorCode">The new <see cref="SlackErrorCode" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageResponse" /> using the specified <paramref name="slackErrorCode" /> for <see cref="SlackErrorCode" /> and a deep clone of every other property.</returns>
+        /// <param name="textFormat">The new <see cref="TextFormat" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="SendSlackTextMessageRequest" /> using the specified <paramref name="textFormat" /> for <see cref="TextFormat" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -253,14 +234,62 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SlackMessageResponse DeepCloneWithSlackErrorCode(string slackErrorCode)
+        public SendSlackTextMessageRequest DeepCloneWithTextFormat(SlackTextFormat textFormat)
         {
-            var result = new SlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 this.TimestampId?.DeepClone(),
-                                 this.ChannelId?.DeepClone(),
-                                 this.ExceptionToString?.DeepClone(),
-                                 slackErrorCode);
+            var result = new SendSlackTextMessageRequest(
+                                 this.Channel?.DeepClone(),
+                                 this.Text?.DeepClone(),
+                                 textFormat,
+                                 this.Options,
+                                 this.MessageAuthorIconOverride?.DeepClone(),
+                                 this.MessageAuthorUsernameOverride?.DeepClone());
+
+            return result;
+        }
+
+        /// <summary>
+        /// Deep clones this object with a new <see cref="Options" />.
+        /// </summary>
+        /// <param name="options">The new <see cref="Options" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="SendSlackTextMessageRequest" /> using the specified <paramref name="options" /> for <see cref="Options" /> and a deep clone of every other property.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
+        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+        [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+        [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+        [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+        [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+        [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+        [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+        [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+        [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
+        public SendSlackTextMessageRequest DeepCloneWithOptions(SlackTextMessageOptions options)
+        {
+            var result = new SendSlackTextMessageRequest(
+                                 this.Channel?.DeepClone(),
+                                 this.Text?.DeepClone(),
+                                 this.TextFormat,
+                                 options,
+                                 this.MessageAuthorIconOverride?.DeepClone(),
+                                 this.MessageAuthorUsernameOverride?.DeepClone());
+
+            return result;
+        }
+
+        /// <inheritdoc />
+        protected override SendSlackMessageRequestBase DeepCloneInternal()
+        {
+            var result = new SendSlackTextMessageRequest(
+                                 this.Channel?.DeepClone(),
+                                 this.Text?.DeepClone(),
+                                 this.TextFormat,
+                                 this.Options,
+                                 this.MessageAuthorIconOverride?.DeepClone(),
+                                 this.MessageAuthorUsernameOverride?.DeepClone());
 
             return result;
         }
@@ -269,7 +298,7 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Slack.Domain.SlackMessageResponse: SendSlackMessageResult = {this.SendSlackMessageResult.ToString() ?? "<null>"}, TimestampId = {this.TimestampId?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ChannelId = {this.ChannelId?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ExceptionToString = {this.ExceptionToString?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, SlackErrorCode = {this.SlackErrorCode?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}.");
+            var result = Invariant($"Naos.Slack.Domain.SendSlackTextMessageRequest: Channel = {this.Channel?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, MessageAuthorIconOverride = {this.MessageAuthorIconOverride?.ToString() ?? "<null>"}, MessageAuthorUsernameOverride = {this.MessageAuthorUsernameOverride?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Text = {this.Text?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, TextFormat = {this.TextFormat.ToString() ?? "<null>"}, Options = {this.Options.ToString() ?? "<null>"}.");
 
             return result;
         }

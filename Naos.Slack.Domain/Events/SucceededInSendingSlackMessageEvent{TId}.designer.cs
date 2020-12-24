@@ -72,7 +72,7 @@ namespace Naos.Slack.Domain
 
             var result = this.TimestampUtc.IsEqualTo(other.TimestampUtc)
                       && this.Id.IsEqualTo(other.Id)
-                      && this.SlackMessageResponse.IsEqualTo(other.SlackMessageResponse);
+                      && this.SendSlackMessageResponse.IsEqualTo(other.SendSlackMessageResponse);
 
             return result;
         }
@@ -84,7 +84,7 @@ namespace Naos.Slack.Domain
         public override int GetHashCode() => HashCodeHelper.Initialize()
             .Hash(this.TimestampUtc)
             .Hash(this.Id)
-            .Hash(this.SlackMessageResponse)
+            .Hash(this.SendSlackMessageResponse)
             .Value;
 
         /// <inheritdoc />
@@ -111,7 +111,7 @@ namespace Naos.Slack.Domain
             var result = new SucceededInSendingSlackMessageEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  timestampUtc,
-                                 this.SlackMessageResponse?.DeepClone());
+                                 this.SendSlackMessageResponse?.DeepClone());
 
             return result;
         }
@@ -137,7 +137,7 @@ namespace Naos.Slack.Domain
             var result = new SucceededInSendingSlackMessageEvent<TId>(
                                  id,
                                  this.TimestampUtc,
-                                 this.SlackMessageResponse?.DeepClone());
+                                 this.SendSlackMessageResponse?.DeepClone());
 
             return result;
         }
@@ -158,12 +158,12 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public override SlackMessageResponseEventBase<TId> DeepCloneWithSlackMessageResponse(SlackMessageResponse slackMessageResponse)
+        public override SendSlackMessageResponseEventBase<TId> DeepCloneWithSendSlackMessageResponse(SendSlackMessageResponse sendSlackMessageResponse)
         {
             var result = new SucceededInSendingSlackMessageEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 slackMessageResponse);
+                                 sendSlackMessageResponse);
 
             return result;
         }
@@ -174,7 +174,7 @@ namespace Naos.Slack.Domain
             var result = new SucceededInSendingSlackMessageEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 this.SlackMessageResponse?.DeepClone());
+                                 this.SendSlackMessageResponse?.DeepClone());
 
             return result;
         }
@@ -224,7 +224,7 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Slack.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, SlackMessageResponse = {this.SlackMessageResponse?.ToString() ?? "<null>"}.");
+            var result = Invariant($"Naos.Slack.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, SendSlackMessageResponse = {this.SendSlackMessageResponse?.ToString() ?? "<null>"}.");
 
             return result;
         }

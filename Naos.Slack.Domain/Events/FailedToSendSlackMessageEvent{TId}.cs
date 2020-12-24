@@ -18,21 +18,21 @@ namespace Naos.Slack.Domain
     /// </summary>
     /// <typeparam name="TId">The type of the identifier.</typeparam>
     // ReSharper disable once RedundantExtendsListEntry
-    public partial class FailedToSendSlackMessageEvent<TId> : SlackMessageResponseEventBase<TId>, IModelViaCodeGen
+    public partial class FailedToSendSlackMessageEvent<TId> : SendSlackMessageResponseEventBase<TId>, IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FailedToSendSlackMessageEvent{TId}"/> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="timestampUtc">The timestamp in UTC.</param>
-        /// <param name="slackMessageResponse">The response to a request to send a Slack message.</param>
+        /// <param name="sendSlackMessageResponse">The response to a request to send a Slack message.</param>
         public FailedToSendSlackMessageEvent(
             TId id,
             DateTime timestampUtc,
-            SlackMessageResponse slackMessageResponse)
-            : base(id, timestampUtc, slackMessageResponse)
+            SendSlackMessageResponse sendSlackMessageResponse)
+            : base(id, timestampUtc, sendSlackMessageResponse)
         {
-            new { slackMessageResponse.SendSlackMessageResult }.AsArg(Invariant($"{nameof(slackMessageResponse)}.{nameof(this.SlackMessageResponse.SendSlackMessageResult)}")).Must().NotBeEqualTo(SendSlackMessageResult.Succeeded);
+            new { sendSlackMessageResponse.SendSlackMessageResult }.AsArg(Invariant($"{nameof(sendSlackMessageResponse)}.{nameof(this.SendSlackMessageResponse.SendSlackMessageResult)}")).Must().NotBeEqualTo(SendSlackMessageResult.Succeeded);
         }
     }
 }

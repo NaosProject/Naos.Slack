@@ -38,19 +38,19 @@ namespace Naos.Slack.Domain.Test
             {
                 var sendSlackMessageResult = A.Dummy<SendSlackMessageResult>();
 
-                SlackMessageResponse result;
+                SendSlackMessageResponse result;
 
                 if (sendSlackMessageResult == SendSlackMessageResult.Succeeded)
                 {
-                    result = new SlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), A.Dummy<string>(), null, null);
+                    result = new SendSlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), A.Dummy<string>(), null, null);
                 }
                 else if (sendSlackMessageResult == SendSlackMessageResult.FailedWithExceptionWhenSending)
                 {
-                    result = new SlackMessageResponse(sendSlackMessageResult, null, null, A.Dummy<string>(), null);
+                    result = new SendSlackMessageResponse(sendSlackMessageResult, null, null, A.Dummy<string>(), null);
                 }
                 else
                 {
-                    result = new SlackMessageResponse(sendSlackMessageResult, null, null, null, A.Dummy<string>());
+                    result = new SendSlackMessageResponse(sendSlackMessageResult, null, null, null, A.Dummy<string>());
                 }
 
                 return result;
@@ -58,7 +58,7 @@ namespace Naos.Slack.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
-                var slackMessageResponse = A.Dummy<SlackMessageResponse>().Whose(_=> _.SendSlackMessageResult != SendSlackMessageResult.Succeeded);
+                var slackMessageResponse = A.Dummy<SendSlackMessageResponse>().Whose(_=> _.SendSlackMessageResult != SendSlackMessageResult.Succeeded);
 
                 var result = new FailedToSendSlackMessageEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), slackMessageResponse);
 
@@ -67,7 +67,7 @@ namespace Naos.Slack.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
-                var slackMessageResponse = A.Dummy<SlackMessageResponse>().Whose(_ => _.SendSlackMessageResult == SendSlackMessageResult.Succeeded);
+                var slackMessageResponse = A.Dummy<SendSlackMessageResponse>().Whose(_ => _.SendSlackMessageResult == SendSlackMessageResult.Succeeded);
 
                 var result = new SucceededInSendingSlackMessageEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), slackMessageResponse);
 
@@ -76,7 +76,7 @@ namespace Naos.Slack.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
-                var result = new SendSlackMessageRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<SlackMessageRequestBase>());
+                var result = new SendSlackMessageRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<SendSlackMessageRequestBase>());
 
                 return result;
             });

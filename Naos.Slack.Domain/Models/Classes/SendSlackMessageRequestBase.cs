@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SlackMessageRequestBase.cs" company="Naos Project">
+// <copyright file="SendSlackMessageRequestBase.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -12,15 +12,15 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Base class for a request to send a Slack message.
     /// </summary>
-    public abstract partial class SlackMessageRequestBase : IModelViaCodeGen
+    public abstract partial class SendSlackMessageRequestBase : IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlackMessageRequestBase"/> class.
+        /// Initializes a new instance of the <see cref="SendSlackMessageRequestBase"/> class.
         /// </summary>
-        /// <param name="channel">The channel to send the message to.  Can be a public channel, private group, or IM channel.  Can be an encoded ID, or a name (e.g. @someone, #general).</param>
+        /// <param name="channel">The channel to send the message to.  Can be a public channel, private group, or IM channel.  Can be an encoded id, or a name (e.g. @someone, #general).</param>
         /// <param name="messageAuthorIconOverride">OPTIONAL icon to use for the author of the message, overriding the app/bot icon.  DEFAULT is to use the app/bot icon.</param>
         /// <param name="messageAuthorUsernameOverride">OPTIONAL username to use for the author of the message, overriding the app/bot username.  DEFAULT is to use the app/bot username.</param>
-        protected SlackMessageRequestBase(
+        protected SendSlackMessageRequestBase(
             string channel,
             MessageAuthorIcon messageAuthorIconOverride = null,
             string messageAuthorUsernameOverride = null)

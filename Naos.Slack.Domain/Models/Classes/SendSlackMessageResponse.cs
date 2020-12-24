@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SlackMessageResponse.cs" company="Naos Project">
+// <copyright file="SendSlackMessageResponse.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,17 +14,17 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// The response to a request to send a Slack message.
     /// </summary>
-    public partial class SlackMessageResponse : IModelViaCodeGen
+    public partial class SendSlackMessageResponse : IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlackMessageResponse"/> class.
+        /// Initializes a new instance of the <see cref="SendSlackMessageResponse"/> class.
         /// </summary>
         /// <param name="sendSlackMessageResult">The result of sending the message.</param>
         /// <param name="timestampId">The timestamp identifier of the message.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.Succeeded"/>, otherwise should be null.</param>
         /// <param name="channelId">The identifier of the channel that the message was sent to.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.Succeeded"/>, otherwise should be null.</param>
         /// <param name="exceptionToString">The <see cref="object.ToString()"/> of the <see cref="Exception"/> that was thrown when sending the message.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.FailedWithExceptionWhenSending"/>, otherwise should be null.</param>
         /// <param name="slackErrorCode">The error code returned by Slack.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.FailedWithSlackReturningError"/>, otherwise should be null.</param>
-        public SlackMessageResponse(
+        public SendSlackMessageResponse(
             SendSlackMessageResult sendSlackMessageResult,
             string timestampId,
             string channelId,

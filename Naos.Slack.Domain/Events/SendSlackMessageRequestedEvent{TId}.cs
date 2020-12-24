@@ -23,21 +23,21 @@ namespace Naos.Slack.Domain
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="timestampUtc">The timestamp in UTC.</param>
-        /// <param name="slackMessageRequest">The request to send a Slack message.</param>
+        /// <param name="sendSlackMessageRequest">The request to send a Slack message.</param>
         public SendSlackMessageRequestedEvent(
             TId id,
             DateTime timestampUtc,
-            SlackMessageRequestBase slackMessageRequest)
+            SendSlackMessageRequestBase sendSlackMessageRequest)
             : base(id, timestampUtc)
         {
-            new { slackMessageRequest }.AsArg().Must().NotBeNull();
+            new { sendSlackMessageRequest }.AsArg().Must().NotBeNull();
 
-            this.SlackMessageRequest = slackMessageRequest;
+            this.SendSlackMessageRequest = sendSlackMessageRequest;
         }
 
         /// <summary>
         /// Gets the request to send a Slack message.
         /// </summary>
-        public SlackMessageRequestBase SlackMessageRequest { get; private set; }
+        public SendSlackMessageRequestBase SendSlackMessageRequest { get; private set; }
     }
 }

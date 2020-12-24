@@ -37,19 +37,25 @@ namespace Naos.Slack.Domain.Test
         public DefaultSlackDummyFactory()
         {
             AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () => new FailedToSendSlackMessageEvent<Version>(
+                                 A.Dummy<Version>(),
+                                 A.Dummy<DateTime>(),
+                                 A.Dummy<SendSlackMessageResponse>()));
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new SendSlackMessageRequestedEvent<Version>(
                                  A.Dummy<Version>(),
                                  A.Dummy<DateTime>(),
-                                 A.Dummy<SlackMessageRequestBase>()));
+                                 A.Dummy<SendSlackMessageRequestBase>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () =>
                 {
                     var availableTypes = new[]
                     {
+                        typeof(FailedToSendSlackMessageEvent<Version>),
                         typeof(SendSlackMessageRequestedEvent<Version>),
-                        typeof(SucceededInSendingSlackMessageEvent<Version>),
-                        typeof(FailedToSendSlackMessageEvent<Version>)
+                        typeof(SucceededInSendingSlackMessageEvent<Version>)
                     };
 
                     var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
@@ -66,15 +72,15 @@ namespace Naos.Slack.Domain.Test
                 {
                     var availableTypes = new[]
                     {
-                        typeof(SucceededInSendingSlackMessageEvent<Version>),
-                        typeof(FailedToSendSlackMessageEvent<Version>)
+                        typeof(FailedToSendSlackMessageEvent<Version>),
+                        typeof(SucceededInSendingSlackMessageEvent<Version>)
                     };
 
                     var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
 
                     var randomType = availableTypes[randomIndex];
 
-                    var result = (SlackMessageResponseEventBase<Version>)AD.ummy(randomType);
+                    var result = (SendSlackMessageResponseEventBase<Version>)AD.ummy(randomType);
 
                     return result;
                 });
@@ -83,13 +89,7 @@ namespace Naos.Slack.Domain.Test
                 () => new SucceededInSendingSlackMessageEvent<Version>(
                                  A.Dummy<Version>(),
                                  A.Dummy<DateTime>(),
-                                 A.Dummy<SlackMessageResponse>()));
-
-            AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new FailedToSendSlackMessageEvent<Version>(
-                                 A.Dummy<Version>(),
-                                 A.Dummy<DateTime>(),
-                                 A.Dummy<SlackMessageResponse>()));
+                                 A.Dummy<SendSlackMessageResponse>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new MessageAuthorIcon(
@@ -101,20 +101,20 @@ namespace Naos.Slack.Domain.Test
                 {
                     var availableTypes = new[]
                     {
-                        typeof(SlackTextMessageRequest)
+                        typeof(SendSlackTextMessageRequest)
                     };
 
                     var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
 
                     var randomType = availableTypes[randomIndex];
 
-                    var result = (SlackMessageRequestBase)AD.ummy(randomType);
+                    var result = (SendSlackMessageRequestBase)AD.ummy(randomType);
 
                     return result;
                 });
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new SlackMessageResponse(
+                () => new SendSlackMessageResponse(
                                  A.Dummy<SendSlackMessageResult>(),
                                  A.Dummy<string>(),
                                  A.Dummy<string>(),
@@ -122,7 +122,7 @@ namespace Naos.Slack.Domain.Test
                                  A.Dummy<string>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new SlackTextMessageRequest(
+                () => new SendSlackTextMessageRequest(
                                  A.Dummy<string>(),
                                  A.Dummy<string>(),
                                  A.Dummy<SlackTextFormat>(),
@@ -132,7 +132,7 @@ namespace Naos.Slack.Domain.Test
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new SendSlackMessageOp(
-                                 A.Dummy<SlackMessageRequestBase>()));
+                                 A.Dummy<SendSlackMessageRequestBase>()));
         }
 
         /// <inheritdoc />

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SlackTextMessageRequest.cs" company="Naos Project">
+// <copyright file="SendSlackTextMessageRequest.cs" company="Naos Project">
 //    Copyright (c) Naos Project 2019. All rights reserved.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -18,10 +18,10 @@ namespace Naos.Slack.Domain
     /// - Here's the mrkdwn spec: <a href="https://api.slack.com/reference/surfaces/formatting" />.
     /// - This object cannot be used as a reply (in a message thread).
     /// </remarks>
-    public partial class SlackTextMessageRequest : SlackMessageRequestBase, IModelViaCodeGen
+    public partial class SendSlackTextMessageRequest : SendSlackMessageRequestBase, IModelViaCodeGen
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SlackTextMessageRequest"/> class.
+        /// Initializes a new instance of the <see cref="SendSlackTextMessageRequest"/> class.
         /// </summary>
         /// <param name="channel">The channel to send the message to.  Can be a public channel, private group, or IM channel.  Can be an encoded ID, or a name (e.g. @someone, #general).</param>
         /// <param name="text">The text of the message.  If using mrkdwn then note that ampersand (&amp;), less-than sign (&lt;) and greater-than sign (&gt;) must be HTML-encoded.  No other characters need to be encoded.</param>
@@ -29,7 +29,7 @@ namespace Naos.Slack.Domain
         /// <param name="options">OPTIONAL options/features to apply to the message.  DEFAULT is to apply all options/features.</param>
         /// <param name="messageAuthorIconOverride">OPTIONAL icon to use for the author of the message, overriding the app/bot icon.  DEFAULT is to use the app/bot icon.</param>
         /// <param name="messageAuthorUsernameOverride">OPTIONAL username to use for the author of the message, overriding the app/bot username.  DEFAULT is to use the app/bot username.</param>
-        public SlackTextMessageRequest(
+        public SendSlackTextMessageRequest(
             string channel,
             string text,
             SlackTextFormat textFormat = SlackTextFormat.Mrkdwn,

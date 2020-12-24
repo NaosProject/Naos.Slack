@@ -49,7 +49,7 @@ namespace Naos.Slack.Domain.Test
                         var result = new SystemUnderTestExpectedStringRepresentation<SendSlackMessageRequestedEvent<Version>>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Slack.Domain.SendSlackMessageRequestedEvent<Version>: TimestampUtc = {systemUnderTest.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {systemUnderTest.Id?.ToString() ?? "<null>"}, SlackMessageRequest = {systemUnderTest.SlackMessageRequest?.ToString() ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Slack.Domain.SendSlackMessageRequestedEvent<Version>: TimestampUtc = {systemUnderTest.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {systemUnderTest.Id?.ToString() ?? "<null>"}, SendSlackMessageRequest = {systemUnderTest.SendSlackMessageRequest?.ToString() ?? "<null>"}."),
                         };
 
                         return result;
@@ -68,7 +68,7 @@ namespace Naos.Slack.Domain.Test
                         var result = new SendSlackMessageRequestedEvent<Version>(
                                              null,
                                              referenceObject.TimestampUtc,
-                                             referenceObject.SlackMessageRequest);
+                                             referenceObject.SendSlackMessageRequest);
 
                         return result;
                     },
@@ -78,7 +78,7 @@ namespace Naos.Slack.Domain.Test
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SendSlackMessageRequestedEvent<Version>>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'slackMessageRequest' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'sendSlackMessageRequest' is null scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<SendSlackMessageRequestedEvent<Version>>();
@@ -91,7 +91,7 @@ namespace Naos.Slack.Domain.Test
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "slackMessageRequest", },
+                    ExpectedExceptionMessageContains = new[] { "sendSlackMessageRequest", },
                 });
 
         private static readonly ConstructorPropertyAssignmentTestScenarios<SendSlackMessageRequestedEvent<Version>> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<SendSlackMessageRequestedEvent<Version>>()
@@ -108,7 +108,7 @@ namespace Naos.Slack.Domain.Test
                             SystemUnderTest = new SendSlackMessageRequestedEvent<Version>(
                                                       referenceObject.Id,
                                                       referenceObject.TimestampUtc,
-                                                      referenceObject.SlackMessageRequest),
+                                                      referenceObject.SendSlackMessageRequest),
                             ExpectedPropertyValue = referenceObject.Id,
                         };
 
@@ -129,7 +129,7 @@ namespace Naos.Slack.Domain.Test
                             SystemUnderTest = new SendSlackMessageRequestedEvent<Version>(
                                                       referenceObject.Id,
                                                       referenceObject.TimestampUtc,
-                                                      referenceObject.SlackMessageRequest),
+                                                      referenceObject.SendSlackMessageRequest),
                             ExpectedPropertyValue = referenceObject.TimestampUtc,
                         };
 
@@ -140,7 +140,7 @@ namespace Naos.Slack.Domain.Test
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<SendSlackMessageRequestedEvent<Version>>
                 {
-                    Name = "SlackMessageRequest should return same 'slackMessageRequest' parameter passed to constructor when getting",
+                    Name = "SendSlackMessageRequest should return same 'sendSlackMessageRequest' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
                         var referenceObject = A.Dummy<SendSlackMessageRequestedEvent<Version>>();
@@ -150,13 +150,13 @@ namespace Naos.Slack.Domain.Test
                             SystemUnderTest = new SendSlackMessageRequestedEvent<Version>(
                                                       referenceObject.Id,
                                                       referenceObject.TimestampUtc,
-                                                      referenceObject.SlackMessageRequest),
-                            ExpectedPropertyValue = referenceObject.SlackMessageRequest,
+                                                      referenceObject.SendSlackMessageRequest),
+                            ExpectedPropertyValue = referenceObject.SendSlackMessageRequest,
                         };
 
                         return result;
                     },
-                    PropertyName = "SlackMessageRequest",
+                    PropertyName = "SendSlackMessageRequest",
                 });
 
         private static readonly DeepCloneWithTestScenarios<SendSlackMessageRequestedEvent<Version>> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<SendSlackMessageRequestedEvent<Version>>()
@@ -203,18 +203,18 @@ namespace Naos.Slack.Domain.Test
             .AddScenario(() =>
                 new DeepCloneWithTestScenario<SendSlackMessageRequestedEvent<Version>>
                 {
-                    Name = "DeepCloneWithSlackMessageRequest should deep clone object and replace SlackMessageRequest with the provided slackMessageRequest",
-                    WithPropertyName = "SlackMessageRequest",
+                    Name = "DeepCloneWithSendSlackMessageRequest should deep clone object and replace SendSlackMessageRequest with the provided sendSlackMessageRequest",
+                    WithPropertyName = "SendSlackMessageRequest",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
                         var systemUnderTest = A.Dummy<SendSlackMessageRequestedEvent<Version>>();
 
-                        var referenceObject = A.Dummy<SendSlackMessageRequestedEvent<Version>>().ThatIs(_ => !systemUnderTest.SlackMessageRequest.IsEqualTo(_.SlackMessageRequest));
+                        var referenceObject = A.Dummy<SendSlackMessageRequestedEvent<Version>>().ThatIs(_ => !systemUnderTest.SendSlackMessageRequest.IsEqualTo(_.SendSlackMessageRequest));
 
                         var result = new SystemUnderTestDeepCloneWithValue<SendSlackMessageRequestedEvent<Version>>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.SlackMessageRequest,
+                            DeepCloneWithValue = referenceObject.SendSlackMessageRequest,
                         };
 
                         return result;
@@ -234,22 +234,22 @@ namespace Naos.Slack.Domain.Test
                         new SendSlackMessageRequestedEvent<Version>(
                                 ReferenceObjectForEquatableTestScenarios.Id,
                                 ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.SlackMessageRequest),
+                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageRequest),
                     },
                     ObjectsThatAreNotEqualToReferenceObject = new SendSlackMessageRequestedEvent<Version>[]
                     {
                         new SendSlackMessageRequestedEvent<Version>(
                                 ReferenceObjectForEquatableTestScenarios.Id,
                                 A.Dummy<SendSlackMessageRequestedEvent<Version>>().Whose(_ => !_.TimestampUtc.IsEqualTo(ReferenceObjectForEquatableTestScenarios.TimestampUtc)).TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.SlackMessageRequest),
+                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageRequest),
                         new SendSlackMessageRequestedEvent<Version>(
                                 A.Dummy<SendSlackMessageRequestedEvent<Version>>().Whose(_ => !_.Id.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Id)).Id,
                                 ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.SlackMessageRequest),
+                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageRequest),
                         new SendSlackMessageRequestedEvent<Version>(
                                 ReferenceObjectForEquatableTestScenarios.Id,
                                 ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                A.Dummy<SendSlackMessageRequestedEvent<Version>>().Whose(_ => !_.SlackMessageRequest.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SlackMessageRequest)).SlackMessageRequest),
+                                A.Dummy<SendSlackMessageRequestedEvent<Version>>().Whose(_ => !_.SendSlackMessageRequest.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SendSlackMessageRequest)).SendSlackMessageRequest),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
                     {
@@ -258,8 +258,8 @@ namespace Naos.Slack.Domain.Test
                         A.Dummy<int>(),
                         A.Dummy<int?>(),
                         A.Dummy<Guid>(),
-                        A.Dummy<SucceededInSendingSlackMessageEvent<Version>>(),
                         A.Dummy<FailedToSendSlackMessageEvent<Version>>(),
+                        A.Dummy<SucceededInSendingSlackMessageEvent<Version>>(),
                     },
                 });
 
@@ -535,13 +535,13 @@ namespace Naos.Slack.Domain.Test
                     actual.Id.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.Id);
                 }
 
-                if (systemUnderTest.SlackMessageRequest == null)
+                if (systemUnderTest.SendSlackMessageRequest == null)
                 {
-                    actual.SlackMessageRequest.AsTest().Must().BeNull();
+                    actual.SendSlackMessageRequest.AsTest().Must().BeNull();
                 }
                 else
                 {
-                    actual.SlackMessageRequest.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.SlackMessageRequest);
+                    actual.SendSlackMessageRequest.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.SendSlackMessageRequest);
                 }
             }
 
@@ -561,7 +561,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "TimestampUtc", "Id", "SlackMessageRequest" };
+                var propertyNames = new string[] { "TimestampUtc", "Id", "SendSlackMessageRequest" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 

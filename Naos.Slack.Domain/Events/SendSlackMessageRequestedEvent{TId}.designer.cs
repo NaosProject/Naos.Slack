@@ -72,7 +72,7 @@ namespace Naos.Slack.Domain
 
             var result = this.TimestampUtc.IsEqualTo(other.TimestampUtc)
                       && this.Id.IsEqualTo(other.Id)
-                      && this.SlackMessageRequest.IsEqualTo(other.SlackMessageRequest);
+                      && this.SendSlackMessageRequest.IsEqualTo(other.SendSlackMessageRequest);
 
             return result;
         }
@@ -84,7 +84,7 @@ namespace Naos.Slack.Domain
         public override int GetHashCode() => HashCodeHelper.Initialize()
             .Hash(this.TimestampUtc)
             .Hash(this.Id)
-            .Hash(this.SlackMessageRequest)
+            .Hash(this.SendSlackMessageRequest)
             .Value;
 
         /// <inheritdoc />
@@ -111,7 +111,7 @@ namespace Naos.Slack.Domain
             var result = new SendSlackMessageRequestedEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  timestampUtc,
-                                 this.SlackMessageRequest?.DeepClone());
+                                 this.SendSlackMessageRequest?.DeepClone());
 
             return result;
         }
@@ -137,16 +137,16 @@ namespace Naos.Slack.Domain
             var result = new SendSlackMessageRequestedEvent<TId>(
                                  id,
                                  this.TimestampUtc,
-                                 this.SlackMessageRequest?.DeepClone());
+                                 this.SendSlackMessageRequest?.DeepClone());
 
             return result;
         }
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="SlackMessageRequest" />.
+        /// Deep clones this object with a new <see cref="SendSlackMessageRequest" />.
         /// </summary>
-        /// <param name="slackMessageRequest">The new <see cref="SlackMessageRequest" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SendSlackMessageRequestedEvent{TId}" /> using the specified <paramref name="slackMessageRequest" /> for <see cref="SlackMessageRequest" /> and a deep clone of every other property.</returns>
+        /// <param name="sendSlackMessageRequest">The new <see cref="SendSlackMessageRequest" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="SendSlackMessageRequestedEvent{TId}" /> using the specified <paramref name="sendSlackMessageRequest" /> for <see cref="SendSlackMessageRequest" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -162,12 +162,12 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SendSlackMessageRequestedEvent<TId> DeepCloneWithSlackMessageRequest(SlackMessageRequestBase slackMessageRequest)
+        public SendSlackMessageRequestedEvent<TId> DeepCloneWithSendSlackMessageRequest(SendSlackMessageRequestBase sendSlackMessageRequest)
         {
             var result = new SendSlackMessageRequestedEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 slackMessageRequest);
+                                 sendSlackMessageRequest);
 
             return result;
         }
@@ -178,7 +178,7 @@ namespace Naos.Slack.Domain
             var result = new SendSlackMessageRequestedEvent<TId>(
                                  DeepCloneGeneric(this.Id),
                                  this.TimestampUtc,
-                                 this.SlackMessageRequest?.DeepClone());
+                                 this.SendSlackMessageRequest?.DeepClone());
 
             return result;
         }
@@ -228,7 +228,7 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Slack.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, SlackMessageRequest = {this.SlackMessageRequest?.ToString() ?? "<null>"}.");
+            var result = Invariant($"Naos.Slack.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, SendSlackMessageRequest = {this.SendSlackMessageRequest?.ToString() ?? "<null>"}.");
 
             return result;
         }

@@ -33,29 +33,506 @@ namespace Naos.Slack.Domain.Test
 
     using static global::System.FormattableString;
 
-    public static partial class SlackMessageRequestBaseTest
+    public static partial class SendSlackTextMessageRequestTest
     {
-        private static readonly SlackMessageRequestBase ReferenceObjectForEquatableTestScenarios = A.Dummy<SlackMessageRequestBase>();
-
-        private static readonly EquatableTestScenarios<SlackMessageRequestBase> EquatableTestScenarios = new EquatableTestScenarios<SlackMessageRequestBase>()
+        private static readonly StringRepresentationTestScenarios<SendSlackTextMessageRequest> StringRepresentationTestScenarios = new StringRepresentationTestScenarios<SendSlackTextMessageRequest>()
             .AddScenario(() =>
-                new EquatableTestScenario<SlackMessageRequestBase>
+                new StringRepresentationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "Default Code Generated Scenario",
+                    SystemUnderTestExpectedStringRepresentationFunc = () =>
+                    {
+                        var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SystemUnderTestExpectedStringRepresentation<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = systemUnderTest,
+                            ExpectedStringRepresentation = Invariant($"Naos.Slack.Domain.SendSlackTextMessageRequest: Channel = {systemUnderTest.Channel?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, MessageAuthorIconOverride = {systemUnderTest.MessageAuthorIconOverride?.ToString() ?? "<null>"}, MessageAuthorUsernameOverride = {systemUnderTest.MessageAuthorUsernameOverride?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Text = {systemUnderTest.Text?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, TextFormat = {systemUnderTest.TextFormat.ToString() ?? "<null>"}, Options = {systemUnderTest.Options.ToString() ?? "<null>"}."),
+                        };
+
+                        return result;
+                    },
+                });
+
+        private static readonly ConstructorArgumentValidationTestScenarios<SendSlackTextMessageRequest> ConstructorArgumentValidationTestScenarios = new ConstructorArgumentValidationTestScenarios<SendSlackTextMessageRequest>()
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "constructor should throw ArgumentNullException when parameter 'channel' is null scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SendSlackTextMessageRequest(
+                                             null,
+                                             referenceObject.Text,
+                                             referenceObject.TextFormat,
+                                             referenceObject.Options,
+                                             referenceObject.MessageAuthorIconOverride,
+                                             referenceObject.MessageAuthorUsernameOverride);
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentNullException),
+                    ExpectedExceptionMessageContains = new[] { "channel", },
+                })
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "constructor should throw ArgumentException when parameter 'channel' is white space scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SendSlackTextMessageRequest(
+                                             Invariant($"  {Environment.NewLine}  "),
+                                             referenceObject.Text,
+                                             referenceObject.TextFormat,
+                                             referenceObject.Options,
+                                             referenceObject.MessageAuthorIconOverride,
+                                             referenceObject.MessageAuthorUsernameOverride);
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentException),
+                    ExpectedExceptionMessageContains = new[] { "channel", "white space", },
+                })
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "constructor should throw ArgumentNullException when parameter 'text' is null scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SendSlackTextMessageRequest(
+                                             referenceObject.Channel,
+                                             null,
+                                             referenceObject.TextFormat,
+                                             referenceObject.Options,
+                                             referenceObject.MessageAuthorIconOverride,
+                                             referenceObject.MessageAuthorUsernameOverride);
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentNullException),
+                    ExpectedExceptionMessageContains = new[] { "text", },
+                })
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "constructor should throw ArgumentException when parameter 'text' is white space scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SendSlackTextMessageRequest(
+                                             referenceObject.Channel,
+                                             Invariant($"  {Environment.NewLine}  "),
+                                             referenceObject.TextFormat,
+                                             referenceObject.Options,
+                                             referenceObject.MessageAuthorIconOverride,
+                                             referenceObject.MessageAuthorUsernameOverride);
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentException),
+                    ExpectedExceptionMessageContains = new[] { "text", "white space", },
+                })
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "constructor should throw ArgumentNullException when parameter 'messageAuthorIconOverride' is null scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SendSlackTextMessageRequest(
+                                             referenceObject.Channel,
+                                             referenceObject.Text,
+                                             referenceObject.TextFormat,
+                                             referenceObject.Options,
+                                             null,
+                                             referenceObject.MessageAuthorUsernameOverride);
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentNullException),
+                    ExpectedExceptionMessageContains = new[] { "messageAuthorIconOverride", },
+                })
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "constructor should throw ArgumentNullException when parameter 'messageAuthorUsernameOverride' is null scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SendSlackTextMessageRequest(
+                                             referenceObject.Channel,
+                                             referenceObject.Text,
+                                             referenceObject.TextFormat,
+                                             referenceObject.Options,
+                                             referenceObject.MessageAuthorIconOverride,
+                                             null);
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentNullException),
+                    ExpectedExceptionMessageContains = new[] { "messageAuthorUsernameOverride", },
+                })
+            .AddScenario(() =>
+                new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "constructor should throw ArgumentException when parameter 'messageAuthorUsernameOverride' is white space scenario",
+                    ConstructionFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SendSlackTextMessageRequest(
+                                             referenceObject.Channel,
+                                             referenceObject.Text,
+                                             referenceObject.TextFormat,
+                                             referenceObject.Options,
+                                             referenceObject.MessageAuthorIconOverride,
+                                             Invariant($"  {Environment.NewLine}  "));
+
+                        return result;
+                    },
+                    ExpectedExceptionType = typeof(ArgumentException),
+                    ExpectedExceptionMessageContains = new[] { "messageAuthorUsernameOverride", "white space", },
+                });
+
+        private static readonly ConstructorPropertyAssignmentTestScenarios<SendSlackTextMessageRequest> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<SendSlackTextMessageRequest>()
+            .AddScenario(() =>
+                new ConstructorPropertyAssignmentTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "Channel should return same 'channel' parameter passed to constructor when getting",
+                    SystemUnderTestExpectedPropertyValueFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = new SendSlackTextMessageRequest(
+                                                      referenceObject.Channel,
+                                                      referenceObject.Text,
+                                                      referenceObject.TextFormat,
+                                                      referenceObject.Options,
+                                                      referenceObject.MessageAuthorIconOverride,
+                                                      referenceObject.MessageAuthorUsernameOverride),
+                            ExpectedPropertyValue = referenceObject.Channel,
+                        };
+
+                        return result;
+                    },
+                    PropertyName = "Channel",
+                })
+            .AddScenario(() =>
+                new ConstructorPropertyAssignmentTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "Text should return same 'text' parameter passed to constructor when getting",
+                    SystemUnderTestExpectedPropertyValueFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = new SendSlackTextMessageRequest(
+                                                      referenceObject.Channel,
+                                                      referenceObject.Text,
+                                                      referenceObject.TextFormat,
+                                                      referenceObject.Options,
+                                                      referenceObject.MessageAuthorIconOverride,
+                                                      referenceObject.MessageAuthorUsernameOverride),
+                            ExpectedPropertyValue = referenceObject.Text,
+                        };
+
+                        return result;
+                    },
+                    PropertyName = "Text",
+                })
+            .AddScenario(() =>
+                new ConstructorPropertyAssignmentTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "TextFormat should return same 'textFormat' parameter passed to constructor when getting",
+                    SystemUnderTestExpectedPropertyValueFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = new SendSlackTextMessageRequest(
+                                                      referenceObject.Channel,
+                                                      referenceObject.Text,
+                                                      referenceObject.TextFormat,
+                                                      referenceObject.Options,
+                                                      referenceObject.MessageAuthorIconOverride,
+                                                      referenceObject.MessageAuthorUsernameOverride),
+                            ExpectedPropertyValue = referenceObject.TextFormat,
+                        };
+
+                        return result;
+                    },
+                    PropertyName = "TextFormat",
+                })
+            .AddScenario(() =>
+                new ConstructorPropertyAssignmentTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "Options should return same 'options' parameter passed to constructor when getting",
+                    SystemUnderTestExpectedPropertyValueFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = new SendSlackTextMessageRequest(
+                                                      referenceObject.Channel,
+                                                      referenceObject.Text,
+                                                      referenceObject.TextFormat,
+                                                      referenceObject.Options,
+                                                      referenceObject.MessageAuthorIconOverride,
+                                                      referenceObject.MessageAuthorUsernameOverride),
+                            ExpectedPropertyValue = referenceObject.Options,
+                        };
+
+                        return result;
+                    },
+                    PropertyName = "Options",
+                })
+            .AddScenario(() =>
+                new ConstructorPropertyAssignmentTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "MessageAuthorIconOverride should return same 'messageAuthorIconOverride' parameter passed to constructor when getting",
+                    SystemUnderTestExpectedPropertyValueFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = new SendSlackTextMessageRequest(
+                                                      referenceObject.Channel,
+                                                      referenceObject.Text,
+                                                      referenceObject.TextFormat,
+                                                      referenceObject.Options,
+                                                      referenceObject.MessageAuthorIconOverride,
+                                                      referenceObject.MessageAuthorUsernameOverride),
+                            ExpectedPropertyValue = referenceObject.MessageAuthorIconOverride,
+                        };
+
+                        return result;
+                    },
+                    PropertyName = "MessageAuthorIconOverride",
+                })
+            .AddScenario(() =>
+                new ConstructorPropertyAssignmentTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "MessageAuthorUsernameOverride should return same 'messageAuthorUsernameOverride' parameter passed to constructor when getting",
+                    SystemUnderTestExpectedPropertyValueFunc = () =>
+                    {
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = new SendSlackTextMessageRequest(
+                                                      referenceObject.Channel,
+                                                      referenceObject.Text,
+                                                      referenceObject.TextFormat,
+                                                      referenceObject.Options,
+                                                      referenceObject.MessageAuthorIconOverride,
+                                                      referenceObject.MessageAuthorUsernameOverride),
+                            ExpectedPropertyValue = referenceObject.MessageAuthorUsernameOverride,
+                        };
+
+                        return result;
+                    },
+                    PropertyName = "MessageAuthorUsernameOverride",
+                });
+
+        private static readonly DeepCloneWithTestScenarios<SendSlackTextMessageRequest> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<SendSlackTextMessageRequest>()
+            .AddScenario(() =>
+                new DeepCloneWithTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "DeepCloneWithChannel should deep clone object and replace Channel with the provided channel",
+                    WithPropertyName = "Channel",
+                    SystemUnderTestDeepCloneWithValueFunc = () =>
+                    {
+                        var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>().ThatIs(_ => !systemUnderTest.Channel.IsEqualTo(_.Channel));
+
+                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = systemUnderTest,
+                            DeepCloneWithValue = referenceObject.Channel,
+                        };
+
+                        return result;
+                    },
+                })
+            .AddScenario(() =>
+                new DeepCloneWithTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "DeepCloneWithMessageAuthorIconOverride should deep clone object and replace MessageAuthorIconOverride with the provided messageAuthorIconOverride",
+                    WithPropertyName = "MessageAuthorIconOverride",
+                    SystemUnderTestDeepCloneWithValueFunc = () =>
+                    {
+                        var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>().ThatIs(_ => !systemUnderTest.MessageAuthorIconOverride.IsEqualTo(_.MessageAuthorIconOverride));
+
+                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = systemUnderTest,
+                            DeepCloneWithValue = referenceObject.MessageAuthorIconOverride,
+                        };
+
+                        return result;
+                    },
+                })
+            .AddScenario(() =>
+                new DeepCloneWithTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "DeepCloneWithMessageAuthorUsernameOverride should deep clone object and replace MessageAuthorUsernameOverride with the provided messageAuthorUsernameOverride",
+                    WithPropertyName = "MessageAuthorUsernameOverride",
+                    SystemUnderTestDeepCloneWithValueFunc = () =>
+                    {
+                        var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>().ThatIs(_ => !systemUnderTest.MessageAuthorUsernameOverride.IsEqualTo(_.MessageAuthorUsernameOverride));
+
+                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = systemUnderTest,
+                            DeepCloneWithValue = referenceObject.MessageAuthorUsernameOverride,
+                        };
+
+                        return result;
+                    },
+                })
+            .AddScenario(() =>
+                new DeepCloneWithTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "DeepCloneWithText should deep clone object and replace Text with the provided text",
+                    WithPropertyName = "Text",
+                    SystemUnderTestDeepCloneWithValueFunc = () =>
+                    {
+                        var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>().ThatIs(_ => !systemUnderTest.Text.IsEqualTo(_.Text));
+
+                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = systemUnderTest,
+                            DeepCloneWithValue = referenceObject.Text,
+                        };
+
+                        return result;
+                    },
+                })
+            .AddScenario(() =>
+                new DeepCloneWithTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "DeepCloneWithTextFormat should deep clone object and replace TextFormat with the provided textFormat",
+                    WithPropertyName = "TextFormat",
+                    SystemUnderTestDeepCloneWithValueFunc = () =>
+                    {
+                        var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>().ThatIs(_ => !systemUnderTest.TextFormat.IsEqualTo(_.TextFormat));
+
+                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = systemUnderTest,
+                            DeepCloneWithValue = referenceObject.TextFormat,
+                        };
+
+                        return result;
+                    },
+                })
+            .AddScenario(() =>
+                new DeepCloneWithTestScenario<SendSlackTextMessageRequest>
+                {
+                    Name = "DeepCloneWithOptions should deep clone object and replace Options with the provided options",
+                    WithPropertyName = "Options",
+                    SystemUnderTestDeepCloneWithValueFunc = () =>
+                    {
+                        var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
+
+                        var referenceObject = A.Dummy<SendSlackTextMessageRequest>().ThatIs(_ => !systemUnderTest.Options.IsEqualTo(_.Options));
+
+                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackTextMessageRequest>
+                        {
+                            SystemUnderTest = systemUnderTest,
+                            DeepCloneWithValue = referenceObject.Options,
+                        };
+
+                        return result;
+                    },
+                });
+
+        private static readonly SendSlackTextMessageRequest ReferenceObjectForEquatableTestScenarios = A.Dummy<SendSlackTextMessageRequest>();
+
+        private static readonly EquatableTestScenarios<SendSlackTextMessageRequest> EquatableTestScenarios = new EquatableTestScenarios<SendSlackTextMessageRequest>()
+            .AddScenario(() =>
+                new EquatableTestScenario<SendSlackTextMessageRequest>
                 {
                     Name = "Default Code Generated Scenario",
                     ReferenceObject = ReferenceObjectForEquatableTestScenarios,
-                    ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new SlackMessageRequestBase[]
+                    ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new SendSlackTextMessageRequest[]
                     {
-                        ReferenceObjectForEquatableTestScenarios.DeepClone(),
+                        new SendSlackTextMessageRequest(
+                                ReferenceObjectForEquatableTestScenarios.Channel,
+                                ReferenceObjectForEquatableTestScenarios.Text,
+                                ReferenceObjectForEquatableTestScenarios.TextFormat,
+                                ReferenceObjectForEquatableTestScenarios.Options,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride),
                     },
-                    ObjectsThatAreNotEqualToReferenceObject = new SlackMessageRequestBase[]
+                    ObjectsThatAreNotEqualToReferenceObject = new SendSlackTextMessageRequest[]
                     {
-                        // DeepCloneWith___() methods implemented in concrete derivates throw NotSupportedException
-                        // when the derivative's constructor in-use (by code gen) does not have a parameter that
-                        // corresponds with the property who's value is provided in the DeepCloneWith___() method.
-                        // We do not know in advance if this will happen.  As such, the following objects are commented out.
-                        // ReferenceObjectForEquatableTestScenarios.DeepCloneWithChannel(A.Dummy<SlackMessageRequestBase>().Whose(_ => !_.Channel.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Channel)).Channel),
-                        // ReferenceObjectForEquatableTestScenarios.DeepCloneWithMessageAuthorIconOverride(A.Dummy<SlackMessageRequestBase>().Whose(_ => !_.MessageAuthorIconOverride.IsEqualTo(ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride)).MessageAuthorIconOverride),
-                        // ReferenceObjectForEquatableTestScenarios.DeepCloneWithMessageAuthorUsernameOverride(A.Dummy<SlackMessageRequestBase>().Whose(_ => !_.MessageAuthorUsernameOverride.IsEqualTo(ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride)).MessageAuthorUsernameOverride),
+                        new SendSlackTextMessageRequest(
+                                A.Dummy<SendSlackTextMessageRequest>().Whose(_ => !_.Channel.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Channel)).Channel,
+                                ReferenceObjectForEquatableTestScenarios.Text,
+                                ReferenceObjectForEquatableTestScenarios.TextFormat,
+                                ReferenceObjectForEquatableTestScenarios.Options,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride),
+                        new SendSlackTextMessageRequest(
+                                ReferenceObjectForEquatableTestScenarios.Channel,
+                                ReferenceObjectForEquatableTestScenarios.Text,
+                                ReferenceObjectForEquatableTestScenarios.TextFormat,
+                                ReferenceObjectForEquatableTestScenarios.Options,
+                                A.Dummy<SendSlackTextMessageRequest>().Whose(_ => !_.MessageAuthorIconOverride.IsEqualTo(ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride)).MessageAuthorIconOverride,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride),
+                        new SendSlackTextMessageRequest(
+                                ReferenceObjectForEquatableTestScenarios.Channel,
+                                ReferenceObjectForEquatableTestScenarios.Text,
+                                ReferenceObjectForEquatableTestScenarios.TextFormat,
+                                ReferenceObjectForEquatableTestScenarios.Options,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride,
+                                A.Dummy<SendSlackTextMessageRequest>().Whose(_ => !_.MessageAuthorUsernameOverride.IsEqualTo(ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride)).MessageAuthorUsernameOverride),
+                        new SendSlackTextMessageRequest(
+                                ReferenceObjectForEquatableTestScenarios.Channel,
+                                A.Dummy<SendSlackTextMessageRequest>().Whose(_ => !_.Text.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Text)).Text,
+                                ReferenceObjectForEquatableTestScenarios.TextFormat,
+                                ReferenceObjectForEquatableTestScenarios.Options,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride),
+                        new SendSlackTextMessageRequest(
+                                ReferenceObjectForEquatableTestScenarios.Channel,
+                                ReferenceObjectForEquatableTestScenarios.Text,
+                                A.Dummy<SendSlackTextMessageRequest>().Whose(_ => !_.TextFormat.IsEqualTo(ReferenceObjectForEquatableTestScenarios.TextFormat)).TextFormat,
+                                ReferenceObjectForEquatableTestScenarios.Options,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride),
+                        new SendSlackTextMessageRequest(
+                                ReferenceObjectForEquatableTestScenarios.Channel,
+                                ReferenceObjectForEquatableTestScenarios.Text,
+                                ReferenceObjectForEquatableTestScenarios.TextFormat,
+                                A.Dummy<SendSlackTextMessageRequest>().Whose(_ => !_.Options.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Options)).Options,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorIconOverride,
+                                ReferenceObjectForEquatableTestScenarios.MessageAuthorUsernameOverride),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
                     {
@@ -85,12 +562,12 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void SlackMessageRequestBase___Should_implement_IModel_of_SlackMessageRequestBase___When_reflecting()
+            public static void SendSlackTextMessageRequest___Should_implement_IModel_of_SendSlackTextMessageRequest___When_reflecting()
             {
                 // Arrange
-                var type = typeof(SlackMessageRequestBase);
+                var type = typeof(SendSlackTextMessageRequest);
 
-                var expectedModelMethods = typeof(IModel<SlackMessageRequestBase>).GetInterfaceDeclaredAndImplementedMethods();
+                var expectedModelMethods = typeof(IModel<SendSlackTextMessageRequest>).GetInterfaceDeclaredAndImplementedMethods();
 
                 var expectedModelMethodHashes = expectedModelMethods.Select(_ => _.GetSignatureHash());
 
@@ -100,7 +577,7 @@ namespace Naos.Slack.Domain.Test
                 var actualModelMethodHashes = actualModelMethods.Select(_ => _.GetSignatureHash());
 
                 // Assert
-                actualInterfaces.AsTest().Must().ContainElement(typeof(IModel<SlackMessageRequestBase>));
+                actualInterfaces.AsTest().Must().ContainElement(typeof(IModel<SendSlackTextMessageRequest>));
                 expectedModelMethodHashes.Except(actualModelMethodHashes).AsTest().Must().BeEmptyEnumerable();
             }
 
@@ -118,16 +595,158 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void SlackMessageRequestBase___Should_be_attributed_with_Serializable____When_reflecting()
+            public static void SendSlackTextMessageRequest___Should_be_attributed_with_Serializable____When_reflecting()
             {
                 // Arrange
-                var type = typeof(SlackMessageRequestBase);
+                var type = typeof(SendSlackTextMessageRequest);
 
                 // Act
                 var actualAttributes = type.GetCustomAttributes(typeof(SerializableAttribute), false);
 
                 // Assert
                 actualAttributes.AsTest().Must().NotBeEmptyEnumerable();
+            }
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+        [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
+        public static class StringRepresentation
+        {
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void ToString___Should_generate_friendly_string_representation_of_object___When_called()
+            {
+                var scenarios = StringRepresentationTestScenarios.ValidateAndPrepareForTesting();
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange, Act
+                    var actual = scenario.SystemUnderTest.ToString();
+
+                    // Assert
+                    actual.AsTest().Must().BeEqualTo(scenario.ExpectedStringRepresentation, because: scenario.Id);
+                }
+            }
+        }
+
+        [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+        [SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces")]
+        public static class Constructing
+        {
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void Constructor___Should_throw___When_parameters_are_not_valid()
+            {
+                var scenarios = ConstructorArgumentValidationTestScenarios.ValidateAndPrepareForTesting();
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange, Act
+                    var actual = Record.Exception(scenario.ConstructionFunc);
+
+                    // Assert
+                    actual.AsTest().Must().BeOfType(scenario.ExpectedExceptionType, because: scenario.Id);
+
+                    foreach(var expected in scenario.ExpectedExceptionMessageContains ?? new List<string>())
+                    {
+                        actual.Message.AsTest().Must().ContainString(expected, because: scenario.Id);
+                    }
+
+                    if (scenario.ExpectedExceptionMessageEquals != null)
+                    {
+                        actual.Message.AsTest().Must().BeEqualTo(scenario.ExpectedExceptionMessageEquals, because: scenario.Id);
+                    }
+                }
+            }
+
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            [SuppressMessage("Microsoft.Performance", "CA1804:RemoveUnusedLocals", MessageId = "referenceObject")]
+            public static void Properties___Should_be_assigned_by_constructor_to_expected_value___When_getting()
+            {
+                var scenarios = ConstructorPropertyAssignmentTestScenarios.ValidateAndPrepareForTesting();
+
+                var obcAssertionAsTestMethod = typeof(WorkflowExtensions).GetMethodFiltered(nameof(WorkflowExtensions.AsTest), MemberRelationships.DeclaredInType, MemberOwners.Static, MemberAccessModifiers.Public);
+
+                var obcAssertionBeEqualToMethod = typeof(Verifications).GetMethodFiltered(nameof(Verifications.BeEqualTo), MemberRelationships.DeclaredInType, MemberOwners.Static, MemberAccessModifiers.Public);
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange
+                    if ((scenario.PropertyName == ConstructorPropertyAssignmentTestScenario.NoPropertiesAssignedInConstructorScenarioPropertyName) || (scenario.PropertyName == ConstructorPropertyAssignmentTestScenario.ForceGeneratedTestsToPassAndWriteMyOwnScenarioPropertyName))
+                    {
+                        continue;
+                    }
+
+                    // Act
+                    var actual = scenario.Property.GetValue(scenario.SystemUnderTest);
+
+                    // Assert
+                    if (scenario.CompareActualToExpectedUsing == CompareActualToExpectedUsing.ValueEquality)
+                    {
+                        var propertyType = scenario.Property.PropertyType;
+
+                        // Use reflection to call: actual.AsTest().Must().BeEqualTo(scenario.ExpectedPropertyValue, because: scenario.Id)
+                        // We need to use reflection here to specify the 'subject' and 'comparisonValue' types.
+                        // BeEqualTo() uses declared types and not runtime types to identify the contract to use for equality.
+                        // Here 'scenario.ExpectedPropertyValue' and 'actual' are declared as typeof(object).
+                        // With the exception of some specific boxed types (e.g. value types, string),
+                        // BeEqualTo() uses reference equality to compare two objects declared as typeof(object).
+                        // We want to use the property's real type, 'scenario.Property.PropertyType'.
+                        // For example, BeEqualTo() returns false for these two dictionaries because their declared type is typeof(object):
+                        // object x = Dictionary<string, string>();
+                        // object y = Dictionary<string, string>();
+                        var assertionTracker = ((AssertionTracker)obcAssertionAsTestMethod.MakeGenericMethod(propertyType).Invoke(null, new[] { actual, Type.Missing })).Must();
+
+                        var invokeableObcAssertionBeEqualToMethod = obcAssertionBeEqualToMethod.MakeGenericMethod(propertyType);
+
+                        invokeableObcAssertionBeEqualToMethod.Invoke(null, new object[] { assertionTracker, scenario.ExpectedPropertyValue, scenario.Id, Type.Missing, Type.Missing });
+                    }
+                    else if (scenario.CompareActualToExpectedUsing == CompareActualToExpectedUsing.ReferenceEquality)
+                    {
+                        actual.AsTest().Must().BeSameReferenceAs(scenario.ExpectedPropertyValue, because: scenario.Id);
+                    }
+                    else
+                    {
+                        throw new NotSupportedException("This CompareActualToExpectedUsing is not supported: " + scenario.CompareActualToExpectedUsing);
+                    }
+                }
             }
         }
 
@@ -152,10 +771,10 @@ namespace Naos.Slack.Domain.Test
             public static void Clone___Should_clone_object___When_called()
             {
                 // Arrange
-                var systemUnderTest = A.Dummy<SlackMessageRequestBase>();
+                var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
 
                 // Act
-                var actual = (SlackMessageRequestBase)systemUnderTest.Clone();
+                var actual = (SendSlackTextMessageRequest)systemUnderTest.Clone();
 
                 // Assert
                 actual.AsTest().Must().BeEqualTo(systemUnderTest);
@@ -179,7 +798,7 @@ namespace Naos.Slack.Domain.Test
             public static void DeepClone___Should_deep_clone_object___When_called()
             {
                 // Arrange
-                var systemUnderTest = A.Dummy<SlackMessageRequestBase>();
+                var systemUnderTest = A.Dummy<SendSlackTextMessageRequest>();
 
                 // Act
                 var actual = systemUnderTest.DeepClone();
@@ -195,6 +814,90 @@ namespace Naos.Slack.Domain.Test
                 else
                 {
                     actual.MessageAuthorIconOverride.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.MessageAuthorIconOverride);
+                }
+            }
+
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
+            {
+                var propertyNames = new string[] { "Channel", "MessageAuthorIconOverride", "MessageAuthorUsernameOverride", "Text", "TextFormat", "Options" };
+
+                var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
+
+                var obcAssertionAsTestMethod = typeof(WorkflowExtensions).GetMethodFiltered(nameof(WorkflowExtensions.AsTest), MemberRelationships.DeclaredInType, MemberOwners.Static, MemberAccessModifiers.Public);
+
+                var obcAssertionBeEqualToMethod = typeof(Verifications).GetMethodFiltered(nameof(Verifications.BeEqualTo), MemberRelationships.DeclaredInType, MemberOwners.Static, MemberAccessModifiers.Public);
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange
+                    if (scenario.WithPropertyName == DeepCloneWithTestScenario.ForceGeneratedTestsToPassAndWriteMyOwnScenarioWithPropertyName)
+                    {
+                        continue;
+                    }
+
+                    // Act
+                    var actual = (SendSlackTextMessageRequest)scenario.DeepCloneWithMethod.Invoke(scenario.SystemUnderTest, new[] { scenario.WithValue });
+
+                    // Assert
+                    foreach(var propertyName in propertyNames)
+                    {
+                        var propertyInfo = typeof(SendSlackTextMessageRequest).GetPropertyFiltered(propertyName, MemberRelationships.DeclaredOrInherited, MemberOwners.Instance, MemberAccessModifiers.Public);
+
+                        var propertyType = propertyInfo.PropertyType;
+
+                        var actualPropertyValue = propertyInfo.GetValue(actual);
+
+                        if (propertyName == scenario.WithPropertyName)
+                        {
+                            if (propertyType.IsValueType)
+                            {
+                                actualPropertyValue.AsTest().Must().BeEqualTo(scenario.WithValue, because: scenario.Id);
+                            }
+                            else
+                            {
+                                actualPropertyValue.AsTest().Must().BeSameReferenceAs(scenario.WithValue, because: scenario.Id);
+                            }
+                        }
+                        else
+                        {
+                            var systemUnderTestPropertyValue = propertyInfo.GetValue(scenario.SystemUnderTest);
+
+                            // Use reflection to call: actualPropertyValue.AsTest().Must().BeEqualTo(systemUnderTestPropertyValue, because: scenario.Id)
+                            // We need to use reflection here to specify the 'subject' and 'comparisonValue' types.
+                            // BeEqualTo() uses declared types and not runtime types to identify the contract to use for equality.
+                            // Here 'systemUnderTestPropertyValue' and 'actualPropertyValue' are declared as typeof(object).
+                            // With the exception of some specific boxed types (e.g. value types, string),
+                            // BeEqualTo() uses reference equality to compare two objects declared as typeof(object).
+                            // We want to use the property's real type, 'property.PropertyType'.
+                            // For example, BeEqualTo() returns false for these two dictionaries because their declared type is typeof(object):
+                            // object x = Dictionary<string, string>();
+                            // object y = Dictionary<string, string>();
+                            var assertionTracker = ((AssertionTracker)obcAssertionAsTestMethod.MakeGenericMethod(propertyType).Invoke(null, new[] { actualPropertyValue, Type.Missing })).Must();
+
+                            var invokeableObcAssertionBeEqualToMethod = obcAssertionBeEqualToMethod.MakeGenericMethod(propertyType);
+
+                            invokeableObcAssertionBeEqualToMethod.Invoke(null, new object[] { assertionTracker, systemUnderTestPropertyValue, scenario.Id, Type.Missing, Type.Missing });
+
+                            if ((!propertyType.IsValueType) && (propertyType != typeof(string)) && (systemUnderTestPropertyValue != null))
+                            {
+                                actualPropertyValue.AsTest().Must().NotBeSameReferenceAs(systemUnderTestPropertyValue, because: scenario.Id);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -220,7 +923,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_string_using_ObcBsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<SlackMessageRequestBase>();
+                var expected = A.Dummy<SendSlackTextMessageRequest>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.BsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -249,7 +952,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_bytes_using_ObcBsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<SlackMessageRequestBase>();
+                var expected = A.Dummy<SendSlackTextMessageRequest>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.BsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -278,7 +981,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_string_using_ObcJsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<SlackMessageRequestBase>();
+                var expected = A.Dummy<SendSlackTextMessageRequest>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.JsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -307,7 +1010,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_bytes_using_ObcJsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<SlackMessageRequestBase>();
+                var expected = A.Dummy<SendSlackTextMessageRequest>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.JsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -341,8 +1044,8 @@ namespace Naos.Slack.Domain.Test
             public static void EqualsOperator___Should_return_true___When_both_sides_of_operator_are_null()
             {
                 // Arrange
-                SlackMessageRequestBase systemUnderTest1 = null;
-                SlackMessageRequestBase systemUnderTest2 = null;
+                SendSlackTextMessageRequest systemUnderTest1 = null;
+                SendSlackTextMessageRequest systemUnderTest2 = null;
 
                 // Act
                 var actual = systemUnderTest1 == systemUnderTest2;
@@ -372,7 +1075,7 @@ namespace Naos.Slack.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    SlackMessageRequestBase systemUnderTest = null;
+                    SendSlackTextMessageRequest systemUnderTest = null;
 
                     // Act
                     var actual1 = systemUnderTest == scenario.ReferenceObject;
@@ -521,8 +1224,8 @@ namespace Naos.Slack.Domain.Test
             public static void NotEqualsOperator___Should_return_false___When_both_sides_of_operator_are_null()
             {
                 // Arrange
-                SlackMessageRequestBase systemUnderTest1 = null;
-                SlackMessageRequestBase systemUnderTest2 = null;
+                SendSlackTextMessageRequest systemUnderTest1 = null;
+                SendSlackTextMessageRequest systemUnderTest2 = null;
 
                 // Act
                 var actual = systemUnderTest1 != systemUnderTest2;
@@ -552,7 +1255,7 @@ namespace Naos.Slack.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    SlackMessageRequestBase systemUnderTest = null;
+                    SendSlackTextMessageRequest systemUnderTest = null;
 
                     // Act
                     var actual1 = systemUnderTest != scenario.ReferenceObject;
@@ -698,14 +1401,157 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackMessageRequestBase___Should_return_false___When_parameter_other_is_null()
+            public static void Equals_with_SendSlackMessageRequestBase___Should_return_false___When_parameter_other_is_null()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    SlackMessageRequestBase systemUnderTest = null;
+                    SendSlackMessageRequestBase systemUnderTest = null;
+
+                    // Act
+                    var actual = scenario.ReferenceObject.Equals((SendSlackMessageRequestBase)systemUnderTest);
+
+                    // Assert
+                    actual.AsTest().Must().BeFalse(because: scenario.Id);
+                }
+            }
+
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void Equals_with_SendSlackMessageRequestBase___Should_return_true___When_parameter_other_is_same_object()
+            {
+                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange, Act
+                    var actual = scenario.ReferenceObject.Equals((SendSlackMessageRequestBase)scenario.ReferenceObject);
+
+                    // Assert
+                    actual.AsTest().Must().BeTrue(because: scenario.Id);
+                }
+            }
+
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void Equals_with_SendSlackMessageRequestBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
+            {
+                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange, Act
+                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendSlackMessageRequestBase)_)).ToList();
+
+                    // Assert
+                    actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
+                }
+            }
+
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void Equals_with_SendSlackMessageRequestBase___Should_return_false___When_objects_being_compared_have_different_property_values()
+            {
+                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange, Act
+                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendSlackMessageRequestBase)_)).ToList();
+
+                    // Assert
+                    actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
+                }
+            }
+
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void Equals_with_SendSlackMessageRequestBase___Should_return_true___When_objects_being_compared_have_same_property_values()
+            {
+                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange, Act
+                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendSlackMessageRequestBase)_)).ToList();
+
+                    // Assert
+                    actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);
+                }
+            }
+
+            [Fact]
+            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
+            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
+            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
+            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
+            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
+            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
+            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
+            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
+            public static void Equals_with_SendSlackTextMessageRequest___Should_return_false___When_parameter_other_is_null()
+            {
+                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
+
+                foreach (var scenario in scenarios)
+                {
+                    // Arrange
+                    SendSlackTextMessageRequest systemUnderTest = null;
 
                     // Act
                     var actual = scenario.ReferenceObject.Equals(systemUnderTest);
@@ -729,7 +1575,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackMessageRequestBase___Should_return_true___When_parameter_other_is_same_object()
+            public static void Equals_with_SendSlackTextMessageRequest___Should_return_true___When_parameter_other_is_same_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -757,7 +1603,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackMessageRequestBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
+            public static void Equals_with_SendSlackTextMessageRequest___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -785,7 +1631,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackMessageRequestBase___Should_return_false___When_objects_being_compared_have_different_property_values()
+            public static void Equals_with_SendSlackTextMessageRequest___Should_return_false___When_objects_being_compared_have_different_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -813,7 +1659,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackMessageRequestBase___Should_return_true___When_objects_being_compared_have_same_property_values()
+            public static void Equals_with_SendSlackTextMessageRequest___Should_return_true___When_objects_being_compared_have_same_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 

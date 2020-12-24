@@ -100,12 +100,12 @@
     <Compile Include="Events\SlackEventBase{TId}.designer.cs">
       <DependentUpon>SlackEventBase{TId}.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\SlackMessageResponseEventBase{TId}.designer.cs">
-      <DependentUpon>SlackMessageResponseEventBase{TId}.cs</DependentUpon>
+    <Compile Include="Events\SendSlackMessageResponseEventBase{TId}.designer.cs">
+      <DependentUpon>SendSlackMessageResponseEventBase{TId}.cs</DependentUpon>
     </Compile>
     <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}.cs" />
     <Compile Include="Events\FailedToSendSlackMessageEvent{TId}.cs" />
-    <Compile Include="Events\SlackMessageResponseEventBase{TId}.cs" />
+    <Compile Include="Events\SendSlackMessageResponseEventBase{TId}.cs" />
     <Compile Include="Events\SlackEventBase{TId}.cs" />
     <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}.designer.cs">
       <DependentUpon>SucceededInSendingSlackMessageEvent{TId}.cs</DependentUpon>
@@ -115,17 +115,17 @@
     <Compile Include="Models\Classes\MessageAuthorIcon.designer.cs">
       <DependentUpon>MessageAuthorIcon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SlackMessageRequestBase.designer.cs">
-      <DependentUpon>SlackMessageRequestBase.cs</DependentUpon>
+    <Compile Include="Models\Classes\SendSlackMessageRequestBase.designer.cs">
+      <DependentUpon>SendSlackMessageRequestBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SlackMessageResponse.cs" />
-    <Compile Include="Models\Classes\SlackMessageRequestBase.cs" />
-    <Compile Include="Models\Classes\SlackMessageResponse.designer.cs">
-      <DependentUpon>SlackMessageResponse.cs</DependentUpon>
+    <Compile Include="Models\Classes\SendSlackMessageResponse.cs" />
+    <Compile Include="Models\Classes\SendSlackMessageRequestBase.cs" />
+    <Compile Include="Models\Classes\SendSlackMessageResponse.designer.cs">
+      <DependentUpon>SendSlackMessageResponse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SlackTextMessageRequest.cs" />
-    <Compile Include="Models\Classes\SlackTextMessageRequest.designer.cs">
-      <DependentUpon>SlackTextMessageRequest.cs</DependentUpon>
+    <Compile Include="Models\Classes\SendSlackTextMessageRequest.cs" />
+    <Compile Include="Models\Classes\SendSlackTextMessageRequest.designer.cs">
+      <DependentUpon>SendSlackTextMessageRequest.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Enum\IconResourceIdentifierKind.cs" />
     <Compile Include="Models\Enum\SendSlackMessageResult.cs" />

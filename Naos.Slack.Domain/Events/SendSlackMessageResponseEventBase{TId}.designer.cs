@@ -24,15 +24,15 @@ namespace Naos.Slack.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class SlackMessageResponseEventBase<TId> : IModel<SlackMessageResponseEventBase<TId>>
+    public partial class SendSlackMessageResponseEventBase<TId> : IModel<SendSlackMessageResponseEventBase<TId>>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="SlackMessageResponseEventBase{TId}"/> are equal.
+        /// Determines whether two objects of type <see cref="SendSlackMessageResponseEventBase{TId}"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(SlackMessageResponseEventBase<TId> left, SlackMessageResponseEventBase<TId> right)
+        public static bool operator ==(SendSlackMessageResponseEventBase<TId> left, SendSlackMessageResponseEventBase<TId> right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -50,15 +50,15 @@ namespace Naos.Slack.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="SlackMessageResponseEventBase{TId}"/> are not equal.
+        /// Determines whether two objects of type <see cref="SendSlackMessageResponseEventBase{TId}"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(SlackMessageResponseEventBase<TId> left, SlackMessageResponseEventBase<TId> right) => !(left == right);
+        public static bool operator !=(SendSlackMessageResponseEventBase<TId> left, SendSlackMessageResponseEventBase<TId> right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(SlackMessageResponseEventBase<TId> other) => this == other;
+        public bool Equals(SendSlackMessageResponseEventBase<TId> other) => this == other;
 
         /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations")]
@@ -75,13 +75,13 @@ namespace Naos.Slack.Domain
         }
 
         /// <inheritdoc />
-        public new SlackMessageResponseEventBase<TId> DeepClone() => (SlackMessageResponseEventBase<TId>)this.DeepCloneInternal();
+        public new SendSlackMessageResponseEventBase<TId> DeepClone() => (SendSlackMessageResponseEventBase<TId>)this.DeepCloneInternal();
 
         /// <summary>
-        /// Deep clones this object with a new <see cref="SlackMessageResponse" />.
+        /// Deep clones this object with a new <see cref="SendSlackMessageResponse" />.
         /// </summary>
-        /// <param name="slackMessageResponse">The new <see cref="SlackMessageResponse" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SlackMessageResponseEventBase{TId}" /> using the specified <paramref name="slackMessageResponse" /> for <see cref="SlackMessageResponse" /> and a deep clone of every other property.</returns>
+        /// <param name="sendSlackMessageResponse">The new <see cref="SendSlackMessageResponse" />.  This object will NOT be deep cloned; it is used as-is.</param>
+        /// <returns>New <see cref="SendSlackMessageResponseEventBase{TId}" /> using the specified <paramref name="sendSlackMessageResponse" /> for <see cref="SendSlackMessageResponse" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -97,7 +97,7 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public virtual SlackMessageResponseEventBase<TId> DeepCloneWithSlackMessageResponse(SlackMessageResponse slackMessageResponse)
+        public virtual SendSlackMessageResponseEventBase<TId> DeepCloneWithSendSlackMessageResponse(SendSlackMessageResponse sendSlackMessageResponse)
         {
             throw new NotImplementedException("This method should be abstract.  It was generated as virtual so that you aren't forced to override it when you create a new model that derives from this model.  It will be overridden in the generated designer file.");
         }

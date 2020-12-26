@@ -90,47 +90,47 @@
     <Compile Include=".recipes\OBeautifulCode.Type\ToStringReadableOptions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\ToStringXmlDocOptions.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
-    <Compile Include="Events\FailedToSendSlackMessageEvent{TId}.designer.cs">
+    <Compile Include="Events\Message\FailedToSendSlackMessageEvent{TId}.designer.cs">
       <DependentUpon>FailedToSendSlackMessageEvent{TId}.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\SendSlackMessageRequestedEvent{TId}.cs" />
-    <Compile Include="Events\SendSlackMessageRequestedEvent{TId}.designer.cs">
+    <Compile Include="Events\Message\SendSlackMessageRequestedEvent{TId}.cs" />
+    <Compile Include="Events\Message\SendSlackMessageRequestedEvent{TId}.designer.cs">
       <DependentUpon>SendSlackMessageRequestedEvent{TId}.cs</DependentUpon>
     </Compile>
     <Compile Include="Events\SlackEventBase{TId}.designer.cs">
       <DependentUpon>SlackEventBase{TId}.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\SendSlackMessageResponseEventBase{TId}.designer.cs">
+    <Compile Include="Events\Message\SendSlackMessageResponseEventBase{TId}.designer.cs">
       <DependentUpon>SendSlackMessageResponseEventBase{TId}.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}.cs" />
-    <Compile Include="Events\FailedToSendSlackMessageEvent{TId}.cs" />
-    <Compile Include="Events\SendSlackMessageResponseEventBase{TId}.cs" />
+    <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}.cs" />
+    <Compile Include="Events\Message\FailedToSendSlackMessageEvent{TId}.cs" />
+    <Compile Include="Events\Message\SendSlackMessageResponseEventBase{TId}.cs" />
     <Compile Include="Events\SlackEventBase{TId}.cs" />
-    <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}.designer.cs">
+    <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}.designer.cs">
       <DependentUpon>SucceededInSendingSlackMessageEvent{TId}.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ISendSlackMessageProtocol.cs" />
-    <Compile Include="Models\Classes\MessageAuthorIcon.cs" />
-    <Compile Include="Models\Classes\MessageAuthorIcon.designer.cs">
+    <Compile Include="Models\Classes\Message\MessageAuthorIcon.cs" />
+    <Compile Include="Models\Classes\Message\MessageAuthorIcon.designer.cs">
       <DependentUpon>MessageAuthorIcon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SendSlackMessageRequestBase.designer.cs">
+    <Compile Include="Models\Classes\Message\SendSlackMessageRequestBase.designer.cs">
       <DependentUpon>SendSlackMessageRequestBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SendSlackMessageResponse.cs" />
-    <Compile Include="Models\Classes\SendSlackMessageRequestBase.cs" />
-    <Compile Include="Models\Classes\SendSlackMessageResponse.designer.cs">
+    <Compile Include="Models\Classes\Message\SendSlackMessageResponse.cs" />
+    <Compile Include="Models\Classes\Message\SendSlackMessageRequestBase.cs" />
+    <Compile Include="Models\Classes\Message\SendSlackMessageResponse.designer.cs">
       <DependentUpon>SendSlackMessageResponse.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SendSlackTextMessageRequest.cs" />
-    <Compile Include="Models\Classes\SendSlackTextMessageRequest.designer.cs">
+    <Compile Include="Models\Classes\Message\SendSlackTextMessageRequest.cs" />
+    <Compile Include="Models\Classes\Message\SendSlackTextMessageRequest.designer.cs">
       <DependentUpon>SendSlackTextMessageRequest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Enum\IconResourceIdentifierKind.cs" />
-    <Compile Include="Models\Enum\SendSlackMessageResult.cs" />
-    <Compile Include="Models\Enum\SlackTextMessageOptions.cs" />
-    <Compile Include="Models\Enum\SlackTextFormat.cs" />
+    <Compile Include="Models\Enum\Message\IconResourceIdentifierKind.cs" />
+    <Compile Include="Models\Enum\Message\SendSlackMessageResult.cs" />
+    <Compile Include="Models\Enum\Message\SlackTextMessageOptions.cs" />
+    <Compile Include="Models\Enum\Message\SlackTextFormat.cs" />
     <Compile Include="Operations\SendSlackMessageOp.cs" />
     <Compile Include="Operations\SendSlackMessageOp.designer.cs">
       <DependentUpon>SendSlackMessageOp.cs</DependentUpon>

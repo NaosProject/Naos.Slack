@@ -258,12 +258,12 @@
     <Compile Include=".recipes\OBeautifulCode.Type\TypeDummyFactory.designer.cs" />
     <Compile Include=".recipes\OBeautifulCode.Type\TypeExtensions.cs" />
     <Compile Include="ConsoleAbstraction.cs" />
-    <Compile Include="Events\FailedToSendSlackMessageEvent{TId}Test.cs" />
-    <Compile Include="Events\FailedToSendSlackMessageEvent{TId}Test.designer.cs">
+    <Compile Include="Events\Message\FailedToSendSlackMessageEvent{TId}Test.cs" />
+    <Compile Include="Events\Message\FailedToSendSlackMessageEvent{TId}Test.designer.cs">
       <DependentUpon>FailedToSendSlackMessageEvent{TId}Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\MessageAuthorIconTest.cs" />
-    <Compile Include="Models\Classes\MessageAuthorIconTest.designer.cs">
+    <Compile Include="Models\Classes\Message\MessageAuthorIconTest.cs" />
+    <Compile Include="Models\Classes\Message\MessageAuthorIconTest.designer.cs">
       <DependentUpon>MessageAuthorIconTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -273,24 +273,24 @@
     <Compile Include="Operations\SendSlackMessageOpTest.designer.cs">
       <DependentUpon>SendSlackMessageOpTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SendSlackMessageRequestBaseTest.cs" />
-    <Compile Include="Models\Classes\SendSlackMessageRequestBaseTest.designer.cs">
+    <Compile Include="Models\Classes\Message\SendSlackMessageRequestBaseTest.cs" />
+    <Compile Include="Models\Classes\Message\SendSlackMessageRequestBaseTest.designer.cs">
       <DependentUpon>SendSlackMessageRequestBaseTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\SendSlackMessageRequestedEvent{TId}Test.cs" />
-    <Compile Include="Events\SendSlackMessageRequestedEvent{TId}Test.designer.cs">
+    <Compile Include="Events\Message\SendSlackMessageRequestedEvent{TId}Test.cs" />
+    <Compile Include="Events\Message\SendSlackMessageRequestedEvent{TId}Test.designer.cs">
       <DependentUpon>SendSlackMessageRequestedEvent{TId}Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\SendSlackMessageResponseEventBase{TId}Test.cs" />
-    <Compile Include="Events\SendSlackMessageResponseEventBase{TId}Test.designer.cs">
+    <Compile Include="Events\Message\SendSlackMessageResponseEventBase{TId}Test.cs" />
+    <Compile Include="Events\Message\SendSlackMessageResponseEventBase{TId}Test.designer.cs">
       <DependentUpon>SendSlackMessageResponseEventBase{TId}Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SendSlackMessageResponseTest.cs" />
-    <Compile Include="Models\Classes\SendSlackMessageResponseTest.designer.cs">
+    <Compile Include="Models\Classes\Message\SendSlackMessageResponseTest.cs" />
+    <Compile Include="Models\Classes\Message\SendSlackMessageResponseTest.designer.cs">
       <DependentUpon>SendSlackMessageResponseTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Classes\SendSlackTextMessageRequestTest.cs" />
-    <Compile Include="Models\Classes\SendSlackTextMessageRequestTest.designer.cs">
+    <Compile Include="Models\Classes\Message\SendSlackTextMessageRequestTest.cs" />
+    <Compile Include="Models\Classes\Message\SendSlackTextMessageRequestTest.designer.cs">
       <DependentUpon>SendSlackTextMessageRequestTest.cs</DependentUpon>
     </Compile>
     <Compile Include="SerializationConfigurationTypes.cs" />
@@ -308,8 +308,8 @@
     <Compile Include="Events\SlackEventBase{TId}Test.designer.cs">
       <DependentUpon>SlackEventBase{TId}Test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}Test.cs" />
-    <Compile Include="Events\SucceededInSendingSlackMessageEvent{TId}Test.designer.cs">
+    <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}Test.cs" />
+    <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}Test.designer.cs">
       <DependentUpon>SucceededInSendingSlackMessageEvent{TId}Test.cs</DependentUpon>
     </Compile>
     <None Include=".analyzers\test.ruleset" />

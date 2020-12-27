@@ -49,7 +49,6 @@ namespace Naos.Slack.Protocol.Client.Test
 
             // Assert
             actual.SendSlackMessageResult.AsTest().Must().BeEqualTo(SendSlackMessageResult.Succeeded);
-            actual.SlackErrorCode.AsTest().Must().BeEqualTo("invalid_auth");
         }
     }
 }

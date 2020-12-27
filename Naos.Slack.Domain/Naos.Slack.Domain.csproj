@@ -110,6 +110,7 @@
     <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}.designer.cs">
       <DependentUpon>SucceededInSendingSlackMessageEvent{TId}.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IUploadFileToSlackProtocol.cs" />
     <Compile Include="Interfaces\ISendSlackMessageProtocol.cs" />
     <Compile Include="Models\Classes\Message\MessageAuthorIcon.cs" />
     <Compile Include="Models\Classes\Message\MessageAuthorIcon.designer.cs">
@@ -123,14 +124,19 @@
     <Compile Include="Models\Classes\Message\SendSlackMessageResponse.designer.cs">
       <DependentUpon>SendSlackMessageResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackResponse.cs" />
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackRequest.cs" />
     <Compile Include="Models\Classes\Message\SendSlackTextMessageRequest.cs" />
     <Compile Include="Models\Classes\Message\SendSlackTextMessageRequest.designer.cs">
       <DependentUpon>SendSlackTextMessageRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enum\Upload\FileType.cs" />
     <Compile Include="Models\Enum\Message\IconResourceIdentifierKind.cs" />
     <Compile Include="Models\Enum\Message\SendSlackMessageResult.cs" />
     <Compile Include="Models\Enum\Message\SlackTextMessageOptions.cs" />
     <Compile Include="Models\Enum\Message\SlackTextFormat.cs" />
+    <Compile Include="Models\Enum\Upload\UploadFileToSlackResult.cs" />
+    <Compile Include="Operations\UploadFileToSlackOp.cs" />
     <Compile Include="Operations\SendSlackMessageOp.cs" />
     <Compile Include="Operations\SendSlackMessageOp.designer.cs">
       <DependentUpon>SendSlackMessageOp.cs</DependentUpon>

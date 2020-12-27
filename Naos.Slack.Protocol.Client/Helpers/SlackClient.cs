@@ -74,7 +74,7 @@ namespace Naos.Slack.Protocol
                 .ToList();
 
             var queryString = parametersWithToken
-                .Select(_ => Invariant($"{WebUtility.UrlEncode(_.Item1)}={WebUtility.UrlEncode(_.Item2)}"))
+                .Select(_ => Invariant($"{Uri.EscapeDataString(_.Item1)}={Uri.EscapeDataString(_.Item2)}"))
                 .ToDelimitedString("&");
 
             var requestUrl = Invariant($"{methodUrl}?{queryString}");

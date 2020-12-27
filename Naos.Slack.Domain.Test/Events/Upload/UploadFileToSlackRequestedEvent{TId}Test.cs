@@ -29,6 +29,26 @@ namespace Naos.Slack.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static UploadFileToSlackRequestedEventTIdTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<UploadFileToSlackRequestedEvent<Version>>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'uploadFileToSlackRequest' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<UploadFileToSlackRequestedEvent<Version>>();
+
+                            var result = new UploadFileToSlackRequestedEvent<Version>(
+                                referenceObject.Id,
+                                referenceObject.TimestampUtc,
+                                null);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "uploadFileToSlackRequest", },
+                    });
         }
     }
 }

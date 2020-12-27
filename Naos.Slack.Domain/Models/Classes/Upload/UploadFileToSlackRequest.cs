@@ -39,7 +39,7 @@ namespace Naos.Slack.Domain
             string title = null,
             string initialCommentText = null)
         {
-            new { fileBytes }.AsArg().Must().NotBeNull();
+            new { fileBytes }.AsArg().Must().NotBeNullNorEmptyEnumerable();
 
             if (channels != null)
             {

@@ -29,6 +29,46 @@ namespace Naos.Slack.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static FailedToSendSlackMessageEventTIdTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<FailedToSendSlackMessageEvent<Version>>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'sendSlackMessageResponse' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+
+                            var result = new FailedToSendSlackMessageEvent<Version>(
+                                referenceObject.Id,
+                                referenceObject.TimestampUtc,
+                                null);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "sendSlackMessageResponse", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<FailedToSendSlackMessageEvent<Version>>
+                    {
+                        Name = "constructor should throw ArgumentOutOfRangeException when sendSlackMessageResponse.SendSlackMessageResult is equal to SendSlackMessageResult.Succeeded scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+
+                            var sendSlackMessageResponse = A.Dummy<SendSlackMessageResponse>().ThatIs(_ => _.SendSlackMessageResult == SendSlackMessageResult.Succeeded);
+
+                            var result = new FailedToSendSlackMessageEvent<Version>(
+                                referenceObject.Id,
+                                referenceObject.TimestampUtc,
+                                sendSlackMessageResponse);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
+                        ExpectedExceptionMessageContains = new[] { "sendSlackMessageResponse.SendSlackMessageResult", "Succeeded", "is equal to the comparison value" },
+                    });
         }
     }
 }

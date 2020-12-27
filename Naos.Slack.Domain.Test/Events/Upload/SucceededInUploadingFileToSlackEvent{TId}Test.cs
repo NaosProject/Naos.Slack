@@ -29,6 +29,46 @@ namespace Naos.Slack.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static SucceededInUploadingFileToSlackEventTIdTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SucceededInUploadingFileToSlackEvent<Version>>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'UploadFileToSlackResponse' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SucceededInUploadingFileToSlackEvent<Version>>();
+
+                            var result = new SucceededInUploadingFileToSlackEvent<Version>(
+                                referenceObject.Id,
+                                referenceObject.TimestampUtc,
+                                null);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "uploadFileToSlackResponse", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SucceededInUploadingFileToSlackEvent<Version>>
+                    {
+                        Name = "constructor should throw ArgumentOutOfRangeException when uploadFileToSlackResponse.UploadFileToSlackResult is not equal to UploadFileToSlackResult.Succeeded scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SucceededInUploadingFileToSlackEvent<Version>>();
+
+                            var uploadFileToSlackResponse = A.Dummy<UploadFileToSlackResponse>().ThatIs(_ => _.UploadFileToSlackResult != UploadFileToSlackResult.Succeeded);
+
+                            var result = new SucceededInUploadingFileToSlackEvent<Version>(
+                                referenceObject.Id,
+                                referenceObject.TimestampUtc,
+                                uploadFileToSlackResponse);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
+                        ExpectedExceptionMessageContains = new[] { "uploadFileToSlackResponse.UploadFileToSlackResult", "Succeeded", "is not equal to the comparison value" },
+                    });
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Naos.Slack.Domain.Test
             /* Add any overriding or custom registrations here. */
             AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(IconResourceIdentifierKind.Unknown);
             AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(SendSlackMessageResult.Unknown);
+            AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(UploadFileToSlackResult.Unknown);
             AutoFixtureBackedDummyFactory.ConstrainDummyToExclude(SlackTextFormat.Unknown);
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
@@ -44,13 +45,35 @@ namespace Naos.Slack.Domain.Test
                 {
                     result = new SendSlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), null);
                 }
-                else if (sendSlackMessageResult == SendSlackMessageResult.FailedWithExceptionWhenSending)
+                else if (sendSlackMessageResult == SendSlackMessageResult.FailedWithSlackReturningError)
                 {
                     result = new SendSlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), null);
                 }
                 else
                 {
                     result = new SendSlackMessageResponse(sendSlackMessageResult, null, A.Dummy<string>());
+                }
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var uploadFileToSlackResult = A.Dummy<UploadFileToSlackResult>();
+
+                UploadFileToSlackResponse result;
+
+                if (uploadFileToSlackResult == UploadFileToSlackResult.Succeeded)
+                {
+                    result = new UploadFileToSlackResponse(uploadFileToSlackResult, A.Dummy<string>(), null);
+                }
+                else if (uploadFileToSlackResult == UploadFileToSlackResult.FailedWithSlackReturningError)
+                {
+                    result = new UploadFileToSlackResponse(uploadFileToSlackResult, A.Dummy<string>(), null);
+                }
+                else
+                {
+                    result = new UploadFileToSlackResponse(uploadFileToSlackResult, null, A.Dummy<string>());
                 }
 
                 return result;
@@ -77,6 +100,31 @@ namespace Naos.Slack.Domain.Test
             AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
             {
                 var result = new SendSlackMessageRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<SendSlackMessageRequestBase>());
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var uploadFileToSlackResponse = A.Dummy<UploadFileToSlackResponse>().Whose(_ => _.UploadFileToSlackResult != UploadFileToSlackResult.Succeeded);
+
+                var result = new FailedToUploadFileToSlackEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), uploadFileToSlackResponse);
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var uploadFileToSlackResponse = A.Dummy<UploadFileToSlackResponse>().Whose(_ => _.UploadFileToSlackResult == UploadFileToSlackResult.Succeeded);
+
+                var result = new SucceededInUploadingFileToSlackEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), uploadFileToSlackResponse);
+
+                return result;
+            });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(() =>
+            {
+                var result = new UploadFileToSlackRequestedEvent<Version>(A.Dummy<Version>(), A.Dummy<DateTime>().ToUniversalTime(), A.Dummy<UploadFileToSlackRequest>());
 
                 return result;
             });

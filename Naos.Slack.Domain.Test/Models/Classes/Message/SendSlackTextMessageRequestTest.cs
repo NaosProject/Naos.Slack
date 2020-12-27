@@ -29,6 +29,113 @@ namespace Naos.Slack.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static SendSlackTextMessageRequestTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'channel' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                            var result = new SendSlackTextMessageRequest(
+                                                 null,
+                                                 referenceObject.Text,
+                                                 referenceObject.TextFormat,
+                                                 referenceObject.Options,
+                                                 referenceObject.MessageAuthorIconOverride,
+                                                 referenceObject.MessageAuthorUsernameOverride);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "channel", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                    {
+                        Name = "constructor should throw ArgumentException when parameter 'channel' is white space scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                            var result = new SendSlackTextMessageRequest(
+                                                 Invariant($"  {Environment.NewLine}  "),
+                                                 referenceObject.Text,
+                                                 referenceObject.TextFormat,
+                                                 referenceObject.Options,
+                                                 referenceObject.MessageAuthorIconOverride,
+                                                 referenceObject.MessageAuthorUsernameOverride);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentException),
+                        ExpectedExceptionMessageContains = new[] { "channel", "white space", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'text' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                            var result = new SendSlackTextMessageRequest(
+                                                 referenceObject.Channel,
+                                                 null,
+                                                 referenceObject.TextFormat,
+                                                 referenceObject.Options,
+                                                 referenceObject.MessageAuthorIconOverride,
+                                                 referenceObject.MessageAuthorUsernameOverride);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "text", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                    {
+                        Name = "constructor should throw ArgumentException when parameter 'text' is white space scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                            var result = new SendSlackTextMessageRequest(
+                                                 referenceObject.Channel,
+                                                 Invariant($"  {Environment.NewLine}  "),
+                                                 referenceObject.TextFormat,
+                                                 referenceObject.Options,
+                                                 referenceObject.MessageAuthorIconOverride,
+                                                 referenceObject.MessageAuthorUsernameOverride);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentException),
+                        ExpectedExceptionMessageContains = new[] { "text", "white space", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SendSlackTextMessageRequest>
+                    {
+                        Name = "constructor should throw ArgumentOutOfRangeException when parameter 'textFormat' is SlackTextFormat.Unknown scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SendSlackTextMessageRequest>();
+
+                            var result = new SendSlackTextMessageRequest(
+                                referenceObject.Channel,
+                                referenceObject.Text,
+                                SlackTextFormat.Unknown,
+                                referenceObject.Options,
+                                referenceObject.MessageAuthorIconOverride,
+                                referenceObject.MessageAuthorUsernameOverride);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
+                        ExpectedExceptionMessageContains = new[] { "textFormat", "Unknown", },
+                    });
         }
     }
 }

@@ -29,6 +29,92 @@ namespace Naos.Slack.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static UploadFileToSlackRequestTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<UploadFileToSlackRequest>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'fileBytes' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<UploadFileToSlackRequest>();
+
+                            var result = new UploadFileToSlackRequest(
+                                                 null,
+                                                 referenceObject.Channels,
+                                                 referenceObject.FileType,
+                                                 referenceObject.FileName,
+                                                 referenceObject.Title,
+                                                 referenceObject.InitialCommentText);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "fileBytes", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<UploadFileToSlackRequest>
+                    {
+                        Name = "constructor should throw ArgumentException when parameter 'fileBytes' is an empty enumerable scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<UploadFileToSlackRequest>();
+
+                            var result = new UploadFileToSlackRequest(
+                                                 new byte[0],
+                                                 referenceObject.Channels,
+                                                 referenceObject.FileType,
+                                                 referenceObject.FileName,
+                                                 referenceObject.Title,
+                                                 referenceObject.InitialCommentText);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentException),
+                        ExpectedExceptionMessageContains = new[] { "fileBytes", "is an empty enumerable", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<UploadFileToSlackRequest>
+                    {
+                        Name = "constructor should throw ArgumentException when parameter 'channels' contains a null element scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<UploadFileToSlackRequest>();
+
+                            var result = new UploadFileToSlackRequest(
+                                                 referenceObject.FileBytes,
+                                                 new string[0].Concat(referenceObject.Channels).Concat(new string[] { null }).Concat(referenceObject.Channels).ToList(),
+                                                 referenceObject.FileType,
+                                                 referenceObject.FileName,
+                                                 referenceObject.Title,
+                                                 referenceObject.InitialCommentText);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentException),
+                        ExpectedExceptionMessageContains = new[] { "channels", "contains an element that is null", },
+                    })
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<UploadFileToSlackRequest>
+                    {
+                        Name = "constructor should throw ArgumentException when parameter 'channels' contains a white space element scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<UploadFileToSlackRequest>();
+
+                            var result = new UploadFileToSlackRequest(
+                                referenceObject.FileBytes,
+                                new string[0].Concat(referenceObject.Channels).Concat(new string[] { "   \r\n  " }).Concat(referenceObject.Channels).ToList(),
+                                referenceObject.FileType,
+                                referenceObject.FileName,
+                                referenceObject.Title,
+                                referenceObject.InitialCommentText);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentException),
+                        ExpectedExceptionMessageContains = new[] { "channels", "contains an element that is white space", },
+                    });
         }
     }
 }

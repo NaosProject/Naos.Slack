@@ -29,6 +29,26 @@ namespace Naos.Slack.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static SendSlackMessageRequestedEventTIdTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .RemoveAllScenarios()
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<SendSlackMessageRequestedEvent<Version>>
+                    {
+                        Name = "constructor should throw ArgumentNullException when parameter 'sendSlackMessageRequest' is null scenario",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<SendSlackMessageRequestedEvent<Version>>();
+
+                            var result = new SendSlackMessageRequestedEvent<Version>(
+                                referenceObject.Id,
+                                referenceObject.TimestampUtc,
+                                null);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentNullException),
+                        ExpectedExceptionMessageContains = new[] { "sendSlackMessageRequest", },
+                    });
         }
     }
 }

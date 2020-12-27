@@ -49,13 +49,22 @@ namespace Naos.Slack.Domain.Test
                                  A.Dummy<SendSlackMessageRequestBase>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () => new SucceededInSendingSlackMessageEvent<Version>(
+                                 A.Dummy<Version>(),
+                                 A.Dummy<DateTime>(),
+                                 A.Dummy<SendSlackMessageResponse>()));
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () =>
                 {
                     var availableTypes = new[]
                     {
                         typeof(FailedToSendSlackMessageEvent<Version>),
                         typeof(SendSlackMessageRequestedEvent<Version>),
-                        typeof(SucceededInSendingSlackMessageEvent<Version>)
+                        typeof(SucceededInSendingSlackMessageEvent<Version>),
+                        typeof(FailedToUploadFileToSlackEvent<Version>),
+                        typeof(UploadFileToSlackRequestedEvent<Version>),
+                        typeof(SucceededInUploadingFileToSlackEvent<Version>)
                     };
 
                     var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
@@ -86,10 +95,40 @@ namespace Naos.Slack.Domain.Test
                 });
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
-                () => new SucceededInSendingSlackMessageEvent<Version>(
+                () => new FailedToUploadFileToSlackEvent<Version>(
                                  A.Dummy<Version>(),
                                  A.Dummy<DateTime>(),
-                                 A.Dummy<SendSlackMessageResponse>()));
+                                 A.Dummy<UploadFileToSlackResponse>()));
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () => new UploadFileToSlackRequestedEvent<Version>(
+                                 A.Dummy<Version>(),
+                                 A.Dummy<DateTime>(),
+                                 A.Dummy<UploadFileToSlackRequest>()));
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () =>
+                {
+                    var availableTypes = new[]
+                    {
+                        typeof(FailedToUploadFileToSlackEvent<Version>),
+                        typeof(SucceededInUploadingFileToSlackEvent<Version>)
+                    };
+
+                    var randomIndex = ThreadSafeRandom.Next(0, availableTypes.Length);
+
+                    var randomType = availableTypes[randomIndex];
+
+                    var result = (UploadFileToSlackResponseEventBase<Version>)AD.ummy(randomType);
+
+                    return result;
+                });
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () => new SucceededInUploadingFileToSlackEvent<Version>(
+                                 A.Dummy<Version>(),
+                                 A.Dummy<DateTime>(),
+                                 A.Dummy<UploadFileToSlackResponse>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new MessageAuthorIcon(
@@ -117,7 +156,20 @@ namespace Naos.Slack.Domain.Test
                 () => new SendSlackMessageResponse(
                                  A.Dummy<SendSlackMessageResult>(),
                                  A.Dummy<string>(),
+                                 A.Dummy<string>()));
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () => new UploadFileToSlackRequest(
+                                 A.Dummy<byte[]>(),
+                                 A.Dummy<IReadOnlyCollection<string>>(),
+                                 A.Dummy<FileType>(),
                                  A.Dummy<string>(),
+                                 A.Dummy<string>(),
+                                 A.Dummy<string>()));
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () => new UploadFileToSlackResponse(
+                                 A.Dummy<UploadFileToSlackResult>(),
                                  A.Dummy<string>(),
                                  A.Dummy<string>()));
 
@@ -129,6 +181,10 @@ namespace Naos.Slack.Domain.Test
                                  A.Dummy<SlackTextMessageOptions>(),
                                  A.Dummy<MessageAuthorIcon>(),
                                  A.Dummy<string>()));
+
+            AutoFixtureBackedDummyFactory.AddDummyCreator(
+                () => new UploadFileToSlackOp(
+                                 A.Dummy<UploadFileToSlackRequest>()));
 
             AutoFixtureBackedDummyFactory.AddDummyCreator(
                 () => new SendSlackMessageOp(

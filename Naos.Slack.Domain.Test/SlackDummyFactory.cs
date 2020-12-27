@@ -42,15 +42,15 @@ namespace Naos.Slack.Domain.Test
 
                 if (sendSlackMessageResult == SendSlackMessageResult.Succeeded)
                 {
-                    result = new SendSlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), A.Dummy<string>(), null, null);
+                    result = new SendSlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), null);
                 }
                 else if (sendSlackMessageResult == SendSlackMessageResult.FailedWithExceptionWhenSending)
                 {
-                    result = new SendSlackMessageResponse(sendSlackMessageResult, null, null, A.Dummy<string>(), null);
+                    result = new SendSlackMessageResponse(sendSlackMessageResult, A.Dummy<string>(), null);
                 }
                 else
                 {
-                    result = new SendSlackMessageResponse(sendSlackMessageResult, null, null, null, A.Dummy<string>());
+                    result = new SendSlackMessageResponse(sendSlackMessageResult, null, A.Dummy<string>());
                 }
 
                 return result;

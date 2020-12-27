@@ -77,7 +77,7 @@ namespace Naos.Slack.Protocol.Client
                     parameters.Add(new Tuple<string, string>("title", uploadFileToSlackRequest.Title));
                 }
 
-                HttpResponseMessage httpResponseMessage;
+                string responseJson;
 
                 using (var multipartFormDataContent = new MultipartFormDataContent())
                 {
@@ -99,25 +99,10 @@ namespace Naos.Slack.Protocol.Client
 
                     multipartFormDataContent.Add(new ByteArrayContent(uploadFileToSlackRequest.FileBytes), "file", fileName);
 
-                    httpResponseMessage = await this.slackClient.PostAsync(MethodName, parameters, multipartFormDataContent);
+                    responseJson = await this.slackClient.PostAsync(MethodName, parameters, multipartFormDataContent);
                 }
 
-                var responseJson = await httpResponseMessage.Content.ReadAsStringAsync();
-
-                UploadFileToSlackResult uploadFileToSlackResult;
-
-                if (responseJson.StartsWith(@"{""ok"":true"))
-                {
-                    uploadFileToSlackResult = UploadFileToSlackResult.Succeeded;
-                }
-                else if (responseJson.StartsWith(@"{""ok"":false"))
-                {
-                    uploadFileToSlackResult = UploadFileToSlackResult.FailedWithSlackReturningError;
-                }
-                else
-                {
-                    throw new InvalidOperationException(Invariant($"The response JSON was expected to start with an 'ok' property having a value of either 'true' or 'false', but found neither: {responseJson}."));
-                }
+                var uploadFileToSlackResult = SlackClient.GetOperationResultFromResponseJson(responseJson, UploadFileToSlackResult.Succeeded, UploadFileToSlackResult.FailedWithSlackReturningError);
 
                 result = new UploadFileToSlackResponse(uploadFileToSlackResult, responseJson, null);
             }

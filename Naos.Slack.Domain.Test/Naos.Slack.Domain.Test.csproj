@@ -262,9 +262,16 @@
     <Compile Include="Events\Message\FailedToSendSlackMessageEvent{TId}Test.designer.cs">
       <DependentUpon>FailedToSendSlackMessageEvent{TId}Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\Upload\FailedToUploadFileToSlackEvent{TId}Test.cs" />
+    <Compile Include="Events\Upload\FailedToUploadFileToSlackEvent{TId}Test.designer.cs">
+      <DependentUpon>FailedToUploadFileToSlackEvent{TId}Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\Message\MessageAuthorIconTest.cs" />
     <Compile Include="Models\Classes\Message\MessageAuthorIconTest.designer.cs">
       <DependentUpon>MessageAuthorIconTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\Message\SendSlackMessageResponseTest.designer.cs">
+      <DependentUpon>SendSlackMessageResponseTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,9 +293,6 @@
       <DependentUpon>SendSlackMessageResponseEventBase{TId}Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Classes\Message\SendSlackMessageResponseTest.cs" />
-    <Compile Include="Models\Classes\Message\SendSlackMessageResponseTest.designer.cs">
-      <DependentUpon>SendSlackMessageResponseTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Classes\Message\SendSlackTextMessageRequestTest.cs" />
     <Compile Include="Models\Classes\Message\SendSlackTextMessageRequestTest.designer.cs">
       <DependentUpon>SendSlackTextMessageRequestTest.cs</DependentUpon>
@@ -311,6 +315,30 @@
     <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}Test.cs" />
     <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}Test.designer.cs">
       <DependentUpon>SucceededInSendingSlackMessageEvent{TId}Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\UploadFileToSlackOpTest.cs" />
+    <Compile Include="Operations\UploadFileToSlackOpTest.designer.cs">
+      <DependentUpon>UploadFileToSlackOpTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackRequestTest.cs" />
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackRequestTest.designer.cs">
+      <DependentUpon>UploadFileToSlackRequestTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackResponseTest.cs" />
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackResponseTest.designer.cs">
+      <DependentUpon>UploadFileToSlackResponseTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Upload\SucceededInUploadingFileToSlackEvent{TId}Test.cs" />
+    <Compile Include="Events\Upload\SucceededInUploadingFileToSlackEvent{TId}Test.designer.cs">
+      <DependentUpon>SucceededInUploadingFileToSlackEvent{TId}Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Upload\UploadFileToSlackRequestedEvent{TId}Test.cs" />
+    <Compile Include="Events\Upload\UploadFileToSlackRequestedEvent{TId}Test.designer.cs">
+      <DependentUpon>UploadFileToSlackRequestedEvent{TId}Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Upload\UploadFileToSlackResponseEventBase{TId}Test.cs" />
+    <Compile Include="Events\Upload\UploadFileToSlackResponseEventBase{TId}Test.designer.cs">
+      <DependentUpon>UploadFileToSlackResponseEventBase{TId}Test.cs</DependentUpon>
     </Compile>
     <None Include=".analyzers\test.ruleset" />
     <None Include="DummyFactory.recipe-nuspec" />

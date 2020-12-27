@@ -260,6 +260,9 @@ namespace Naos.Slack.Domain.Test
                         A.Dummy<Guid>(),
                         A.Dummy<FailedToSendSlackMessageEvent<Version>>(),
                         A.Dummy<SucceededInSendingSlackMessageEvent<Version>>(),
+                        A.Dummy<FailedToUploadFileToSlackEvent<Version>>(),
+                        A.Dummy<UploadFileToSlackRequestedEvent<Version>>(),
+                        A.Dummy<SucceededInUploadingFileToSlackEvent<Version>>(),
                     },
                 });
 

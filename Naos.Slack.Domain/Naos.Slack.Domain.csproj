@@ -97,6 +97,9 @@
     <Compile Include="Events\Message\SendSlackMessageRequestedEvent{TId}.designer.cs">
       <DependentUpon>SendSlackMessageRequestedEvent{TId}.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}.designer.cs">
+      <DependentUpon>SucceededInSendingSlackMessageEvent{TId}.cs</DependentUpon>
+    </Compile>
     <Compile Include="Events\SlackEventBase{TId}.designer.cs">
       <DependentUpon>SlackEventBase{TId}.cs</DependentUpon>
     </Compile>
@@ -107,8 +110,21 @@
     <Compile Include="Events\Message\FailedToSendSlackMessageEvent{TId}.cs" />
     <Compile Include="Events\Message\SendSlackMessageResponseEventBase{TId}.cs" />
     <Compile Include="Events\SlackEventBase{TId}.cs" />
-    <Compile Include="Events\Message\SucceededInSendingSlackMessageEvent{TId}.designer.cs">
-      <DependentUpon>SucceededInSendingSlackMessageEvent{TId}.cs</DependentUpon>
+    <Compile Include="Events\Upload\FailedToUploadFileToSlackEvent{TId}.cs" />
+    <Compile Include="Events\Upload\FailedToUploadFileToSlackEvent{TId}.designer.cs">
+      <DependentUpon>FailedToUploadFileToSlackEvent{TId}.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Upload\SucceededInUploadingFileToSlackEvent{TId}.designer.cs">
+      <DependentUpon>SucceededInUploadingFileToSlackEvent{TId}.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Upload\UploadFileToSlackRequestedEvent{TId}.cs" />
+    <Compile Include="Events\Upload\UploadFileToSlackRequestedEvent{TId}.designer.cs">
+      <DependentUpon>UploadFileToSlackRequestedEvent{TId}.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Events\Upload\UploadFileToSlackResponseEventBase{TId}.cs" />
+    <Compile Include="Events\Upload\SucceededInUploadingFileToSlackEvent{TId}.cs" />
+    <Compile Include="Events\Upload\UploadFileToSlackResponseEventBase{TId}.designer.cs">
+      <DependentUpon>UploadFileToSlackResponseEventBase{TId}.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IUploadFileToSlackProtocol.cs" />
     <Compile Include="Interfaces\ISendSlackMessageProtocol.cs" />
@@ -124,11 +140,17 @@
     <Compile Include="Models\Classes\Message\SendSlackMessageResponse.designer.cs">
       <DependentUpon>SendSlackMessageResponse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackRequest.designer.cs">
+      <DependentUpon>UploadFileToSlackRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Classes\Upload\UploadFileToSlackResponse.cs" />
     <Compile Include="Models\Classes\Upload\UploadFileToSlackRequest.cs" />
     <Compile Include="Models\Classes\Message\SendSlackTextMessageRequest.cs" />
     <Compile Include="Models\Classes\Message\SendSlackTextMessageRequest.designer.cs">
       <DependentUpon>SendSlackTextMessageRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\Upload\UploadFileToSlackResponse.designer.cs">
+      <DependentUpon>UploadFileToSlackResponse.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Enum\Upload\FileType.cs" />
     <Compile Include="Models\Enum\Message\IconResourceIdentifierKind.cs" />
@@ -140,6 +162,9 @@
     <Compile Include="Operations\SendSlackMessageOp.cs" />
     <Compile Include="Operations\SendSlackMessageOp.designer.cs">
       <DependentUpon>SendSlackMessageOp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Operations\UploadFileToSlackOp.designer.cs">
+      <DependentUpon>UploadFileToSlackOp.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GlobalSuppressions.cs" />

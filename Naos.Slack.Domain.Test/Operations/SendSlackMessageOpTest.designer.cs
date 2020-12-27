@@ -140,6 +140,7 @@ namespace Naos.Slack.Domain.Test
                         A.Dummy<int>(),
                         A.Dummy<int?>(),
                         A.Dummy<Guid>(),
+                        A.Dummy<UploadFileToSlackOp>(),
                     },
                 });
 

@@ -15,6 +15,8 @@ namespace Naos.Slack.Domain
     using global::System.Globalization;
     using global::System.Linq;
 
+    using global::Naos.Protocol.Domain;
+
     using global::OBeautifulCode.Equality.Recipes;
     using global::OBeautifulCode.Type;
     using global::OBeautifulCode.Type.Recipes;
@@ -22,15 +24,15 @@ namespace Naos.Slack.Domain
     using static global::System.FormattableString;
 
     [Serializable]
-    public partial class SendSlackMessageResponse : IModel<SendSlackMessageResponse>
+    public partial class FailedToUploadFileToSlackEvent<TId> : IModel<FailedToUploadFileToSlackEvent<TId>>
     {
         /// <summary>
-        /// Determines whether two objects of type <see cref="SendSlackMessageResponse"/> are equal.
+        /// Determines whether two objects of type <see cref="FailedToUploadFileToSlackEvent{TId}"/> are equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are equal; otherwise false.</returns>
-        public static bool operator ==(SendSlackMessageResponse left, SendSlackMessageResponse right)
+        public static bool operator ==(FailedToUploadFileToSlackEvent<TId> left, FailedToUploadFileToSlackEvent<TId> right)
         {
             if (ReferenceEquals(left, right))
             {
@@ -48,15 +50,15 @@ namespace Naos.Slack.Domain
         }
 
         /// <summary>
-        /// Determines whether two objects of type <see cref="SendSlackMessageResponse"/> are not equal.
+        /// Determines whether two objects of type <see cref="FailedToUploadFileToSlackEvent{TId}"/> are not equal.
         /// </summary>
         /// <param name="left">The object to the left of the equality operator.</param>
         /// <param name="right">The object to the right of the equality operator.</param>
         /// <returns>true if the two items are not equal; otherwise false.</returns>
-        public static bool operator !=(SendSlackMessageResponse left, SendSlackMessageResponse right) => !(left == right);
+        public static bool operator !=(FailedToUploadFileToSlackEvent<TId> left, FailedToUploadFileToSlackEvent<TId> right) => !(left == right);
 
         /// <inheritdoc />
-        public bool Equals(SendSlackMessageResponse other)
+        public bool Equals(FailedToUploadFileToSlackEvent<TId> other)
         {
             if (ReferenceEquals(this, other))
             {
@@ -68,42 +70,27 @@ namespace Naos.Slack.Domain
                 return false;
             }
 
-            var result = this.SendSlackMessageResult.IsEqualTo(other.SendSlackMessageResult)
-                      && this.ResponseJson.IsEqualTo(other.ResponseJson, StringComparer.Ordinal)
-                      && this.ExceptionToString.IsEqualTo(other.ExceptionToString, StringComparer.Ordinal);
+            var result = this.TimestampUtc.IsEqualTo(other.TimestampUtc)
+                      && this.Id.IsEqualTo(other.Id)
+                      && this.UploadFileToSlackResponse.IsEqualTo(other.UploadFileToSlackResponse);
 
             return result;
         }
 
         /// <inheritdoc />
-        public override bool Equals(object obj) => this == (obj as SendSlackMessageResponse);
+        public override bool Equals(object obj) => this == (obj as FailedToUploadFileToSlackEvent<TId>);
 
         /// <inheritdoc />
         public override int GetHashCode() => HashCodeHelper.Initialize()
-            .Hash(this.SendSlackMessageResult)
-            .Hash(this.ResponseJson)
-            .Hash(this.ExceptionToString)
+            .Hash(this.TimestampUtc)
+            .Hash(this.Id)
+            .Hash(this.UploadFileToSlackResponse)
             .Value;
 
         /// <inheritdoc />
-        public object Clone() => this.DeepClone();
+        public new FailedToUploadFileToSlackEvent<TId> DeepClone() => (FailedToUploadFileToSlackEvent<TId>)this.DeepCloneInternal();
 
         /// <inheritdoc />
-        public SendSlackMessageResponse DeepClone()
-        {
-            var result = new SendSlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 this.ResponseJson?.DeepClone(),
-                                 this.ExceptionToString?.DeepClone());
-
-            return result;
-        }
-
-        /// <summary>
-        /// Deep clones this object with a new <see cref="SendSlackMessageResult" />.
-        /// </summary>
-        /// <param name="sendSlackMessageResult">The new <see cref="SendSlackMessageResult" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SendSlackMessageResponse" /> using the specified <paramref name="sendSlackMessageResult" /> for <see cref="SendSlackMessageResult" /> and a deep clone of every other property.</returns>
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -119,21 +106,17 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SendSlackMessageResponse DeepCloneWithSendSlackMessageResult(SendSlackMessageResult sendSlackMessageResult)
+        public override EventBaseBase DeepCloneWithTimestampUtc(DateTime timestampUtc)
         {
-            var result = new SendSlackMessageResponse(
-                                 sendSlackMessageResult,
-                                 this.ResponseJson?.DeepClone(),
-                                 this.ExceptionToString?.DeepClone());
+            var result = new FailedToUploadFileToSlackEvent<TId>(
+                                 DeepCloneGeneric(this.Id),
+                                 timestampUtc,
+                                 this.UploadFileToSlackResponse?.DeepClone());
 
             return result;
         }
 
-        /// <summary>
-        /// Deep clones this object with a new <see cref="ResponseJson" />.
-        /// </summary>
-        /// <param name="responseJson">The new <see cref="ResponseJson" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SendSlackMessageResponse" /> using the specified <paramref name="responseJson" /> for <see cref="ResponseJson" /> and a deep clone of every other property.</returns>
+        /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -149,21 +132,17 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SendSlackMessageResponse DeepCloneWithResponseJson(string responseJson)
+        public override EventBase<TId> DeepCloneWithId(TId id)
         {
-            var result = new SendSlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 responseJson,
-                                 this.ExceptionToString?.DeepClone());
+            var result = new FailedToUploadFileToSlackEvent<TId>(
+                                 id,
+                                 this.TimestampUtc,
+                                 this.UploadFileToSlackResponse?.DeepClone());
 
             return result;
         }
 
-        /// <summary>
-        /// Deep clones this object with a new <see cref="ExceptionToString" />.
-        /// </summary>
-        /// <param name="exceptionToString">The new <see cref="ExceptionToString" />.  This object will NOT be deep cloned; it is used as-is.</param>
-        /// <returns>New <see cref="SendSlackMessageResponse" /> using the specified <paramref name="exceptionToString" /> for <see cref="ExceptionToString" /> and a deep clone of every other property.</returns>
+        /// <inheritdoc />
         [SuppressMessage("Microsoft.Design", "CA1002: DoNotExposeGenericLists")]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
@@ -179,21 +158,73 @@ namespace Naos.Slack.Domain
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
         [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        public SendSlackMessageResponse DeepCloneWithExceptionToString(string exceptionToString)
+        public override UploadFileToSlackResponseEventBase<TId> DeepCloneWithUploadFileToSlackResponse(UploadFileToSlackResponse uploadFileToSlackResponse)
         {
-            var result = new SendSlackMessageResponse(
-                                 this.SendSlackMessageResult,
-                                 this.ResponseJson?.DeepClone(),
-                                 exceptionToString);
+            var result = new FailedToUploadFileToSlackEvent<TId>(
+                                 DeepCloneGeneric(this.Id),
+                                 this.TimestampUtc,
+                                 uploadFileToSlackResponse);
 
             return result;
+        }
+
+        /// <inheritdoc />
+        protected override EventBaseBase DeepCloneInternal()
+        {
+            var result = new FailedToUploadFileToSlackEvent<TId>(
+                                 DeepCloneGeneric(this.Id),
+                                 this.TimestampUtc,
+                                 this.UploadFileToSlackResponse?.DeepClone());
+
+            return result;
+        }
+
+        private static TId DeepCloneGeneric(TId value)
+        {
+            object result;
+
+            var type = typeof(TId);
+
+            if (type.IsValueType)
+            {
+                result = value;
+            }
+            else
+            {
+                if (ReferenceEquals(value, null))
+                {
+                    result = default;
+                }
+                else if (value is IDeepCloneable<TId> deepCloneableValue)
+                {
+                    result = deepCloneableValue.DeepClone();
+                }
+                else if (value is string valueAsString)
+                {
+                    result = valueAsString.DeepClone();
+                }
+                else if (value is global::System.Version valueAsVersion)
+                {
+                    result = valueAsVersion.DeepClone();
+                }
+                else if (value is global::System.Uri valueAsUri)
+                {
+                    result = valueAsUri.DeepClone();
+                }
+                else
+                {
+                    throw new NotSupportedException(Invariant($"I do not know how to deep clone an object of type '{type.ToStringReadable()}'"));
+                }
+            }
+
+            return (TId)result;
         }
 
         /// <inheritdoc />
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         public override string ToString()
         {
-            var result = Invariant($"Naos.Slack.Domain.SendSlackMessageResponse: SendSlackMessageResult = {this.SendSlackMessageResult.ToString() ?? "<null>"}, ResponseJson = {this.ResponseJson?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ExceptionToString = {this.ExceptionToString?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}.");
+            var result = Invariant($"Naos.Slack.Domain.{this.GetType().ToStringReadable()}: TimestampUtc = {this.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {this.Id?.ToString() ?? "<null>"}, UploadFileToSlackResponse = {this.UploadFileToSlackResponse?.ToString() ?? "<null>"}.");
 
             return result;
         }

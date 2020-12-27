@@ -35,221 +35,103 @@ namespace Naos.Slack.Domain.Test
 
     using static global::System.FormattableString;
 
-    public static partial class FailedToSendSlackMessageEventTIdTest
+    public static partial class UploadFileToSlackOpTest
     {
-        private static readonly StringRepresentationTestScenarios<FailedToSendSlackMessageEvent<Version>> StringRepresentationTestScenarios = new StringRepresentationTestScenarios<FailedToSendSlackMessageEvent<Version>>()
+        private static readonly StringRepresentationTestScenarios<UploadFileToSlackOp> StringRepresentationTestScenarios = new StringRepresentationTestScenarios<UploadFileToSlackOp>()
             .AddScenario(() =>
-                new StringRepresentationTestScenario<FailedToSendSlackMessageEvent<Version>>
+                new StringRepresentationTestScenario<UploadFileToSlackOp>
                 {
                     Name = "Default Code Generated Scenario",
                     SystemUnderTestExpectedStringRepresentationFunc = () =>
                     {
-                        var systemUnderTest = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                        var systemUnderTest = A.Dummy<UploadFileToSlackOp>();
 
-                        var result = new SystemUnderTestExpectedStringRepresentation<FailedToSendSlackMessageEvent<Version>>
+                        var result = new SystemUnderTestExpectedStringRepresentation<UploadFileToSlackOp>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Slack.Domain.FailedToSendSlackMessageEvent<Version>: TimestampUtc = {systemUnderTest.TimestampUtc.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, Id = {systemUnderTest.Id?.ToString() ?? "<null>"}, SendSlackMessageResponse = {systemUnderTest.SendSlackMessageResponse?.ToString() ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Slack.Domain.UploadFileToSlackOp: UploadFileToSlackRequest = {systemUnderTest.UploadFileToSlackRequest?.ToString() ?? "<null>"}."),
                         };
 
                         return result;
                     },
                 });
 
-        private static readonly ConstructorArgumentValidationTestScenarios<FailedToSendSlackMessageEvent<Version>> ConstructorArgumentValidationTestScenarios = new ConstructorArgumentValidationTestScenarios<FailedToSendSlackMessageEvent<Version>>()
+        private static readonly ConstructorArgumentValidationTestScenarios<UploadFileToSlackOp> ConstructorArgumentValidationTestScenarios = new ConstructorArgumentValidationTestScenarios<UploadFileToSlackOp>()
             .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<FailedToSendSlackMessageEvent<Version>>
+                new ConstructorArgumentValidationTestScenario<UploadFileToSlackOp>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'id' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'uploadFileToSlackRequest' is null scenario",
                     ConstructionFunc = () =>
                     {
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
-
-                        var result = new FailedToSendSlackMessageEvent<Version>(
-                                             null,
-                                             referenceObject.TimestampUtc,
-                                             referenceObject.SendSlackMessageResponse);
-
-                        return result;
-                    },
-                    ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "id", },
-                })
-            .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<FailedToSendSlackMessageEvent<Version>>
-                {
-                    Name = "constructor should throw ArgumentNullException when parameter 'sendSlackMessageResponse' is null scenario",
-                    ConstructionFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
-
-                        var result = new FailedToSendSlackMessageEvent<Version>(
-                                             referenceObject.Id,
-                                             referenceObject.TimestampUtc,
+                        var result = new UploadFileToSlackOp(
                                              null);
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "sendSlackMessageResponse", },
+                    ExpectedExceptionMessageContains = new[] { "uploadFileToSlackRequest", },
                 });
 
-        private static readonly ConstructorPropertyAssignmentTestScenarios<FailedToSendSlackMessageEvent<Version>> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<FailedToSendSlackMessageEvent<Version>>()
+        private static readonly ConstructorPropertyAssignmentTestScenarios<UploadFileToSlackOp> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<UploadFileToSlackOp>()
             .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<FailedToSendSlackMessageEvent<Version>>
+                new ConstructorPropertyAssignmentTestScenario<UploadFileToSlackOp>
                 {
-                    Name = "Id should return same 'id' parameter passed to constructor when getting",
+                    Name = "UploadFileToSlackRequest should return same 'uploadFileToSlackRequest' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                        var referenceObject = A.Dummy<UploadFileToSlackOp>();
 
-                        var result = new SystemUnderTestExpectedPropertyValue<FailedToSendSlackMessageEvent<Version>>
+                        var result = new SystemUnderTestExpectedPropertyValue<UploadFileToSlackOp>
                         {
-                            SystemUnderTest = new FailedToSendSlackMessageEvent<Version>(
-                                                      referenceObject.Id,
-                                                      referenceObject.TimestampUtc,
-                                                      referenceObject.SendSlackMessageResponse),
-                            ExpectedPropertyValue = referenceObject.Id,
+                            SystemUnderTest = new UploadFileToSlackOp(
+                                                      referenceObject.UploadFileToSlackRequest),
+                            ExpectedPropertyValue = referenceObject.UploadFileToSlackRequest,
                         };
 
                         return result;
                     },
-                    PropertyName = "Id",
-                })
-            .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<FailedToSendSlackMessageEvent<Version>>
-                {
-                    Name = "TimestampUtc should return same 'timestampUtc' parameter passed to constructor when getting",
-                    SystemUnderTestExpectedPropertyValueFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
-
-                        var result = new SystemUnderTestExpectedPropertyValue<FailedToSendSlackMessageEvent<Version>>
-                        {
-                            SystemUnderTest = new FailedToSendSlackMessageEvent<Version>(
-                                                      referenceObject.Id,
-                                                      referenceObject.TimestampUtc,
-                                                      referenceObject.SendSlackMessageResponse),
-                            ExpectedPropertyValue = referenceObject.TimestampUtc,
-                        };
-
-                        return result;
-                    },
-                    PropertyName = "TimestampUtc",
-                })
-            .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<FailedToSendSlackMessageEvent<Version>>
-                {
-                    Name = "SendSlackMessageResponse should return same 'sendSlackMessageResponse' parameter passed to constructor when getting",
-                    SystemUnderTestExpectedPropertyValueFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
-
-                        var result = new SystemUnderTestExpectedPropertyValue<FailedToSendSlackMessageEvent<Version>>
-                        {
-                            SystemUnderTest = new FailedToSendSlackMessageEvent<Version>(
-                                                      referenceObject.Id,
-                                                      referenceObject.TimestampUtc,
-                                                      referenceObject.SendSlackMessageResponse),
-                            ExpectedPropertyValue = referenceObject.SendSlackMessageResponse,
-                        };
-
-                        return result;
-                    },
-                    PropertyName = "SendSlackMessageResponse",
+                    PropertyName = "UploadFileToSlackRequest",
                 });
 
-        private static readonly DeepCloneWithTestScenarios<FailedToSendSlackMessageEvent<Version>> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<FailedToSendSlackMessageEvent<Version>>()
+        private static readonly DeepCloneWithTestScenarios<UploadFileToSlackOp> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<UploadFileToSlackOp>()
             .AddScenario(() =>
-                new DeepCloneWithTestScenario<FailedToSendSlackMessageEvent<Version>>
+                new DeepCloneWithTestScenario<UploadFileToSlackOp>
                 {
-                    Name = "DeepCloneWithTimestampUtc should deep clone object and replace TimestampUtc with the provided timestampUtc",
-                    WithPropertyName = "TimestampUtc",
+                    Name = "DeepCloneWithUploadFileToSlackRequest should deep clone object and replace UploadFileToSlackRequest with the provided uploadFileToSlackRequest",
+                    WithPropertyName = "UploadFileToSlackRequest",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
-                        var systemUnderTest = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                        var systemUnderTest = A.Dummy<UploadFileToSlackOp>();
 
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>().ThatIs(_ => !systemUnderTest.TimestampUtc.IsEqualTo(_.TimestampUtc));
+                        var referenceObject = A.Dummy<UploadFileToSlackOp>().ThatIs(_ => !systemUnderTest.UploadFileToSlackRequest.IsEqualTo(_.UploadFileToSlackRequest));
 
-                        var result = new SystemUnderTestDeepCloneWithValue<FailedToSendSlackMessageEvent<Version>>
+                        var result = new SystemUnderTestDeepCloneWithValue<UploadFileToSlackOp>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.TimestampUtc,
-                        };
-
-                        return result;
-                    },
-                })
-            .AddScenario(() =>
-                new DeepCloneWithTestScenario<FailedToSendSlackMessageEvent<Version>>
-                {
-                    Name = "DeepCloneWithId should deep clone object and replace Id with the provided id",
-                    WithPropertyName = "Id",
-                    SystemUnderTestDeepCloneWithValueFunc = () =>
-                    {
-                        var systemUnderTest = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
-
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>().ThatIs(_ => !systemUnderTest.Id.IsEqualTo(_.Id));
-
-                        var result = new SystemUnderTestDeepCloneWithValue<FailedToSendSlackMessageEvent<Version>>
-                        {
-                            SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.Id,
-                        };
-
-                        return result;
-                    },
-                })
-            .AddScenario(() =>
-                new DeepCloneWithTestScenario<FailedToSendSlackMessageEvent<Version>>
-                {
-                    Name = "DeepCloneWithSendSlackMessageResponse should deep clone object and replace SendSlackMessageResponse with the provided sendSlackMessageResponse",
-                    WithPropertyName = "SendSlackMessageResponse",
-                    SystemUnderTestDeepCloneWithValueFunc = () =>
-                    {
-                        var systemUnderTest = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
-
-                        var referenceObject = A.Dummy<FailedToSendSlackMessageEvent<Version>>().ThatIs(_ => !systemUnderTest.SendSlackMessageResponse.IsEqualTo(_.SendSlackMessageResponse));
-
-                        var result = new SystemUnderTestDeepCloneWithValue<FailedToSendSlackMessageEvent<Version>>
-                        {
-                            SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.SendSlackMessageResponse,
+                            DeepCloneWithValue = referenceObject.UploadFileToSlackRequest,
                         };
 
                         return result;
                     },
                 });
 
-        private static readonly FailedToSendSlackMessageEvent<Version> ReferenceObjectForEquatableTestScenarios = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+        private static readonly UploadFileToSlackOp ReferenceObjectForEquatableTestScenarios = A.Dummy<UploadFileToSlackOp>();
 
-        private static readonly EquatableTestScenarios<FailedToSendSlackMessageEvent<Version>> EquatableTestScenarios = new EquatableTestScenarios<FailedToSendSlackMessageEvent<Version>>()
+        private static readonly EquatableTestScenarios<UploadFileToSlackOp> EquatableTestScenarios = new EquatableTestScenarios<UploadFileToSlackOp>()
             .AddScenario(() =>
-                new EquatableTestScenario<FailedToSendSlackMessageEvent<Version>>
+                new EquatableTestScenario<UploadFileToSlackOp>
                 {
                     Name = "Default Code Generated Scenario",
                     ReferenceObject = ReferenceObjectForEquatableTestScenarios,
-                    ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new FailedToSendSlackMessageEvent<Version>[]
+                    ObjectsThatAreEqualToButNotTheSameAsReferenceObject = new UploadFileToSlackOp[]
                     {
-                        new FailedToSendSlackMessageEvent<Version>(
-                                ReferenceObjectForEquatableTestScenarios.Id,
-                                ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageResponse),
+                        new UploadFileToSlackOp(
+                                ReferenceObjectForEquatableTestScenarios.UploadFileToSlackRequest),
                     },
-                    ObjectsThatAreNotEqualToReferenceObject = new FailedToSendSlackMessageEvent<Version>[]
+                    ObjectsThatAreNotEqualToReferenceObject = new UploadFileToSlackOp[]
                     {
-                        new FailedToSendSlackMessageEvent<Version>(
-                                ReferenceObjectForEquatableTestScenarios.Id,
-                                A.Dummy<FailedToSendSlackMessageEvent<Version>>().Whose(_ => !_.TimestampUtc.IsEqualTo(ReferenceObjectForEquatableTestScenarios.TimestampUtc)).TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageResponse),
-                        new FailedToSendSlackMessageEvent<Version>(
-                                A.Dummy<FailedToSendSlackMessageEvent<Version>>().Whose(_ => !_.Id.IsEqualTo(ReferenceObjectForEquatableTestScenarios.Id)).Id,
-                                ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageResponse),
-                        new FailedToSendSlackMessageEvent<Version>(
-                                ReferenceObjectForEquatableTestScenarios.Id,
-                                ReferenceObjectForEquatableTestScenarios.TimestampUtc,
-                                A.Dummy<FailedToSendSlackMessageEvent<Version>>().Whose(_ => !_.SendSlackMessageResponse.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SendSlackMessageResponse)).SendSlackMessageResponse),
+                        new UploadFileToSlackOp(
+                                A.Dummy<UploadFileToSlackOp>().Whose(_ => !_.UploadFileToSlackRequest.IsEqualTo(ReferenceObjectForEquatableTestScenarios.UploadFileToSlackRequest)).UploadFileToSlackRequest),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
                     {
@@ -258,11 +140,7 @@ namespace Naos.Slack.Domain.Test
                         A.Dummy<int>(),
                         A.Dummy<int?>(),
                         A.Dummy<Guid>(),
-                        A.Dummy<SendSlackMessageRequestedEvent<Version>>(),
-                        A.Dummy<SucceededInSendingSlackMessageEvent<Version>>(),
-                        A.Dummy<FailedToUploadFileToSlackEvent<Version>>(),
-                        A.Dummy<UploadFileToSlackRequestedEvent<Version>>(),
-                        A.Dummy<SucceededInUploadingFileToSlackEvent<Version>>(),
+                        A.Dummy<SendSlackMessageOp>(),
                     },
                 });
 
@@ -284,12 +162,12 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void FailedToSendSlackMessageEvent___Should_implement_IModel_of_FailedToSendSlackMessageEvent___When_reflecting()
+            public static void UploadFileToSlackOp___Should_implement_IModel_of_UploadFileToSlackOp___When_reflecting()
             {
                 // Arrange
-                var type = typeof(FailedToSendSlackMessageEvent<Version>);
+                var type = typeof(UploadFileToSlackOp);
 
-                var expectedModelMethods = typeof(IModel<FailedToSendSlackMessageEvent<Version>>).GetInterfaceDeclaredAndImplementedMethods();
+                var expectedModelMethods = typeof(IModel<UploadFileToSlackOp>).GetInterfaceDeclaredAndImplementedMethods();
 
                 var expectedModelMethodHashes = expectedModelMethods.Select(_ => _.GetSignatureHash());
 
@@ -299,7 +177,7 @@ namespace Naos.Slack.Domain.Test
                 var actualModelMethodHashes = actualModelMethods.Select(_ => _.GetSignatureHash());
 
                 // Assert
-                actualInterfaces.AsTest().Must().ContainElement(typeof(IModel<FailedToSendSlackMessageEvent<Version>>));
+                actualInterfaces.AsTest().Must().ContainElement(typeof(IModel<UploadFileToSlackOp>));
                 expectedModelMethodHashes.Except(actualModelMethodHashes).AsTest().Must().BeEmptyEnumerable();
             }
 
@@ -317,10 +195,10 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void FailedToSendSlackMessageEvent___Should_be_attributed_with_Serializable____When_reflecting()
+            public static void UploadFileToSlackOp___Should_be_attributed_with_Serializable____When_reflecting()
             {
                 // Arrange
-                var type = typeof(FailedToSendSlackMessageEvent<Version>);
+                var type = typeof(UploadFileToSlackOp);
 
                 // Act
                 var actualAttributes = type.GetCustomAttributes(typeof(SerializableAttribute), false);
@@ -493,10 +371,10 @@ namespace Naos.Slack.Domain.Test
             public static void Clone___Should_clone_object___When_called()
             {
                 // Arrange
-                var systemUnderTest = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                var systemUnderTest = A.Dummy<UploadFileToSlackOp>();
 
                 // Act
-                var actual = (FailedToSendSlackMessageEvent<Version>)systemUnderTest.Clone();
+                var actual = (UploadFileToSlackOp)systemUnderTest.Clone();
 
                 // Assert
                 actual.AsTest().Must().BeEqualTo(systemUnderTest);
@@ -520,7 +398,7 @@ namespace Naos.Slack.Domain.Test
             public static void DeepClone___Should_deep_clone_object___When_called()
             {
                 // Arrange
-                var systemUnderTest = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                var systemUnderTest = A.Dummy<UploadFileToSlackOp>();
 
                 // Act
                 var actual = systemUnderTest.DeepClone();
@@ -529,22 +407,13 @@ namespace Naos.Slack.Domain.Test
                 actual.AsTest().Must().BeEqualTo(systemUnderTest);
                 actual.AsTest().Must().NotBeSameReferenceAs(systemUnderTest);
 
-                if (systemUnderTest.Id == null)
+                if (systemUnderTest.UploadFileToSlackRequest == null)
                 {
-                    actual.Id.AsTest().Must().BeNull();
+                    actual.UploadFileToSlackRequest.AsTest().Must().BeNull();
                 }
                 else
                 {
-                    actual.Id.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.Id);
-                }
-
-                if (systemUnderTest.SendSlackMessageResponse == null)
-                {
-                    actual.SendSlackMessageResponse.AsTest().Must().BeNull();
-                }
-                else
-                {
-                    actual.SendSlackMessageResponse.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.SendSlackMessageResponse);
+                    actual.UploadFileToSlackRequest.AsTest().Must().NotBeSameReferenceAs(systemUnderTest.UploadFileToSlackRequest);
                 }
             }
 
@@ -564,7 +433,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "TimestampUtc", "Id", "SendSlackMessageResponse" };
+                var propertyNames = new string[] { "UploadFileToSlackRequest" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 
@@ -581,12 +450,12 @@ namespace Naos.Slack.Domain.Test
                     }
 
                     // Act
-                    var actual = (FailedToSendSlackMessageEvent<Version>)scenario.DeepCloneWithMethod.Invoke(scenario.SystemUnderTest, new[] { scenario.WithValue });
+                    var actual = (UploadFileToSlackOp)scenario.DeepCloneWithMethod.Invoke(scenario.SystemUnderTest, new[] { scenario.WithValue });
 
                     // Assert
                     foreach(var propertyName in propertyNames)
                     {
-                        var propertyInfo = typeof(FailedToSendSlackMessageEvent<Version>).GetPropertyFiltered(propertyName, MemberRelationships.DeclaredOrInherited, MemberOwners.Instance, MemberAccessModifiers.Public);
+                        var propertyInfo = typeof(UploadFileToSlackOp).GetPropertyFiltered(propertyName, MemberRelationships.DeclaredOrInherited, MemberOwners.Instance, MemberAccessModifiers.Public);
 
                         var propertyType = propertyInfo.PropertyType;
 
@@ -654,7 +523,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_string_using_ObcBsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                var expected = A.Dummy<UploadFileToSlackOp>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.BsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -683,7 +552,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_bytes_using_ObcBsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                var expected = A.Dummy<UploadFileToSlackOp>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.BsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -712,7 +581,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_string_using_ObcJsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                var expected = A.Dummy<UploadFileToSlackOp>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.JsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -741,7 +610,7 @@ namespace Naos.Slack.Domain.Test
             public static void Deserialize___Should_roundtrip_object___When_serializing_to_and_deserializing_from_bytes_using_ObcJsonSerializer()
             {
                 // Arrange
-                var expected = A.Dummy<FailedToSendSlackMessageEvent<Version>>();
+                var expected = A.Dummy<UploadFileToSlackOp>();
 
                 var serializationConfigurationType = SerializationConfigurationTypes.JsonSerializationConfigurationType.ConcreteSerializationConfigurationDerivativeType;
 
@@ -775,8 +644,8 @@ namespace Naos.Slack.Domain.Test
             public static void EqualsOperator___Should_return_true___When_both_sides_of_operator_are_null()
             {
                 // Arrange
-                FailedToSendSlackMessageEvent<Version> systemUnderTest1 = null;
-                FailedToSendSlackMessageEvent<Version> systemUnderTest2 = null;
+                UploadFileToSlackOp systemUnderTest1 = null;
+                UploadFileToSlackOp systemUnderTest2 = null;
 
                 // Act
                 var actual = systemUnderTest1 == systemUnderTest2;
@@ -806,7 +675,7 @@ namespace Naos.Slack.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    FailedToSendSlackMessageEvent<Version> systemUnderTest = null;
+                    UploadFileToSlackOp systemUnderTest = null;
 
                     // Act
                     var actual1 = systemUnderTest == scenario.ReferenceObject;
@@ -955,8 +824,8 @@ namespace Naos.Slack.Domain.Test
             public static void NotEqualsOperator___Should_return_false___When_both_sides_of_operator_are_null()
             {
                 // Arrange
-                FailedToSendSlackMessageEvent<Version> systemUnderTest1 = null;
-                FailedToSendSlackMessageEvent<Version> systemUnderTest2 = null;
+                UploadFileToSlackOp systemUnderTest1 = null;
+                UploadFileToSlackOp systemUnderTest2 = null;
 
                 // Act
                 var actual = systemUnderTest1 != systemUnderTest2;
@@ -986,7 +855,7 @@ namespace Naos.Slack.Domain.Test
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    FailedToSendSlackMessageEvent<Version> systemUnderTest = null;
+                    UploadFileToSlackOp systemUnderTest = null;
 
                     // Act
                     var actual1 = systemUnderTest != scenario.ReferenceObject;
@@ -1132,17 +1001,17 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBaseBase___Should_return_false___When_parameter_other_is_null()
+            public static void Equals_with_OperationBase___Should_return_false___When_parameter_other_is_null()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    EventBaseBase systemUnderTest = null;
+                    OperationBase systemUnderTest = null;
 
                     // Act
-                    var actual = scenario.ReferenceObject.Equals((EventBaseBase)systemUnderTest);
+                    var actual = scenario.ReferenceObject.Equals((OperationBase)systemUnderTest);
 
                     // Assert
                     actual.AsTest().Must().BeFalse(because: scenario.Id);
@@ -1163,14 +1032,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBaseBase___Should_return_true___When_parameter_other_is_same_object()
+            public static void Equals_with_OperationBase___Should_return_true___When_parameter_other_is_same_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actual = scenario.ReferenceObject.Equals((EventBaseBase)scenario.ReferenceObject);
+                    var actual = scenario.ReferenceObject.Equals((OperationBase)scenario.ReferenceObject);
 
                     // Assert
                     actual.AsTest().Must().BeTrue(because: scenario.Id);
@@ -1191,14 +1060,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBaseBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
+            public static void Equals_with_OperationBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBaseBase)_)).ToList();
+                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((OperationBase)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1219,14 +1088,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBaseBase___Should_return_false___When_objects_being_compared_have_different_property_values()
+            public static void Equals_with_OperationBase___Should_return_false___When_objects_being_compared_have_different_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBaseBase)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((OperationBase)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1247,14 +1116,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBaseBase___Should_return_true___When_objects_being_compared_have_same_property_values()
+            public static void Equals_with_OperationBase___Should_return_true___When_objects_being_compared_have_same_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBaseBase)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((OperationBase)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);
@@ -1275,17 +1144,17 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBase___Should_return_false___When_parameter_other_is_null()
+            public static void Equals_with_ReturningOperationBase___Should_return_false___When_parameter_other_is_null()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    EventBase<Version> systemUnderTest = null;
+                    ReturningOperationBase<UploadFileToSlackResponse> systemUnderTest = null;
 
                     // Act
-                    var actual = scenario.ReferenceObject.Equals((EventBase<Version>)systemUnderTest);
+                    var actual = scenario.ReferenceObject.Equals((ReturningOperationBase<UploadFileToSlackResponse>)systemUnderTest);
 
                     // Assert
                     actual.AsTest().Must().BeFalse(because: scenario.Id);
@@ -1306,14 +1175,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBase___Should_return_true___When_parameter_other_is_same_object()
+            public static void Equals_with_ReturningOperationBase___Should_return_true___When_parameter_other_is_same_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actual = scenario.ReferenceObject.Equals((EventBase<Version>)scenario.ReferenceObject);
+                    var actual = scenario.ReferenceObject.Equals((ReturningOperationBase<UploadFileToSlackResponse>)scenario.ReferenceObject);
 
                     // Assert
                     actual.AsTest().Must().BeTrue(because: scenario.Id);
@@ -1334,14 +1203,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
+            public static void Equals_with_ReturningOperationBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBase<Version>)_)).ToList();
+                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<UploadFileToSlackResponse>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1362,14 +1231,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBase___Should_return_false___When_objects_being_compared_have_different_property_values()
+            public static void Equals_with_ReturningOperationBase___Should_return_false___When_objects_being_compared_have_different_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBase<Version>)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<UploadFileToSlackResponse>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
@@ -1390,14 +1259,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_EventBase___Should_return_true___When_objects_being_compared_have_same_property_values()
+            public static void Equals_with_ReturningOperationBase___Should_return_true___When_objects_being_compared_have_same_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((EventBase<Version>)_)).ToList();
+                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((ReturningOperationBase<UploadFileToSlackResponse>)_)).ToList();
 
                     // Assert
                     actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);
@@ -1418,300 +1287,14 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackEventBase___Should_return_false___When_parameter_other_is_null()
+            public static void Equals_with_UploadFileToSlackOp___Should_return_false___When_parameter_other_is_null()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
                 foreach (var scenario in scenarios)
                 {
                     // Arrange
-                    SlackEventBase<Version> systemUnderTest = null;
-
-                    // Act
-                    var actual = scenario.ReferenceObject.Equals((SlackEventBase<Version>)systemUnderTest);
-
-                    // Assert
-                    actual.AsTest().Must().BeFalse(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackEventBase___Should_return_true___When_parameter_other_is_same_object()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actual = scenario.ReferenceObject.Equals((SlackEventBase<Version>)scenario.ReferenceObject);
-
-                    // Assert
-                    actual.AsTest().Must().BeTrue(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackEventBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SlackEventBase<Version>)_)).ToList();
-
-                    // Assert
-                    actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackEventBase___Should_return_false___When_objects_being_compared_have_different_property_values()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SlackEventBase<Version>)_)).ToList();
-
-                    // Assert
-                    actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SlackEventBase___Should_return_true___When_objects_being_compared_have_same_property_values()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SlackEventBase<Version>)_)).ToList();
-
-                    // Assert
-                    actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SendSlackMessageResponseEventBase___Should_return_false___When_parameter_other_is_null()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange
-                    SendSlackMessageResponseEventBase<Version> systemUnderTest = null;
-
-                    // Act
-                    var actual = scenario.ReferenceObject.Equals((SendSlackMessageResponseEventBase<Version>)systemUnderTest);
-
-                    // Assert
-                    actual.AsTest().Must().BeFalse(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SendSlackMessageResponseEventBase___Should_return_true___When_parameter_other_is_same_object()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actual = scenario.ReferenceObject.Equals((SendSlackMessageResponseEventBase<Version>)scenario.ReferenceObject);
-
-                    // Assert
-                    actual.AsTest().Must().BeTrue(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SendSlackMessageResponseEventBase___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actuals = scenario.ObjectsThatDeriveFromScenarioTypeButAreNotOfTheSameTypeAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendSlackMessageResponseEventBase<Version>)_)).ToList();
-
-                    // Assert
-                    actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SendSlackMessageResponseEventBase___Should_return_false___When_objects_being_compared_have_different_property_values()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreNotEqualToReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendSlackMessageResponseEventBase<Version>)_)).ToList();
-
-                    // Assert
-                    actuals.AsTest().Must().Each().BeFalse(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_SendSlackMessageResponseEventBase___Should_return_true___When_objects_being_compared_have_same_property_values()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange, Act
-                    var actuals = scenario.ObjectsThatAreEqualToButNotTheSameAsReferenceObject.Select(_ => scenario.ReferenceObject.Equals((SendSlackMessageResponseEventBase<Version>)_)).ToList();
-
-                    // Assert
-                    actuals.AsTest().Must().Each().BeTrue(because: scenario.Id);
-                }
-            }
-
-            [Fact]
-            [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly")]
-            [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1711:IdentifiersShouldNotHaveIncorrectSuffix")]
-            [SuppressMessage("Microsoft.Naming", "CA1715:IdentifiersShouldHaveCorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords")]
-            [SuppressMessage("Microsoft.Naming", "CA1719:ParameterNamesShouldNotMatchMemberNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames")]
-            [SuppressMessage("Microsoft.Naming", "CA1722:IdentifiersShouldNotHaveIncorrectPrefix")]
-            [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
-            [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
-            [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_FailedToSendSlackMessageEvent___Should_return_false___When_parameter_other_is_null()
-            {
-                var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
-
-                foreach (var scenario in scenarios)
-                {
-                    // Arrange
-                    FailedToSendSlackMessageEvent<Version> systemUnderTest = null;
+                    UploadFileToSlackOp systemUnderTest = null;
 
                     // Act
                     var actual = scenario.ReferenceObject.Equals(systemUnderTest);
@@ -1735,7 +1318,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_FailedToSendSlackMessageEvent___Should_return_true___When_parameter_other_is_same_object()
+            public static void Equals_with_UploadFileToSlackOp___Should_return_true___When_parameter_other_is_same_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1763,7 +1346,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_FailedToSendSlackMessageEvent___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
+            public static void Equals_with_UploadFileToSlackOp___Should_return_false___When_parameter_other_is_derived_from_the_same_type_but_is_not_of_the_same_type_as_this_object()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1791,7 +1374,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_FailedToSendSlackMessageEvent___Should_return_false___When_objects_being_compared_have_different_property_values()
+            public static void Equals_with_UploadFileToSlackOp___Should_return_false___When_objects_being_compared_have_different_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 
@@ -1819,7 +1402,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA1725:ParameterNamesShouldMatchBaseDeclaration")]
             [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms")]
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
-            public static void Equals_with_FailedToSendSlackMessageEvent___Should_return_true___When_objects_being_compared_have_same_property_values()
+            public static void Equals_with_UploadFileToSlackOp___Should_return_true___When_objects_being_compared_have_same_property_values()
             {
                 var scenarios = EquatableTestScenarios.ValidateAndPrepareForTesting();
 

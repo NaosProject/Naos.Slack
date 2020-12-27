@@ -16,8 +16,6 @@ namespace Naos.Slack.Protocol.Client
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type.Recipes;
 
-    using SlackAPI;
-
     using static System.FormattableString;
 
     /// <summary>
@@ -25,7 +23,9 @@ namespace Naos.Slack.Protocol.Client
     /// </summary>
     public class SendSlackMessageProtocol : AsyncSpecificReturningProtocolBase<SendSlackMessageOp, SendSlackMessageResponse>, ISendSlackMessageProtocol
     {
-        private readonly string authenticationToken;
+        private const string MethodName = "chat.postMessage";
+
+        private readonly SlackClient slackClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SendSlackMessageProtocol"/> class.
@@ -36,7 +36,7 @@ namespace Naos.Slack.Protocol.Client
         {
             new { authenticationToken }.AsArg().Must().NotBeNullNorWhiteSpace();
 
-            this.authenticationToken = authenticationToken;
+            this.slackClient = new SlackClient(authenticationToken);
         }
 
         /// <inheritdoc />
@@ -47,13 +47,11 @@ namespace Naos.Slack.Protocol.Client
 
             try
             {
-                var slackClient = new SlackTaskClient(this.authenticationToken);
-
                 var sendSlackMessageRequest = operation.SendSlackMessageRequest;
 
                 if (sendSlackMessageRequest is SendSlackTextMessageRequest sendSlackTextMessageRequest)
                 {
-                    var postParameters = new List<Tuple<string, string>>
+                    var parameters = new List<Tuple<string, string>>
                     {
                         new Tuple<string, string>("channel", sendSlackTextMessageRequest.Channel),
                         new Tuple<string, string>("text", sendSlackTextMessageRequest.Text),
@@ -61,7 +59,7 @@ namespace Naos.Slack.Protocol.Client
 
                     if (!string.IsNullOrWhiteSpace(sendSlackTextMessageRequest.MessageAuthorUsernameOverride))
                     {
-                        postParameters.Add(new Tuple<string, string>("username", sendSlackTextMessageRequest.MessageAuthorUsernameOverride));
+                        parameters.Add(new Tuple<string, string>("username", sendSlackTextMessageRequest.MessageAuthorUsernameOverride));
                     }
 
                     var messageAuthorIcon = sendSlackTextMessageRequest.MessageAuthorIconOverride;
@@ -70,11 +68,11 @@ namespace Naos.Slack.Protocol.Client
                     {
                         if (messageAuthorIcon.ResourceIdKind == IconResourceIdentifierKind.Emoji)
                         {
-                            postParameters.Add(new Tuple<string, string>("icon_emoji", messageAuthorIcon.ResourceId));
+                            parameters.Add(new Tuple<string, string>("icon_emoji", messageAuthorIcon.ResourceId));
                         }
                         else if (messageAuthorIcon.ResourceIdKind == IconResourceIdentifierKind.ImageUrl)
                         {
-                            postParameters.Add(new Tuple<string, string>("icon_url", messageAuthorIcon.ResourceId));
+                            parameters.Add(new Tuple<string, string>("icon_url", messageAuthorIcon.ResourceId));
                         }
                         else
                         {
@@ -88,7 +86,7 @@ namespace Naos.Slack.Protocol.Client
                     }
                     else if (sendSlackTextMessageRequest.TextFormat == SlackTextFormat.Plaintext)
                     {
-                        postParameters.Add(new Tuple<string, string>("mrkdwn", "false"));
+                        parameters.Add(new Tuple<string, string>("mrkdwn", "false"));
                     }
                     else
                     {
@@ -97,32 +95,32 @@ namespace Naos.Slack.Protocol.Client
 
                     if (sendSlackTextMessageRequest.Options.HasFlag(SlackTextMessageOptions.LinkNames))
                     {
-                        postParameters.Add(new Tuple<string, string>("link_names", "1"));
+                        parameters.Add(new Tuple<string, string>("link_names", "1"));
                     }
                     else
                     {
                         // no-op
                     }
 
-                    postParameters.Add(sendSlackTextMessageRequest.Options.HasFlag(SlackTextMessageOptions.LinkUrls)
+                    parameters.Add(sendSlackTextMessageRequest.Options.HasFlag(SlackTextMessageOptions.LinkUrls)
                         ? new Tuple<string, string>("parse", "full")
                         : new Tuple<string, string>("parse", "none"));
 
-                    postParameters.Add(
+                    parameters.Add(
                         sendSlackTextMessageRequest.Options.HasFlag(SlackTextMessageOptions.UnfurlMediaContent)
                             ? new Tuple<string, string>("unfurl_media", "true")
                             : new Tuple<string, string>("unfurl_media", "false"));
 
-                    postParameters.Add(
+                    parameters.Add(
                         sendSlackTextMessageRequest.Options.HasFlag(SlackTextMessageOptions.UnfurlTextContent)
                             ? new Tuple<string, string>("unfurl_links", "true")
                             : new Tuple<string, string>("unfurl_links", "false"));
 
-                    var response = await slackClient.APIRequestWithTokenAsync<PostMessageResponse>(postParameters.ToArray());
+                    var responseJson = await this.slackClient.PostAsync(MethodName, parameters);
 
-                    result = response.ok
-                        ? new SendSlackMessageResponse(SendSlackMessageResult.Succeeded, response.ts, response.channel, null, null)
-                        : new SendSlackMessageResponse(SendSlackMessageResult.FailedWithSlackReturningError, null, null, null, response.error);
+                    var sendSlackMessageResult = SlackClient.GetOperationResultFromResponseJson(responseJson, SendSlackMessageResult.Succeeded, SendSlackMessageResult.FailedWithSlackReturningError);
+
+                    result = new SendSlackMessageResponse(sendSlackMessageResult, responseJson, null);
                 }
                 else
                 {
@@ -131,7 +129,7 @@ namespace Naos.Slack.Protocol.Client
             }
             catch (Exception ex)
             {
-                result = new SendSlackMessageResponse(SendSlackMessageResult.FailedWithExceptionWhenSending, null, null, ex.ToString(), null);
+                result = new SendSlackMessageResponse(SendSlackMessageResult.FailedWithExceptionWhenSending, null, ex.ToString());
             }
 
             return result;

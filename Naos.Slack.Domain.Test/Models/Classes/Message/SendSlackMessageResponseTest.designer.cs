@@ -47,7 +47,7 @@ namespace Naos.Slack.Domain.Test
                         var result = new SystemUnderTestExpectedStringRepresentation<SendSlackMessageResponse>
                         {
                             SystemUnderTest = systemUnderTest,
-                            ExpectedStringRepresentation = Invariant($"Naos.Slack.Domain.SendSlackMessageResponse: SendSlackMessageResult = {systemUnderTest.SendSlackMessageResult.ToString() ?? "<null>"}, TimestampId = {systemUnderTest.TimestampId?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ChannelId = {systemUnderTest.ChannelId?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ExceptionToString = {systemUnderTest.ExceptionToString?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, SlackErrorCode = {systemUnderTest.SlackErrorCode?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}."),
+                            ExpectedStringRepresentation = Invariant($"Naos.Slack.Domain.SendSlackMessageResponse: SendSlackMessageResult = {systemUnderTest.SendSlackMessageResult.ToString() ?? "<null>"}, ResponseJson = {systemUnderTest.ResponseJson?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}, ExceptionToString = {systemUnderTest.ExceptionToString?.ToString(CultureInfo.InvariantCulture) ?? "<null>"}."),
                         };
 
                         return result;
@@ -58,7 +58,7 @@ namespace Naos.Slack.Domain.Test
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SendSlackMessageResponse>
                 {
-                    Name = "constructor should throw ArgumentNullException when parameter 'timestampId' is null scenario",
+                    Name = "constructor should throw ArgumentNullException when parameter 'responseJson' is null scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<SendSlackMessageResponse>();
@@ -66,19 +66,17 @@ namespace Naos.Slack.Domain.Test
                         var result = new SendSlackMessageResponse(
                                              referenceObject.SendSlackMessageResult,
                                              null,
-                                             referenceObject.ChannelId,
-                                             referenceObject.ExceptionToString,
-                                             referenceObject.SlackErrorCode);
+                                             referenceObject.ExceptionToString);
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "timestampId", },
+                    ExpectedExceptionMessageContains = new[] { "responseJson", },
                 })
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SendSlackMessageResponse>
                 {
-                    Name = "constructor should throw ArgumentException when parameter 'timestampId' is white space scenario",
+                    Name = "constructor should throw ArgumentException when parameter 'responseJson' is white space scenario",
                     ConstructionFunc = () =>
                     {
                         var referenceObject = A.Dummy<SendSlackMessageResponse>();
@@ -86,54 +84,12 @@ namespace Naos.Slack.Domain.Test
                         var result = new SendSlackMessageResponse(
                                              referenceObject.SendSlackMessageResult,
                                              Invariant($"  {Environment.NewLine}  "),
-                                             referenceObject.ChannelId,
-                                             referenceObject.ExceptionToString,
-                                             referenceObject.SlackErrorCode);
+                                             referenceObject.ExceptionToString);
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentException),
-                    ExpectedExceptionMessageContains = new[] { "timestampId", "white space", },
-                })
-            .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "constructor should throw ArgumentNullException when parameter 'channelId' is null scenario",
-                    ConstructionFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>();
-
-                        var result = new SendSlackMessageResponse(
-                                             referenceObject.SendSlackMessageResult,
-                                             referenceObject.TimestampId,
-                                             null,
-                                             referenceObject.ExceptionToString,
-                                             referenceObject.SlackErrorCode);
-
-                        return result;
-                    },
-                    ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "channelId", },
-                })
-            .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "constructor should throw ArgumentException when parameter 'channelId' is white space scenario",
-                    ConstructionFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>();
-
-                        var result = new SendSlackMessageResponse(
-                                             referenceObject.SendSlackMessageResult,
-                                             referenceObject.TimestampId,
-                                             Invariant($"  {Environment.NewLine}  "),
-                                             referenceObject.ExceptionToString,
-                                             referenceObject.SlackErrorCode);
-
-                        return result;
-                    },
-                    ExpectedExceptionType = typeof(ArgumentException),
-                    ExpectedExceptionMessageContains = new[] { "channelId", "white space", },
+                    ExpectedExceptionMessageContains = new[] { "responseJson", "white space", },
                 })
             .AddScenario(() =>
                 new ConstructorArgumentValidationTestScenario<SendSlackMessageResponse>
@@ -145,10 +101,8 @@ namespace Naos.Slack.Domain.Test
 
                         var result = new SendSlackMessageResponse(
                                              referenceObject.SendSlackMessageResult,
-                                             referenceObject.TimestampId,
-                                             referenceObject.ChannelId,
-                                             null,
-                                             referenceObject.SlackErrorCode);
+                                             referenceObject.ResponseJson,
+                                             null);
 
                         return result;
                     },
@@ -165,55 +119,13 @@ namespace Naos.Slack.Domain.Test
 
                         var result = new SendSlackMessageResponse(
                                              referenceObject.SendSlackMessageResult,
-                                             referenceObject.TimestampId,
-                                             referenceObject.ChannelId,
-                                             Invariant($"  {Environment.NewLine}  "),
-                                             referenceObject.SlackErrorCode);
-
-                        return result;
-                    },
-                    ExpectedExceptionType = typeof(ArgumentException),
-                    ExpectedExceptionMessageContains = new[] { "exceptionToString", "white space", },
-                })
-            .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "constructor should throw ArgumentNullException when parameter 'slackErrorCode' is null scenario",
-                    ConstructionFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>();
-
-                        var result = new SendSlackMessageResponse(
-                                             referenceObject.SendSlackMessageResult,
-                                             referenceObject.TimestampId,
-                                             referenceObject.ChannelId,
-                                             referenceObject.ExceptionToString,
-                                             null);
-
-                        return result;
-                    },
-                    ExpectedExceptionType = typeof(ArgumentNullException),
-                    ExpectedExceptionMessageContains = new[] { "slackErrorCode", },
-                })
-            .AddScenario(() =>
-                new ConstructorArgumentValidationTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "constructor should throw ArgumentException when parameter 'slackErrorCode' is white space scenario",
-                    ConstructionFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>();
-
-                        var result = new SendSlackMessageResponse(
-                                             referenceObject.SendSlackMessageResult,
-                                             referenceObject.TimestampId,
-                                             referenceObject.ChannelId,
-                                             referenceObject.ExceptionToString,
+                                             referenceObject.ResponseJson,
                                              Invariant($"  {Environment.NewLine}  "));
 
                         return result;
                     },
                     ExpectedExceptionType = typeof(ArgumentException),
-                    ExpectedExceptionMessageContains = new[] { "slackErrorCode", "white space", },
+                    ExpectedExceptionMessageContains = new[] { "exceptionToString", "white space", },
                 });
 
         private static readonly ConstructorPropertyAssignmentTestScenarios<SendSlackMessageResponse> ConstructorPropertyAssignmentTestScenarios = new ConstructorPropertyAssignmentTestScenarios<SendSlackMessageResponse>()
@@ -229,10 +141,8 @@ namespace Naos.Slack.Domain.Test
                         {
                             SystemUnderTest = new SendSlackMessageResponse(
                                                       referenceObject.SendSlackMessageResult,
-                                                      referenceObject.TimestampId,
-                                                      referenceObject.ChannelId,
-                                                      referenceObject.ExceptionToString,
-                                                      referenceObject.SlackErrorCode),
+                                                      referenceObject.ResponseJson,
+                                                      referenceObject.ExceptionToString),
                             ExpectedPropertyValue = referenceObject.SendSlackMessageResult,
                         };
 
@@ -243,7 +153,7 @@ namespace Naos.Slack.Domain.Test
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<SendSlackMessageResponse>
                 {
-                    Name = "TimestampId should return same 'timestampId' parameter passed to constructor when getting",
+                    Name = "ResponseJson should return same 'responseJson' parameter passed to constructor when getting",
                     SystemUnderTestExpectedPropertyValueFunc = () =>
                     {
                         var referenceObject = A.Dummy<SendSlackMessageResponse>();
@@ -252,39 +162,14 @@ namespace Naos.Slack.Domain.Test
                         {
                             SystemUnderTest = new SendSlackMessageResponse(
                                                       referenceObject.SendSlackMessageResult,
-                                                      referenceObject.TimestampId,
-                                                      referenceObject.ChannelId,
-                                                      referenceObject.ExceptionToString,
-                                                      referenceObject.SlackErrorCode),
-                            ExpectedPropertyValue = referenceObject.TimestampId,
+                                                      referenceObject.ResponseJson,
+                                                      referenceObject.ExceptionToString),
+                            ExpectedPropertyValue = referenceObject.ResponseJson,
                         };
 
                         return result;
                     },
-                    PropertyName = "TimestampId",
-                })
-            .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "ChannelId should return same 'channelId' parameter passed to constructor when getting",
-                    SystemUnderTestExpectedPropertyValueFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>();
-
-                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackMessageResponse>
-                        {
-                            SystemUnderTest = new SendSlackMessageResponse(
-                                                      referenceObject.SendSlackMessageResult,
-                                                      referenceObject.TimestampId,
-                                                      referenceObject.ChannelId,
-                                                      referenceObject.ExceptionToString,
-                                                      referenceObject.SlackErrorCode),
-                            ExpectedPropertyValue = referenceObject.ChannelId,
-                        };
-
-                        return result;
-                    },
-                    PropertyName = "ChannelId",
+                    PropertyName = "ResponseJson",
                 })
             .AddScenario(() =>
                 new ConstructorPropertyAssignmentTestScenario<SendSlackMessageResponse>
@@ -298,39 +183,14 @@ namespace Naos.Slack.Domain.Test
                         {
                             SystemUnderTest = new SendSlackMessageResponse(
                                                       referenceObject.SendSlackMessageResult,
-                                                      referenceObject.TimestampId,
-                                                      referenceObject.ChannelId,
-                                                      referenceObject.ExceptionToString,
-                                                      referenceObject.SlackErrorCode),
+                                                      referenceObject.ResponseJson,
+                                                      referenceObject.ExceptionToString),
                             ExpectedPropertyValue = referenceObject.ExceptionToString,
                         };
 
                         return result;
                     },
                     PropertyName = "ExceptionToString",
-                })
-            .AddScenario(() =>
-                new ConstructorPropertyAssignmentTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "SlackErrorCode should return same 'slackErrorCode' parameter passed to constructor when getting",
-                    SystemUnderTestExpectedPropertyValueFunc = () =>
-                    {
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>();
-
-                        var result = new SystemUnderTestExpectedPropertyValue<SendSlackMessageResponse>
-                        {
-                            SystemUnderTest = new SendSlackMessageResponse(
-                                                      referenceObject.SendSlackMessageResult,
-                                                      referenceObject.TimestampId,
-                                                      referenceObject.ChannelId,
-                                                      referenceObject.ExceptionToString,
-                                                      referenceObject.SlackErrorCode),
-                            ExpectedPropertyValue = referenceObject.SlackErrorCode,
-                        };
-
-                        return result;
-                    },
-                    PropertyName = "SlackErrorCode",
                 });
 
         private static readonly DeepCloneWithTestScenarios<SendSlackMessageResponse> DeepCloneWithTestScenarios = new DeepCloneWithTestScenarios<SendSlackMessageResponse>()
@@ -357,38 +217,18 @@ namespace Naos.Slack.Domain.Test
             .AddScenario(() =>
                 new DeepCloneWithTestScenario<SendSlackMessageResponse>
                 {
-                    Name = "DeepCloneWithTimestampId should deep clone object and replace TimestampId with the provided timestampId",
-                    WithPropertyName = "TimestampId",
+                    Name = "DeepCloneWithResponseJson should deep clone object and replace ResponseJson with the provided responseJson",
+                    WithPropertyName = "ResponseJson",
                     SystemUnderTestDeepCloneWithValueFunc = () =>
                     {
                         var systemUnderTest = A.Dummy<SendSlackMessageResponse>();
 
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>().ThatIs(_ => !systemUnderTest.TimestampId.IsEqualTo(_.TimestampId));
+                        var referenceObject = A.Dummy<SendSlackMessageResponse>().ThatIs(_ => !systemUnderTest.ResponseJson.IsEqualTo(_.ResponseJson));
 
                         var result = new SystemUnderTestDeepCloneWithValue<SendSlackMessageResponse>
                         {
                             SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.TimestampId,
-                        };
-
-                        return result;
-                    },
-                })
-            .AddScenario(() =>
-                new DeepCloneWithTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "DeepCloneWithChannelId should deep clone object and replace ChannelId with the provided channelId",
-                    WithPropertyName = "ChannelId",
-                    SystemUnderTestDeepCloneWithValueFunc = () =>
-                    {
-                        var systemUnderTest = A.Dummy<SendSlackMessageResponse>();
-
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>().ThatIs(_ => !systemUnderTest.ChannelId.IsEqualTo(_.ChannelId));
-
-                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackMessageResponse>
-                        {
-                            SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.ChannelId,
+                            DeepCloneWithValue = referenceObject.ResponseJson,
                         };
 
                         return result;
@@ -413,26 +253,6 @@ namespace Naos.Slack.Domain.Test
 
                         return result;
                     },
-                })
-            .AddScenario(() =>
-                new DeepCloneWithTestScenario<SendSlackMessageResponse>
-                {
-                    Name = "DeepCloneWithSlackErrorCode should deep clone object and replace SlackErrorCode with the provided slackErrorCode",
-                    WithPropertyName = "SlackErrorCode",
-                    SystemUnderTestDeepCloneWithValueFunc = () =>
-                    {
-                        var systemUnderTest = A.Dummy<SendSlackMessageResponse>();
-
-                        var referenceObject = A.Dummy<SendSlackMessageResponse>().ThatIs(_ => !systemUnderTest.SlackErrorCode.IsEqualTo(_.SlackErrorCode));
-
-                        var result = new SystemUnderTestDeepCloneWithValue<SendSlackMessageResponse>
-                        {
-                            SystemUnderTest = systemUnderTest,
-                            DeepCloneWithValue = referenceObject.SlackErrorCode,
-                        };
-
-                        return result;
-                    },
                 });
 
         private static readonly SendSlackMessageResponse ReferenceObjectForEquatableTestScenarios = A.Dummy<SendSlackMessageResponse>();
@@ -447,43 +267,23 @@ namespace Naos.Slack.Domain.Test
                     {
                         new SendSlackMessageResponse(
                                 ReferenceObjectForEquatableTestScenarios.SendSlackMessageResult,
-                                ReferenceObjectForEquatableTestScenarios.TimestampId,
-                                ReferenceObjectForEquatableTestScenarios.ChannelId,
-                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
-                                ReferenceObjectForEquatableTestScenarios.SlackErrorCode),
+                                ReferenceObjectForEquatableTestScenarios.ResponseJson,
+                                ReferenceObjectForEquatableTestScenarios.ExceptionToString),
                     },
                     ObjectsThatAreNotEqualToReferenceObject = new SendSlackMessageResponse[]
                     {
                         new SendSlackMessageResponse(
                                 A.Dummy<SendSlackMessageResponse>().Whose(_ => !_.SendSlackMessageResult.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SendSlackMessageResult)).SendSlackMessageResult,
-                                ReferenceObjectForEquatableTestScenarios.TimestampId,
-                                ReferenceObjectForEquatableTestScenarios.ChannelId,
-                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
-                                ReferenceObjectForEquatableTestScenarios.SlackErrorCode),
+                                ReferenceObjectForEquatableTestScenarios.ResponseJson,
+                                ReferenceObjectForEquatableTestScenarios.ExceptionToString),
                         new SendSlackMessageResponse(
                                 ReferenceObjectForEquatableTestScenarios.SendSlackMessageResult,
-                                A.Dummy<SendSlackMessageResponse>().Whose(_ => !_.TimestampId.IsEqualTo(ReferenceObjectForEquatableTestScenarios.TimestampId)).TimestampId,
-                                ReferenceObjectForEquatableTestScenarios.ChannelId,
-                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
-                                ReferenceObjectForEquatableTestScenarios.SlackErrorCode),
+                                A.Dummy<SendSlackMessageResponse>().Whose(_ => !_.ResponseJson.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ResponseJson)).ResponseJson,
+                                ReferenceObjectForEquatableTestScenarios.ExceptionToString),
                         new SendSlackMessageResponse(
                                 ReferenceObjectForEquatableTestScenarios.SendSlackMessageResult,
-                                ReferenceObjectForEquatableTestScenarios.TimestampId,
-                                A.Dummy<SendSlackMessageResponse>().Whose(_ => !_.ChannelId.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ChannelId)).ChannelId,
-                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
-                                ReferenceObjectForEquatableTestScenarios.SlackErrorCode),
-                        new SendSlackMessageResponse(
-                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageResult,
-                                ReferenceObjectForEquatableTestScenarios.TimestampId,
-                                ReferenceObjectForEquatableTestScenarios.ChannelId,
-                                A.Dummy<SendSlackMessageResponse>().Whose(_ => !_.ExceptionToString.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ExceptionToString)).ExceptionToString,
-                                ReferenceObjectForEquatableTestScenarios.SlackErrorCode),
-                        new SendSlackMessageResponse(
-                                ReferenceObjectForEquatableTestScenarios.SendSlackMessageResult,
-                                ReferenceObjectForEquatableTestScenarios.TimestampId,
-                                ReferenceObjectForEquatableTestScenarios.ChannelId,
-                                ReferenceObjectForEquatableTestScenarios.ExceptionToString,
-                                A.Dummy<SendSlackMessageResponse>().Whose(_ => !_.SlackErrorCode.IsEqualTo(ReferenceObjectForEquatableTestScenarios.SlackErrorCode)).SlackErrorCode),
+                                ReferenceObjectForEquatableTestScenarios.ResponseJson,
+                                A.Dummy<SendSlackMessageResponse>().Whose(_ => !_.ExceptionToString.IsEqualTo(ReferenceObjectForEquatableTestScenarios.ExceptionToString)).ExceptionToString),
                     },
                     ObjectsThatAreNotOfTheSameTypeAsReferenceObject = new object[]
                     {
@@ -775,7 +575,7 @@ namespace Naos.Slack.Domain.Test
             [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly")]
             public static void DeepCloneWith___Should_deep_clone_object_and_replace_the_associated_property_with_the_provided_value___When_called()
             {
-                var propertyNames = new string[] { "SendSlackMessageResult", "TimestampId", "ChannelId", "ExceptionToString", "SlackErrorCode" };
+                var propertyNames = new string[] { "SendSlackMessageResult", "ResponseJson", "ExceptionToString" };
 
                 var scenarios = DeepCloneWithTestScenarios.ValidateAndPrepareForTesting();
 

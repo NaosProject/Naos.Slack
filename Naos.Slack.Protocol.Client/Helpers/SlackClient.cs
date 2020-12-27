@@ -49,22 +49,55 @@ namespace Naos.Slack.Protocol
         }
 
         /// <summary>
+        /// Gets the result of an operation from the response JSON.
+        /// </summary>
+        /// <typeparam name="T">The type of the result.</typeparam>
+        /// <param name="responseJson">The response JSON.</param>
+        /// <param name="successResult">The result to return if the operation was successful.</param>
+        /// <param name="failureResult">The result to return if the operation failed.</param>
+        /// <returns>
+        /// The result of the operation.
+        /// </returns>
+        public static T GetOperationResultFromResponseJson<T>(
+            string responseJson,
+            T successResult,
+            T failureResult)
+            where T : struct
+        {
+            T result;
+
+            if (responseJson.StartsWith(@"{""ok"":true"))
+            {
+                result = successResult;
+            }
+            else if (responseJson.StartsWith(@"{""ok"":false"))
+            {
+                result = failureResult;
+            }
+            else
+            {
+                throw new InvalidOperationException(Invariant($"The response JSON was expected to start with an 'ok' property having a value of either 'true' or 'false', but found neither: {responseJson}."));
+            }
+
+            return result;
+        }
+
+        /// <summary>
         /// Posts to a API method.
         /// </summary>
         /// <param name="methodName">The name of the method.</param>
         /// <param name="parameters">The method parameter name/value pairs.</param>
-        /// <param name="httpContent">The HTTP request content to send.</param>
+        /// <param name="httpContent">OPTIONAL HTTP request content to send.  DEFAULT is to specify none.</param>
         /// <returns>
-        /// The response message.
+        /// The response JSON.
         /// </returns>
-        public async Task<HttpResponseMessage> PostAsync(
+        public async Task<string> PostAsync(
             string methodName,
             IReadOnlyCollection<Tuple<string, string>> parameters,
-            HttpContent httpContent)
+            HttpContent httpContent = null)
         {
             new { methodName }.AsArg().Must().NotBeNullNorWhiteSpace();
             new { parameters }.AsArg().Must().NotBeNullNorEmptyEnumerableNorContainAnyNulls();
-            new { httpContent }.AsArg().Must().NotBeNull();
 
             var methodUrl = new Uri(Path.Combine(ApiBaseUrl, methodName));
 
@@ -79,7 +112,9 @@ namespace Naos.Slack.Protocol
 
             var requestUrl = Invariant($"{methodUrl}?{queryString}");
 
-            var result = await this.httpClient.PostAsync(requestUrl, httpContent);
+            var httpResponseMessage = await this.httpClient.PostAsync(requestUrl, httpContent);
+
+            var result = await httpResponseMessage.Content.ReadAsStringAsync();
 
             return result;
         }

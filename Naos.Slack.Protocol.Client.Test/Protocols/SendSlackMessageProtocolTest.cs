@@ -31,7 +31,7 @@ namespace Naos.Slack.Protocol.Client.Test
 
             // Assert
             actual.SendSlackMessageResult.AsTest().Must().BeEqualTo(SendSlackMessageResult.FailedWithSlackReturningError);
-            actual.SlackErrorCode.AsTest().Must().BeEqualTo("invalid_auth");
+            actual.ResponseJson.AsTest().Must().ContainString("invalid_auth");
         }
 
         [Fact(Skip = "For local testing only.")]

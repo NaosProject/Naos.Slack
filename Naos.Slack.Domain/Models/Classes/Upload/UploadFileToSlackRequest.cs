@@ -7,6 +7,9 @@
 namespace Naos.Slack.Domain
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
@@ -31,6 +34,7 @@ namespace Naos.Slack.Domain
         /// <param name="fileName">OPTIONAL name of the file, including the file extension if available (e.g. "my-image.jpg").  This will be used as the title of the file, unless <paramref name="title"/> is specified.  This file name will be used when downloading the file from Slack to disk.  Also, this helps Slack to identify the type file (unless <paramref name="fileType"/> is set to something other than <see cref="FileType.Auto"/>).  DEFAULT is to not specify a file name.</param>
         /// <param name="title">OPTIONAL title of the file (e.g. "My Image").  This will be the file name used when downloading the file from Slack to disk, unless <paramref name="fileName"/> is specified.</param>
         /// <param name="initialCommentText">The message text, in mrkdwn, introducing the file in the specified <paramref name="channels"/>.  No automating parsing of URLs nor names (e.g. channel name) is performed so linking should be done in mrkdwn link syntax.</param>
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes", Justification = NaosSuppressBecause.CA1720_IdentifiersShouldNotContainTypeNames_TypeNameAddsClarityToIdentifierAndAlternativesDegradeClarity)]
         public UploadFileToSlackRequest(
             byte[] fileBytes,
             IReadOnlyCollection<string> channels,
@@ -57,6 +61,7 @@ namespace Naos.Slack.Domain
         /// <summary>
         /// Gets the bytes of the file to upload.
         /// </summary>
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = NaosSuppressBecause.CA1819_PropertiesShouldNotReturnArrays_DataPayloadsAreCommonlyRepresentedAsByteArrays)]
         public byte[] FileBytes { get; private set; }
 
         /// <summary>

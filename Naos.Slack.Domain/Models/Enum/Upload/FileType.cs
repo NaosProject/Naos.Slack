@@ -6,9 +6,12 @@
 
 namespace Naos.Slack.Domain
 {
+    using System.CodeDom.Compiler;
+
     /// <summary>
     /// Specifies the type of file.
     /// </summary>
+    [GeneratedCode("Ignore all CA warnings", "Ignore all CA warnings")]
     public enum FileType
     {
         /// <summary>

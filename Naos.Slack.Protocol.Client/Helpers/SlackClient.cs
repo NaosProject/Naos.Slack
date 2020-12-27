@@ -28,8 +28,6 @@ namespace Naos.Slack.Protocol
 
         private readonly string authenticationToken;
 
-        private readonly HttpClient httpClient;
-
         static SlackClient()
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -45,7 +43,6 @@ namespace Naos.Slack.Protocol
             new { authenticationToken }.AsArg().Must().NotBeNullNorWhiteSpace();
 
             this.authenticationToken = authenticationToken;
-            this.httpClient = new HttpClient();
         }
 
         /// <summary>
@@ -66,11 +63,11 @@ namespace Naos.Slack.Protocol
         {
             T result;
 
-            if (responseJson.StartsWith(@"{""ok"":true"))
+            if (responseJson.StartsWith(@"{""ok"":true", StringComparison.OrdinalIgnoreCase))
             {
                 result = successResult;
             }
-            else if (responseJson.StartsWith(@"{""ok"":false"))
+            else if (responseJson.StartsWith(@"{""ok"":false", StringComparison.OrdinalIgnoreCase))
             {
                 result = failureResult;
             }
@@ -112,9 +109,14 @@ namespace Naos.Slack.Protocol
 
             var requestUrl = Invariant($"{methodUrl}?{queryString}");
 
-            var httpResponseMessage = await this.httpClient.PostAsync(requestUrl, httpContent);
+            string result;
 
-            var result = await httpResponseMessage.Content.ReadAsStringAsync();
+            using (var httpClient = new HttpClient())
+            {
+                var httpResponseMessage = await httpClient.PostAsync(requestUrl, httpContent);
+
+                result = await httpResponseMessage.Content.ReadAsStringAsync();
+            }
 
             return result;
         }

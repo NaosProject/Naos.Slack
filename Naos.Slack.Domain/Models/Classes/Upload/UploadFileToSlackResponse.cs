@@ -7,6 +7,9 @@
 namespace Naos.Slack.Domain
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
@@ -22,6 +25,7 @@ namespace Naos.Slack.Domain
         /// <param name="uploadFileToSlackResult">The result of uploading the file.</param>
         /// <param name="responseJson">The response JSON returned by Slack.  Required when <paramref name="uploadFileToSlackResult"/> is <see cref="UploadFileToSlackResult.Succeeded"/> or <see cref="UploadFileToSlackResult.FailedWithSlackReturningError"/>, otherwise should be null.</param>
         /// <param name="exceptionToString">The <see cref="object.ToString()"/> of the <see cref="Exception"/> that was thrown when uploading the file.  Required when <paramref name="uploadFileToSlackResult"/> is <see cref="UploadFileToSlackResult.FailedWithExceptionWhenUploading"/>, otherwise should be null.</param>
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string", Justification = NaosSuppressBecause.CA1720_IdentifiersShouldNotContainTypeNames_TypeNameAddsClarityToIdentifierAndAlternativesDegradeClarity)]
         public UploadFileToSlackResponse(
             UploadFileToSlackResult uploadFileToSlackResult,
             string responseJson,

@@ -7,6 +7,9 @@
 namespace Naos.Slack.Domain
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
 
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Type;
@@ -21,7 +24,8 @@ namespace Naos.Slack.Domain
         /// </summary>
         /// <param name="sendSlackMessageResult">The result of sending the message.</param>
         /// <param name="responseJson">The response JSON returned by Slack.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="SendSlackMessageResult.Succeeded"/> or <see cref="SendSlackMessageResult.FailedWithSlackReturningError"/>, otherwise should be null.</param>
-        /// <param name="exceptionToString">The <see cref="object.ToString()"/> of the <see cref="Exception"/> that was thrown when sending the message.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="Domain.SendSlackMessageResult.FailedWithExceptionWhenSending"/>, otherwise should be null.</param>
+        /// <param name="exceptionToString">The <see cref="object.ToString()"/> of the <see cref="Exception"/> that was thrown when sending the message.  Required when <paramref name="sendSlackMessageResult"/> is <see cref="SendSlackMessageResult.FailedWithExceptionWhenSending"/>, otherwise should be null.</param>
+        [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "string", Justification = NaosSuppressBecause.CA1720_IdentifiersShouldNotContainTypeNames_TypeNameAddsClarityToIdentifierAndAlternativesDegradeClarity)]
         public SendSlackMessageResponse(
             SendSlackMessageResult sendSlackMessageResult,
             string responseJson,

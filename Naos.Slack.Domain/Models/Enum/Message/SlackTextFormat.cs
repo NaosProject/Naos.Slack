@@ -6,6 +6,10 @@
 
 namespace Naos.Slack.Domain
 {
+    using System.Diagnostics.CodeAnalysis;
+
+    using Naos.CodeAnalysis.Recipes;
+
     /// <summary>
     /// The format of a Slack text object.
     /// </summary>
@@ -24,6 +28,7 @@ namespace Naos.Slack.Domain
         /// <summary>
         /// Slack's markup language, see: <a href="https://api.slack.com/reference/surfaces/formatting" />.
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Mrkdwn", Justification = NaosSuppressBecause.CA1704_IdentifiersShouldBeSpelledCorrectly_SpellingIsCorrectInContextOfTheDomain)]
         Mrkdwn,
     }
 }

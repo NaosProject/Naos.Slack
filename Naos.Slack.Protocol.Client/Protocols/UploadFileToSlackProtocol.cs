@@ -17,8 +17,6 @@ namespace Naos.Slack.Protocol.Client
 
     using OBeautifulCode.Assertion.Recipes;
 
-    using static System.FormattableString;
-
     /// <summary>
     /// Executes a <see cref="UploadFileToSlackOp"/>.
     /// </summary>

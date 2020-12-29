@@ -480,7 +480,7 @@ namespace Naos.Slack.Domain
         /// <summary>
         /// SQL.
         /// </summary>
-        Qql,
+        Sql,
 
         /// <summary>
         /// Sass.

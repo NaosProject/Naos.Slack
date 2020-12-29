@@ -11,6 +11,9 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Specifies the type of file.
     /// </summary>
+    /// <remarks>
+    /// A copy of this exists in Naos.Email.Domain.FileFormat.  Keep them in-sync.
+    /// </remarks>
     [GeneratedCode("Ignore all CA warnings", "Ignore all CA warnings")]
     public enum FileType
     {

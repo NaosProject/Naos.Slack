@@ -13,7 +13,7 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Sends a Slack message.
     /// </summary>
-    public partial class SendSlackMessageOp : ReturningOperationBase<SendSlackMessageResponse>
+    public partial class SendSlackMessageOp : ReturningOperationBase<SendSlackMessageResponse>, ISlackOp
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SendSlackMessageOp"/> class.

@@ -127,6 +127,7 @@
     <Compile Include="Events\Upload\UploadFileToSlackResponseEventBase{TId}.designer.cs">
       <DependentUpon>UploadFileToSlackResponseEventBase{TId}.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ISlackOp.cs" />
     <Compile Include="Interfaces\IUploadFileToSlackProtocol.cs" />
     <Compile Include="Interfaces\ISendSlackMessageProtocol.cs" />
     <Compile Include="Models\Classes\Message\MessageAuthorIcon.cs" />

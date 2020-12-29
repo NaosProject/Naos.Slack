@@ -13,7 +13,7 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Uploads a file to Slack.
     /// </summary>
-    public partial class UploadFileToSlackOp : ReturningOperationBase<UploadFileToSlackResponse>
+    public partial class UploadFileToSlackOp : ReturningOperationBase<UploadFileToSlackResponse>, ISlackOp
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadFileToSlackOp"/> class.

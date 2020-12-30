@@ -23,7 +23,7 @@ namespace Naos.Slack.Domain
     ///   Files will be stored either in hosted or editable mode,
     ///   based on certain heuristics (determined type, file size).
     /// </remarks>
-    public partial class UploadFileToSlackRequest : IModelViaCodeGen
+    public partial class UploadFileToSlackRequest : ISlackRequest, IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadFileToSlackRequest"/> class.

@@ -12,7 +12,7 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Base class for a request to send a Slack message.
     /// </summary>
-    public abstract partial class SendSlackMessageRequestBase : IModelViaCodeGen
+    public abstract partial class SendSlackMessageRequestBase : ISlackRequest, IModelViaCodeGen
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SendSlackMessageRequestBase"/> class.

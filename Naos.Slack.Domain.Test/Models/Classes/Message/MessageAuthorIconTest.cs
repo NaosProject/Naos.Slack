@@ -29,6 +29,24 @@ namespace Naos.Slack.Domain.Test
         [SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline", Justification = ObcSuppressBecause.CA1810_InitializeReferenceTypeStaticFieldsInline_FieldsDeclaredInCodeGeneratedPartialTestClass)]
         static MessageAuthorIconTest()
         {
+            ConstructorArgumentValidationTestScenarios
+                .AddScenario(() =>
+                    new ConstructorArgumentValidationTestScenario<MessageAuthorIcon>
+                    {
+                        Name = "constructor should throw ArgumentOutOfRangeException when parameter 'resourceIdKind' is IconResourceIdentifierKind.Unknown",
+                        ConstructionFunc = () =>
+                        {
+                            var referenceObject = A.Dummy<MessageAuthorIcon>();
+
+                            var result = new MessageAuthorIcon(
+                                referenceObject.ResourceId,
+                                IconResourceIdentifierKind.Unknown);
+
+                            return result;
+                        },
+                        ExpectedExceptionType = typeof(ArgumentOutOfRangeException),
+                        ExpectedExceptionMessageContains = new[] { "resourceIdKind", "Unknown" },
+                    });
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Naos.Slack.Protocol.Client.Test
 
             var operation = new SendSlackMessageOp(sendSlackTextMessageRequest);
 
-            var protocol = new SendSlackMessageProtocol("bad");
+            var protocol = new SendSlackMessageProtocol(new SlackAuthToken("bad"));
 
             // Act
             var actual = await protocol.ExecuteAsync(operation);
@@ -42,7 +42,7 @@ namespace Naos.Slack.Protocol.Client.Test
 
             var operation = new SendSlackMessageOp(sendSlackTextMessageRequest);
 
-            var protocol = new SendSlackMessageProtocol("AUTH-TOKEN-HERE");
+            var protocol = new SendSlackMessageProtocol(new SlackAuthToken("AUTH-TOKEN-HERE"));
 
             // Act
             var actual = await protocol.ExecuteAsync(operation);

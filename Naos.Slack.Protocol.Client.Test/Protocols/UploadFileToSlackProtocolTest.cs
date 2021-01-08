@@ -27,7 +27,7 @@ namespace Naos.Slack.Protocol.Client.Test
 
             var operation = new UploadFileToSlackOp(uploadFileToSlackRequest);
 
-            var protocol = new UploadFileToSlackProtocol("bad");
+            var protocol = new UploadFileToSlackProtocol(new SlackAuthToken("bad"));
 
             // Act
             var actual = await protocol.ExecuteAsync(operation);
@@ -51,7 +51,7 @@ namespace Naos.Slack.Protocol.Client.Test
 
             var operation = new UploadFileToSlackOp(uploadFileToSlackRequest);
 
-            var protocol = new UploadFileToSlackProtocol("AUTH-TOKEN-HERE");
+            var protocol = new UploadFileToSlackProtocol(new SlackAuthToken("AUTH-TOKEN-HERE"));
 
             // Act
             var actual = await protocol.ExecuteAsync(operation);

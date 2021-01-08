@@ -131,6 +131,7 @@
     <Compile Include="Interfaces\ISlackOp.cs" />
     <Compile Include="Interfaces\IUploadFileToSlackProtocol.cs" />
     <Compile Include="Interfaces\ISendSlackMessageProtocol.cs" />
+    <Compile Include="Models\Classes\SlackAuthToken.cs" />
     <Compile Include="Models\Classes\Message\MessageAuthorIcon.cs" />
     <Compile Include="Models\Classes\Message\MessageAuthorIcon.designer.cs">
       <DependentUpon>MessageAuthorIcon.cs</DependentUpon>
@@ -142,6 +143,9 @@
     <Compile Include="Models\Classes\Message\SendSlackMessageRequestBase.cs" />
     <Compile Include="Models\Classes\Message\SendSlackMessageResponse.designer.cs">
       <DependentUpon>SendSlackMessageResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Classes\SlackAuthToken.designer.cs">
+      <DependentUpon>SlackAuthToken.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Classes\Upload\UploadFileToSlackRequest.designer.cs">
       <DependentUpon>UploadFileToSlackRequest.cs</DependentUpon>

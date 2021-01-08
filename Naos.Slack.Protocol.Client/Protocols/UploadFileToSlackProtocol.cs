@@ -29,13 +29,13 @@ namespace Naos.Slack.Protocol.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="UploadFileToSlackProtocol"/> class.
         /// </summary>
-        /// <param name="authenticationToken">A Slack authentication token bearing the required scopes.</param>
+        /// <param name="slackAuthToken">A Slack authentication token bearing the required scopes.</param>
         public UploadFileToSlackProtocol(
-            string authenticationToken)
+            SlackAuthToken slackAuthToken)
         {
-            new { authenticationToken }.AsArg().Must().NotBeNullNorWhiteSpace();
+            new { slackAuthToken }.AsArg().Must().NotBeNull();
 
-            this.slackClient = new SlackClient(authenticationToken);
+            this.slackClient = new SlackClient(slackAuthToken);
         }
 
         /// <inheritdoc />

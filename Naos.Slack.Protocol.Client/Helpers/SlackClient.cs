@@ -14,6 +14,8 @@ namespace Naos.Slack.Protocol
     using System.Net.Http;
     using System.Threading.Tasks;
 
+    using Naos.Slack.Domain;
+
     using OBeautifulCode.Assertion.Recipes;
     using OBeautifulCode.Collection.Recipes;
 
@@ -26,7 +28,7 @@ namespace Naos.Slack.Protocol
     {
         private const string ApiBaseUrl = "https://slack.com/api/";
 
-        private readonly string authenticationToken;
+        private readonly SlackAuthToken slackAuthToken;
 
         static SlackClient()
         {
@@ -36,13 +38,13 @@ namespace Naos.Slack.Protocol
         /// <summary>
         /// Initializes a new instance of the <see cref="SlackClient"/> class.
         /// </summary>
-        /// <param name="authenticationToken">A Slack authentication token bearing the required scopes.</param>
+        /// <param name="slackAuthToken">A Slack authentication token bearing the required scopes.</param>
         public SlackClient(
-            string authenticationToken)
+            SlackAuthToken slackAuthToken)
         {
-            new { authenticationToken }.AsArg().Must().NotBeNullNorWhiteSpace();
+            new { slackAuthToken }.AsArg().Must().NotBeNull();
 
-            this.authenticationToken = authenticationToken;
+            this.slackAuthToken = slackAuthToken;
         }
 
         /// <summary>
@@ -99,7 +101,7 @@ namespace Naos.Slack.Protocol
             var methodUrl = new Uri(Path.Combine(ApiBaseUrl, methodName));
 
             var parametersWithToken = new Tuple<string, string>[0]
-                .Concat(new[] { new Tuple<string, string>("token", this.authenticationToken) })
+                .Concat(new[] { new Tuple<string, string>("token", this.slackAuthToken.Value) })
                 .Concat(parameters)
                 .ToList();
 

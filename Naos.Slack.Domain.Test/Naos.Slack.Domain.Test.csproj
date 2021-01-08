@@ -300,6 +300,10 @@
     <Compile Include="Properties\ProjectInfo.cs" />
     <Compile Include="SerializationConfigurationTypes.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\Classes\SlackAuthTokenTest.cs" />
+    <Compile Include="Models\Classes\SlackAuthTokenTest.designer.cs">
+      <DependentUpon>SlackAuthTokenTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="SlackDummyFactory.cs" />
     <Compile Include="SlackDummyFactory.designer.cs">
       <DependentUpon>SlackDummyFactory.cs</DependentUpon>

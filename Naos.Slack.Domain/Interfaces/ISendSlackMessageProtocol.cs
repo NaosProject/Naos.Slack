@@ -11,7 +11,7 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Executes a <see cref="SendSlackMessageOp"/>.
     /// </summary>
-    public interface ISendSlackMessageProtocol : ISyncAndAsyncReturningProtocol<SendSlackMessageOp, SendSlackMessageResponse>
+    public interface ISendSlackMessageProtocol : IAsyncReturningProtocol<SendSlackMessageOp, SendSlackMessageResponse>
     {
     }
 }

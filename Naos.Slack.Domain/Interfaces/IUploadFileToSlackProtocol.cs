@@ -11,7 +11,7 @@ namespace Naos.Slack.Domain
     /// <summary>
     /// Executes a <see cref="UploadFileToSlackOp"/>.
     /// </summary>
-    public interface IUploadFileToSlackProtocol : ISyncAndAsyncReturningProtocol<UploadFileToSlackOp, UploadFileToSlackResponse>
+    public interface IUploadFileToSlackProtocol : IAsyncReturningProtocol<UploadFileToSlackOp, UploadFileToSlackResponse>
     {
     }
 }

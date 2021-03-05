@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>Naos.Slack.Domain.Recipes.DummyFactory</id>
+    <id>Naos.Slack.Recipes.DummyFactory</id>
     <description>A Dummy Factory for types in Naos.Slack.Domain</description>
     <tags>dummyfactory dummy factory fakeiteasy autofixture snippet codeinclude utility shared recipe Slack</tags>
     <dependencies>

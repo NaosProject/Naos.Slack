@@ -9,7 +9,6 @@ namespace Naos.Slack.Serialization.Bson
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Naos.Protocol.Serialization.Bson;
     using OBeautifulCode.Serialization.Bson;
     using OBeautifulCode.Type;
     using OBeautifulCode.Type.Recipes;
@@ -22,13 +21,6 @@ namespace Naos.Slack.Serialization.Bson
             new[]
             {
                 Naos.Slack.Domain.ProjectInfo.Namespace,
-            };
-
-        /// <inheritdoc />
-        protected override IReadOnlyCollection<BsonSerializationConfigurationType> DependentBsonSerializationConfigurationTypes =>
-            new[]
-            {
-                typeof(ProtocolBsonSerializationConfiguration).ToBsonSerializationConfigurationType(),
             };
 
         /// <inheritdoc />

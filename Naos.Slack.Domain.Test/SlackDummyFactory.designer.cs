@@ -15,7 +15,6 @@ namespace Naos.Slack.Domain.Test
 
     using global::FakeItEasy;
 
-    using global::Naos.Protocol.Domain;
     using global::Naos.Slack.Domain;
 
     using global::OBeautifulCode.AutoFakeItEasy;

@@ -10,10 +10,10 @@ namespace Naos.Slack.Protocol.Client
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Naos.Protocol.Domain;
     using Naos.Slack.Domain;
 
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.Type;
     using OBeautifulCode.Type.Recipes;
 
     using static System.FormattableString;

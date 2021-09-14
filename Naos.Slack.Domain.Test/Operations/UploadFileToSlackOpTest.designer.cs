@@ -18,8 +18,6 @@ namespace Naos.Slack.Domain.Test
 
     using global::FakeItEasy;
 
-    using global::Naos.Protocol.Domain;
-
     using global::OBeautifulCode.Assertion.Recipes;
     using global::OBeautifulCode.AutoFakeItEasy;
     using global::OBeautifulCode.CodeGen.ModelObject.Recipes;

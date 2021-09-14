@@ -6,7 +6,7 @@
 
 namespace Naos.Slack.Domain
 {
-    using Naos.Protocol.Domain;
+    using OBeautifulCode.Type;
 
     /// <summary>
     /// Executes a <see cref="UploadFileToSlackOp"/>.

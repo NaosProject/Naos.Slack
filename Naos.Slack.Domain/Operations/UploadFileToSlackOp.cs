@@ -6,9 +6,8 @@
 
 namespace Naos.Slack.Domain
 {
-    using Naos.Protocol.Domain;
-
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.Type;
 
     /// <summary>
     /// Uploads a file to Slack.

@@ -12,10 +12,10 @@ namespace Naos.Slack.Protocol.Client
     using System.Net.Http;
     using System.Threading.Tasks;
 
-    using Naos.Protocol.Domain;
     using Naos.Slack.Domain;
 
     using OBeautifulCode.Assertion.Recipes;
+    using OBeautifulCode.Type;
 
     /// <summary>
     /// Executes a <see cref="UploadFileToSlackOp"/>.

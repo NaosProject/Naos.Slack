@@ -51,10 +51,18 @@ namespace Naos.Slack.Protocol.Client
 
                 if (sendSlackMessageRequest is SendSlackTextMessageRequest sendSlackTextMessageRequest)
                 {
+                    // HACK: should be using application/json instead of URI to communicate the message
+                    // When that's fixed we no longer have to truncate.
+                    // If the text is too long, .net throws:
+                    // UriFormatException: Invalid URI: The Uri string is too long.
+                    var textToSend = sendSlackTextMessageRequest.Text.Length > 1000
+                        ? sendSlackTextMessageRequest.Text.Substring(0, 1000) + Environment.NewLine + "..."
+                        : sendSlackTextMessageRequest.Text;
+
                     var parameters = new List<Tuple<string, string>>
                     {
                         new Tuple<string, string>("channel", sendSlackTextMessageRequest.Channel),
-                        new Tuple<string, string>("text", sendSlackTextMessageRequest.Text),
+                        new Tuple<string, string>("text", textToSend),
                     };
 
                     if (!string.IsNullOrWhiteSpace(sendSlackTextMessageRequest.MessageAuthorUsernameOverride))

@@ -12,8 +12,13 @@ namespace Naos.Slack.Domain
     /// Specifies the type of file.
     /// </summary>
     /// <remarks>
-    /// A copy of this exists in OBeautifulCode.IO except that the default value
-    /// is Auto here to support Slack's auto-detect feature.  Keep them in-sync.
+    /// In the past we kept a copy of this OBeautifulCode.IO (FileFormat) except that the default value
+    /// was Auto here to support Slack's auto-detect feature.  We are now maintaining these independently
+    /// because of the need to add to FileFormat.  OBeautifulCode.IO does have FileFormat to MediaType
+    /// conversions and getting the mime type name from those MediaTypes.  Slack now supports specifying
+    /// mime type name.  So in the future, if we wanted to get rid of this enum we could use FileFormat.
+    /// There would, however, be some loss in coverage as there aren't official mime types for all these
+    /// file types, and often it's just text/plain or application/octet-stream.
     /// </remarks>
     [GeneratedCode("Ignore all CA warnings", "Ignore all CA warnings")]
     public enum FileType
@@ -136,7 +141,7 @@ namespace Naos.Slack.Domain
         /// <summary>
         /// Email.
         /// </summary>
-        Email,
+        Eml,
 
         /// <summary>
         /// EPS.
@@ -244,7 +249,7 @@ namespace Naos.Slack.Domain
         Java,
 
         /// <summary>
-        /// JavaScript/JSON.
+        /// JavaScript.
         /// </summary>
         JavaScript,
 
@@ -252,6 +257,11 @@ namespace Naos.Slack.Domain
         /// JPEG.
         /// </summary>
         Jpg,
+
+        /// <summary>
+        /// JSON.
+        /// </summary>
+        Json,
 
         /// <summary>
         /// Keynote Document.
